@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Media Ajar - Sistem Digital</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="header-top">
+                <div class="logo">
+                    <span class="logo-icon">🔢</span>
+                    <h1>Media Ajar Sistem Digital</h1>
+                </div>
+                <button class="theme-toggle" id="theme-toggle" title="Ganti terang/gelap">🌙 Dark</button>
+            </div>
+            <p class="subtitle">Mata Kuliah: Sistem Digital | Semester 1 (3 SKS)</p>
+        </div>
+    </header>
+
+    <nav class="tab-navigation">
+        <div class="tab-container">
+            <button class="tab-btn active" data-week="1">Minggu 1</button>
+            <button class="tab-btn" data-week="2">Minggu 2</button>
+            <button class="tab-btn" data-week="3">Minggu 3</button>
+            <button class="tab-btn" data-week="4">Minggu 4</button>
+            <button class="tab-btn" data-week="5">Minggu 5</button>
+            <button class="tab-btn" data-week="6">Minggu 6</button>
+            <button class="tab-btn" data-week="7">Minggu 7</button>
+            <button class="tab-btn" data-week="8">Minggu 8</button>
+            <button class="tab-btn" data-week="9">Minggu 9</button>
+            <button class="tab-btn" data-week="10">Minggu 10</button>
+            <button class="tab-btn" data-week="11">Minggu 11</button>
+            <button class="tab-btn" data-week="12">Minggu 12</button>
+            <button class="tab-btn" data-week="13">Minggu 13</button>
+            <button class="tab-btn" data-week="14">Minggu 14</button>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <!-- Minggu 1 - Pendahuluan + Konversi Bilangan -->
+        <section class="week-content active" id="week-1">
+            <div class="content-header">
+                <h2>Minggu 1: Pendahuluan Sistem Digital & Konversi Bilangan</h2>
+                <p class="description">Definisi, karakteristik, Analog vs Digital, aplikasi sehari-hari, dan dasar sistem bilangan (Biner, Oktal, Heksadesimal, Desimal). Konverter di bawah memakai metode Biner sebagai basis utama.</p>
+            </div>
+
+            <div class="content-tabs">
+                <button class="content-tab active" data-tab="w1-belajar">📖 Pembelajaran</button>
+                <button class="content-tab" data-tab="w1-konverter">⚡ Konverter</button>
+                <button class="content-tab" data-tab="w1-dec2bin">🔢 Des→Bin</button>
+                <button class="content-tab" data-tab="w1-bin2hex">🔠 Bin→Hex</button>
+                <button class="content-tab" data-tab="w1-bin2oct">🎱 Bin→Okt</button>
+                <button class="content-tab" data-tab="w1-bin2dec">➕ Bin→Des</button>
+                <button class="content-tab" data-tab="w1-cheatsheet">📋 Cheatsheet</button>
+                <button class="content-tab" data-tab="w1-quiz">📝 Latihan</button>
+            </div>
+
+            <div class="tab-panel active" id="w1-belajar">
+            <div class="theory-section">
+                <div class="theory-grid">
+                    <div class="theory-card">
+                        <h3>📖 Definisi</h3>
+                        <p>Sistem digital bekerja dengan data berbasis angka biner (0 dan 1) untuk pengolahan informasi dengan akurasi tinggi. Data bersifat <strong>diskrit</strong> (terputus), bukan kontinu — sehingga mudah diproses, disimpan, dan ditransmisikan komputer.</p>
+                    </div>
+                    <div class="theory-card">
+                        <h3>🛡️ Karakteristik</h3>
+                        <ul>
+                            <li><strong>Andal:</strong> tahan noise / gangguan eksternal dibanding analog.</li>
+                            <li><strong>Diskrit:</strong> 0/1 = off/on sirkuit elektronik.</li>
+                            <li><strong>Efisien:</strong> semua data (teks, gambar, suara) direpresentasikan biner.</li>
+                        </ul>
+                    </div>
+                    <div class="theory-card">
+                        <h3>⚖️ Analog vs Digital</h3>
+                        <table class="mini-table">
+                            <tr><th>Aspek</th><th>Analog</th><th>Digital</th></tr>
+                            <tr><td>Sinyal</td><td>Kontinu (gel. suara)</td><td>Diskrit (0/1)</td></tr>
+                            <tr><td>Akurasi</td><td>Rentan distorsi</td><td>Tinggi, tanpa distorsi</td></tr>
+                            <tr><td>Contoh</td><td>Radio tradisional</td><td>Komputer, smartphone</td></tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="theory-grid">
+                    <div class="theory-card">
+                        <h3>🏠 Aplikasi Sehari-hari</h3>
+                        <ul>
+                            <li><strong>Otomasi rumah:</strong> lampu pintar, termostat, kunci digital.</li>
+                            <li><strong>Komunikasi:</strong> ponsel, WiFi, Bluetooth, konferensi video.</li>
+                            <li><strong>Konsumen & IoT:</strong> smart TV, konsol game, kulkas pintar.</li>
+                            <li><strong>Komputasi & AI:</strong> hitung cepat, big data, algoritma learning.</li>
+                        </ul>
+                    </div>
+                    <div class="theory-card">
+                        <h3>🔢 Dasar Bilangan (MSB/LSB)</h3>
+                        <p>Basis 2 (0,1). Setiap digit = <strong>bit</strong>. MSB = Most Significant Bit, LSB = Least Significant Bit.</p>
+                        <p>Kelompok bit: 4-bit = <strong>Nibble</strong>, 8-bit = <strong>Byte</strong>, 16-bit = <strong>Word</strong>.</p>
+                        <p>Biner→Desimal: jumlahkan bobot 2<sup>n</sup>. Desimal→Biner: bagi berulang dengan 2. Oktal (basis 8) & Heksa (basis 16, 0-9 A-F) memadatkan biner.</p>
+                    </div>
+                </div>
+            </div>
+            </div><!-- /w1-belajar -->
+
+            <div class="tab-panel" id="w1-konverter">
+            <div class="converter-section">
+                <div class="converter-card">
+                    <div class="card-header">
+                        <h3>🧮 Konverter Bilangan</h3>
+                        <span class="badge">Interaktif</span>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="number-input">Masukkan Bilangan:</label>
+                        <input type="text" id="number-input" placeholder="Contoh: 1101 atau FF atau 77 atau 255" autocomplete="off">
+                    </div>
+
+                    <div class="conversion-options">
+                        <div class="option-group">
+                            <label>Dari Basis:</label>
+                            <select id="from-base">
+                                <option value="binary">Biner (0, 1)</option>
+                                <option value="hexadecimal">Heksadesimal (0-9, A-F)</option>
+                                <option value="octal">Oktal (0-7)</option>
+                                <option value="decimal">Desimal (0-9)</option>
+                            </select>
+                        </div>
+
+                        <div class="swap-btn" id="swap-btn" title="Tukar basis">⇄</div>
+
+                        <div class="option-group">
+                            <label>Ke Basis:</label>
+                            <select id="to-base">
+                                <option value="hexadecimal">Heksadesimal (0-9, A-F)</option>
+                                <option value="binary">Biner (0, 1)</option>
+                                <option value="octal">Oktal (0-7)</option>
+                                <option value="decimal">Desimal (0-9)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="button-group">
+                        <button class="btn btn-convert" id="convert-btn">Konversi</button>
+                        <button class="btn btn-reset" id="reset-btn">Reset</button>
+                    </div>
+
+                    <div class="result-section" id="result-section">
+                        <div class="result-header">
+                            <h4>Hasil Konversi:</h4>
+                            <button class="btn-copy" id="copy-btn" title="Salin hasil">📋</button>
+                        </div>
+                        <div class="result-display" id="result-display">-</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="steps-section">
+                <div class="steps-card">
+                    <div class="card-header">
+                        <h3>📝 Langkah Konversi</h3>
+                        <span class="badge">Step-by-Step</span>
+                    </div>
+                    <div class="steps-content" id="steps-content">
+                        <p class="placeholder-text">Masukkan bilangan dan klik "Konversi" untuk melihat langkah-langkahnya.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="visualization-section">
+                <div class="vis-card">
+                    <div class="card-header">
+                        <h3>👁️ Visualisasi Pengelompokan Bit</h3>
+                        <span class="badge">Animasi</span>
+                    </div>
+                    <div class="vis-content" id="vis-content">
+                        <div class="bit-group-container" id="bit-groups">
+                            <!-- Bit groups will be rendered here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="reference-section">
+                <h3>📊 Tabel Referensi Cepat</h3>
+                <div class="reference-tables">
+                    <div class="ref-table-card">
+                        <h4>Biner → Heksadesimal (4 bit)</h4>
+                        <table class="ref-table">
+                            <thead>
+                                <tr><th>Biner</th><th>Heksa</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>0000</td><td>0</td></tr>
+                                <tr><td>0001</td><td>1</td></tr>
+                                <tr><td>0010</td><td>2</td></tr>
+                                <tr><td>0011</td><td>3</td></tr>
+                                <tr><td>0100</td><td>4</td></tr>
+                                <tr><td>0101</td><td>5</td></tr>
+                                <tr><td>0110</td><td>6</td></tr>
+                                <tr><td>0111</td><td>7</td></tr>
+                                <tr><td>1000</td><td>8</td></tr>
+                                <tr><td>1001</td><td>9</td></tr>
+                                <tr><td>1010</td><td>A</td></tr>
+                                <tr><td>1011</td><td>B</td></tr>
+                                <tr><td>1100</td><td>C</td></tr>
+                                <tr><td>1101</td><td>D</td></tr>
+                                <tr><td>1110</td><td>E</td></tr>
+                                <tr><td>1111</td><td>F</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="ref-table-card">
+                        <h4>Biner → Oktal (3 bit)</h4>
+                        <table class="ref-table">
+                            <thead>
+                                <tr><th>Biner</th><th>Oktal</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>000</td><td>0</td></tr>
+                                <tr><td>001</td><td>1</td></tr>
+                                <tr><td>010</td><td>2</td></tr>
+                                <tr><td>011</td><td>3</td></tr>
+                                <tr><td>100</td><td>4</td></tr>
+                                <tr><td>101</td><td>5</td></tr>
+                                <tr><td>110</td><td>6</td></tr>
+                                <tr><td>111</td><td>7</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="examples-section">
+                <h3>✨ Contoh Soal Interaktif</h3>
+                <div class="examples-grid">
+                    <div class="example-card" data-example="11010">
+                        <div class="example-number">1</div>
+                        <p>Konversi <strong>11010₂</strong> ke heksadesimal</p>
+                        <button class="btn btn-example">Coba Sekarang</button>
+                    </div>
+                    <div class="example-card" data-example="10110111">
+                        <div class="example-number">2</div>
+                        <p>Konversi <strong>10110111₂</strong> ke oktal</p>
+                        <button class="btn btn-example">Coba Sekarang</button>
+                    </div>
+                    <div class="example-card" data-example="11111111">
+                        <div class="example-number">3</div>
+                        <p>Konversi <strong>11111111₂</strong> ke desimal</p>
+                        <button class="btn btn-example">Coba Sekarang</button>
+                    </div>
+                    <div class="example-card" data-example="FF" data-from="hexadecimal">
+                        <div class="example-number">4</div>
+                        <p>Konversi <strong>FF₁₆</strong> ke biner</p>
+                        <button class="btn btn-example">Coba Sekarang</button>
+                    </div>
+                </div>
+            </div>
+            </div><!-- /w1-konverter -->
+
+            <div class="tab-panel" id="w1-dec2bin">
+                <div class="interactive-card">
+                    <h4>🔢 Desimal → Biner: bagi berulang dengan 2</h4>
+                    <p>Bagi bilangan dengan 2 berulang kali, catat sisa dari <strong>bawah ke atas</strong> (LSB → MSB).</p>
+                    <div class="quiz-input-row">
+                        <input type="number" class="quiz-input" id="w1-dec-in" value="25" min="0" placeholder="Desimal...">
+                        <button class="btn btn-convert btn-sm" id="w1-dec-btn">Hitung Langkah ➔</button>
+                    </div>
+                    <div id="w1-dec-steps"></div>
+                </div>
+            </div>
+
+            <div class="tab-panel" id="w1-bin2hex">
+                <div class="interactive-card">
+                    <h4>🔠 Biner → Heksadesimal: kelompok 4-bit</h4>
+                    <p>Kelompokkan per <strong>4 bit dari kanan (LSB)</strong>, tiap kelompok = 1 digit heksa (0–9, A–F).</p>
+                    <div class="quiz-input-row">
+                        <input type="text" class="quiz-input" id="w1-hex-in" value="11010110" placeholder="Biner...">
+                        <button class="btn btn-convert btn-sm" id="w1-hex-btn">Kelompokkan ➔</button>
+                    </div>
+                    <div id="w1-hex-res"></div>
+                </div>
+            </div>
+
+            <div class="tab-panel" id="w1-bin2oct">
+                <div class="interactive-card">
+                    <h4>🎱 Biner → Oktal: kelompok 3-bit</h4>
+                    <p>Kelompokkan per <strong>3 bit dari kanan (LSB)</strong>, tiap kelompok = 1 digit oktal (0–7).</p>
+                    <div class="quiz-input-row">
+                        <input type="text" class="quiz-input" id="w1-oct-in" value="11010110" placeholder="Biner...">
+                        <button class="btn btn-convert btn-sm" id="w1-oct-btn">Kelompokkan ➔</button>
+                    </div>
+                    <div id="w1-oct-res"></div>
+                </div>
+            </div>
+
+            <div class="tab-panel" id="w1-bin2dec">
+                <div class="interactive-card">
+                    <h4>➕ Biner → Desimal: jumlahkan bobot 2<sup>n</sup></h4>
+                    <p>Bit 1 dikali bobot posisinya (2<sup>n</sup> dari kanan, mulai 2<sup>0</sup>=1), lalu dijumlahkan.</p>
+                    <div class="quiz-input-row">
+                        <input type="text" class="quiz-input" id="w1-bdec-in" value="10110" placeholder="Biner...">
+                        <button class="btn btn-convert btn-sm" id="w1-bdec-btn">Hitung Bobot ➔</button>
+                    </div>
+                    <div id="w1-bdec-res"></div>
+                </div>
+            </div>
+
+            <div class="tab-panel cheatsheet-panel" id="w1-cheatsheet">
+                <div class="cheatsheet">
+                    <h4>📋 Cheatsheet Minggu 1 — Konversi Bilangan</h4>
+                    <p style="font-size:13px;color:var(--text-secondary)">Biner adalah sentral semua konversi. Klik Cetak untuk mencetak ringkasan ini.</p>
+                    <h5>Metode</h5>
+                    <table><tr><th>Konversi</th><th>Cara</th><th>Contoh</th></tr>
+                    <tr><td>Des → Bin</td><td>Bagi 2 berulang, baca sisa bawah→atas</td><td><code>25₁₀ = 11001₂</code></td></tr>
+                    <tr><td>Bin → Des</td><td>Σ bit×2<sup>n</sup></td><td><code>10110₂ = 22₁₀</code></td></tr>
+                    <tr><td>Bin → Hex</td><td>Kelompok 4-bit dari LSB (2⁴=16)</td><td><code>11010110₂ = D6₁₆</code></td></tr>
+                    <tr><td>Bin → Okt</td><td>Kelompok 3-bit dari LSB (2³=8)</td><td><code>11010110₂ = 326₈</code></td></tr>
+                    <tr><td>Hex/Okt → Bin</td><td>1 digit → 4 / 3 bit</td><td><code>2F₁₆ = 101111₂</code></td></tr></table>
+                    <h5>Satuan bit</h5>
+                    <table><tr><th>Nama</th><th>Ukuran</th></tr>
+                    <tr><td>Nibble</td><td>4 bit (= 1 digit heksa)</td></tr>
+                    <tr><td>Byte</td><td>8 bit</td></tr>
+                    <tr><td>Word</td><td>16 bit</td></tr></table>
+                    <h5>MSB / LSB</h5>
+                    <p>MSB = bit paling kiri (bobot terbesar / bit tanda), LSB = bit paling kanan (2<sup>0</sup>).</p>
+                    <div class="no-print" style="margin-top:12px"><button class="btn btn-convert btn-sm print-btn">🖨️ Cetak Cheatsheet</button></div>
+                </div>
+            </div>
+
+            <div class="tab-panel" id="w1-quiz">
+                <div class="interactive-card">
+                    <div class="score-bar"><span class="score-label">Skor Latihan:</span><span class="score-value" id="quiz1-score">0 / 5</span><div class="progress-track"><div class="progress-fill" id="quiz1-progress" style="width:0%"></div></div></div>
+                    <div id="quiz1-questions"></div>
+                    <button class="btn btn-secondary btn-sm mt-16" id="reset-quiz1">🔄 Acak Soal Baru</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Minggu 2 - Bilangan Negatif & Operasi -->
+        <section class="week-content" id="week-2">
+            <div class="content-header">
+                <h2>Minggu 2: Bilangan Negatif & Operasi Biner</h2>
+                <p class="description">Sign-Magnitude, 1's Complement, 2's Complement (standar CPU), negatif di Hex/Octal, pengurangan via penjumlahan, overflow, sign extension, end-around carry.</p>
+            </div>
+
+            <div class="content-tabs">
+                <button class="content-tab active" data-tab="w2-banding">⚖️ Perbandingan</button>
+                <button class="content-tab" data-tab="w2-sm">➕ Sign-Magnitude</button>
+                <button class="content-tab" data-tab="w2-c1">🔄 1's Complement</button>
+                <button class="content-tab" data-tab="w2-c2">⭐ 2's Complement</button>
+                <button class="content-tab" data-tab="w2-sub">➕ Pengurangan</button>
+                <button class="content-tab" data-tab="w2-overflow">⚠️ Overflow+</button>
+                <button class="content-tab" data-tab="w2-cheatsheet">📋 Cheatsheet</button>
+                <button class="content-tab" data-tab="w2-quiz">📝 Latihan</button>
+            </div>
+
+            <div class="tab-panel active" id="w2-banding">
+            <div class="theory-section">
+                <div class="theory-grid">
+                    <div class="theory-card"><h3>SM</h3><p>MSB = tanda (0=+, 1=−), sisa bit = magnitudo. 8-bit: −127..+127. Ada +0 (<code>00000000</code>) dan −0 (<code>10000000</code>). Contoh +13=<code>00001101</code>, −13=<code>10001101</code>.</p></div>
+                    <div class="theory-card"><h3>C1</h3><p>Negatif = <strong>NOT semua bit</strong>. 8-bit: −127..+127, masih ada ±0. Contoh −13 = <code>11110010</code>. Butuh <em>end-around carry</em>.</p></div>
+                    <div class="theory-card"><h3>C2 ⭐</h3><p>Negatif = <strong>NOT + 1</strong>. 8-bit: −128..+127, satu nol. Aritmetika paling sederhana. Contoh −13 = <code>11110011</code>, −37 = <code>11011011</code>, −1 (16-bit) = <code>FFFF</code>.</p></div>
+                </div>
+            </div>
+
+            <div class="converter-card">
+                <div class="card-header"><h3>🔄 Konverter Signed (SM / C1 / C2)</h3><span class="badge">Interaktif</span></div>
+                <div style="padding:1.5rem">
+                    <div class="form-row">
+                        <div class="option-group"><label>Desimal bertanda:</label><input id="signed-input" type="text" placeholder="Contoh: -13 atau 58" autocomplete="off" style="width:100%;padding:0.875rem;font-size:1.1rem;border:2px solid var(--border-color);border-radius:8px;font-family:'Courier New',monospace"></div>
+                        <div class="option-group"><label>Lebar bit:</label><select id="signed-width"><option value="4">4-bit</option><option value="8" selected>8-bit</option><option value="16">16-bit</option></select></div>
+                        <div class="option-group"><label>&nbsp;</label><button class="btn btn-convert" id="signed-btn">Konversi</button></div>
+                    </div>
+                    <div class="triple-grid">
+                        <div class="triple-card"><h4>Sign-Magnitude</h4><div class="mono" id="sm-out">-</div></div>
+                        <div class="triple-card"><h4>1's Complement</h4><div class="mono" id="c1-out">-</div></div>
+                        <div class="triple-card"><h4>2's Complement</h4><div class="mono" id="c2-out">-</div></div>
+                    </div>
+                    <div class="form-row">
+                        <div class="option-group"><label>C2 Hex:</label><div class="mono" id="signed-hex">-</div></div>
+                        <div class="option-group"><label>C2 Oktal:</label><div class="mono" id="signed-oct">-</div></div>
+                    </div>
+                    <div class="steps-content" id="signed-steps"><p class="placeholder-text">Masukkan desimal lalu klik Konversi. Contoh: −58 → C2 = 11000110 = 0xC6.</p></div>
+                </div>
+            </div>
+            </div><!-- /w2-banding -->
+
+            <div class="tab-panel" id="w2-sm">
+                <div class="interactive-card">
+                    <h4>➕ Sign-Magnitude (SM)</h4>
+                    <p>MSB = bit tanda (<code>0 = +</code>, <code>1 = −</code>), sisa bit = magnitudo (nilai mutlak).</p>
+                    <div class="info-box tip"><strong>Struktur 8-bit:</strong> 1 bit tanda + 7 bit magnitudo. Rentang −127..+127.</div>
+                    <div class="grid-2">
+                        <div class="interactive-card" style="margin:0"><strong>+13:</strong><p style="font-family:monospace;font-size:16px"><b style="color:var(--green)">0</b>000 1101</p><span style="font-size:11px">MSB=0 (+), magnitudo 13</span></div>
+                        <div class="interactive-card" style="margin:0"><strong>−13:</strong><p style="font-family:monospace;font-size:16px"><b style="color:var(--red)">1</b>000 1101</p><span style="font-size:11px">MSB=1 (−), magnitudo 13</span></div>
+                    </div>
+                    <div class="info-box warning mt-16"><strong>Double zero:</strong> +0 = <code>00000000</code>, −0 = <code>10000000</code> — memperumit logika perbandingan hardware.</div>
+                    <p style="font-size:13px">Coba sendiri di tab Perbandingan: masukkan −25 → SM = <code>10011001</code>.</p>
+                </div>
+            </div>
+
+            <div class="tab-panel" id="w2-c1">
+                <div class="interactive-card">
+                    <h4>🔄 1's Complement (C1)</h4>
+                    <p>Negatif = <strong>inversi (NOT) semua bit</strong> dari representasi positif. Rentang 8-bit −127..+127, masih ada ±0.</p>
+                    <div class="info-box tip"><strong>Contoh −13:</strong> +13 = <code>00001101</code> → NOT → <code>11110010</code>. Cek di tab Perbandingan!</div>
+                    <div class="info-box warning"><strong>End-around carry:</strong> jika penjumlahan C1 menghasilkan carry keluar MSB, carry itu <strong>ditambahkan kembali ke LSB</strong>. Contoh 5 + (−5) → −0 pada C1.</div>
+                </div>
+            </div>
+
+            <div class="tab-panel" id="w2-c2">
+                <div class="interactive-card">
+                    <h4>⭐ 2's Complement (C2) — standar CPU/MCU</h4>
+                    <p>Rumus: <code>C2 = NOT(semua bit) + 1</code>. Rentang 8-bit −128..+127, hanya satu nol.</p>
+                    <div class="steps-container">
+                        <div class="step-item"><div class="step-number">1</div><div class="step-content"><h5>Biner nilai absolut</h5><p><code>+37 = 00100101</code></p></div></div>
+                        <div class="step-item"><div class="step-number">2</div><div class="step-content"><h5>Inversi semua bit</h5><p><code>NOT = 11011010</code></p></div></div>
+                        <div class="step-item"><div class="step-number">3</div><div class="step-content"><h5>Tambah 1</h5><p><code>11011010 + 1 = 11011011₂ = 0xDB</code> → inilah −37!</p></div></div>
+                    </div>
+                    <div class="info-box success"><strong>Unggul karena:</strong> satu nol + pengurangan cukup pakai adder (tanpa subtractor). C2→Desimal: jika MSB=1, nilai = −(2ⁿ − U). Contoh <code>11100110₂</code>: U=230, 256−230=26 → <b>−26</b>.</div>
+                </div>
+            </div>
+
+            <div class="tab-panel" id="w2-sub">
+            <div class="converter-card">
+                <div class="card-header"><h3>➕ Operasi C2: A − B = A + (C2 dari B)</h3><span class="badge">Adder only</span></div>
+                <div style="padding:1.5rem">
+                    <div class="form-row">
+                        <div class="option-group"><label>A:</label><input id="op-a" type="text" value="18" style="width:100%;padding:0.875rem;border:2px solid var(--border-color);border-radius:8px;font-family:'Courier New',monospace"></div>
+                        <div class="option-group"><label>Operasi:</label><select id="op-sel"><option value="sub">A − B</option><option value="add">A + B</option></select></div>
+                        <div class="option-group"><label>B:</label><input id="op-b" type="text" value="25" style="width:100%;padding:0.875rem;border:2px solid var(--border-color);border-radius:8px;font-family:'Courier New',monospace"></div>
+                        <div class="option-group"><label>&nbsp;</label><button class="btn btn-convert" id="op-btn">Hitung (8-bit C2)</button></div>
+                    </div>
+                    <div class="result-display" id="op-result">-</div>
+                    <div class="steps-content" id="op-steps"></div>
+                    <div class="info-box warning"><strong>Aturan overflow:</strong> positif + positif = negatif → OVERFLOW; negatif + negatif = positif → OVERFLOW; beda tanda tak pernah overflow. Formula hardware: <code>carry-in(MSB) XOR carry-out(MSB)</code>. Coba 100 + 60 (seharusnya +160 &gt; +127).</div>
+                </div>
+            </div>
+            </div><!-- /w2-sub -->
+
+            <div class="tab-panel" id="w2-overflow">
+            <div class="theory-section">
+                <div class="theory-grid">
+                    <div class="theory-card"><h3>📊 Perbandingan 3 Skema (8-bit)</h3>
+                        <table class="mini-table"><tr><th>Skema</th><th>Rentang</th><th>−X dari +X</th><th>Catatan</th></tr>
+                        <tr><td>SM</td><td>−127..+127</td><td>Set MSB=1</td><td>Ada +0/−0</td></tr>
+                        <tr><td>C1</td><td>−127..+127</td><td>NOT semua bit</td><td>End-around carry</td></tr>
+                        <tr><td>C2</td><td>−128..+127</td><td>NOT + 1</td><td>Standar CPU</td></tr></table>
+                    </div>
+                    <div class="theory-card"><h3>↔️ Sign Extension & C1 Carry</h3><p>Perlebar 8→16 bit: <strong>salin MSB</strong>. Contoh −37: <code>11011011</code> → <code>11111111 11011011</code>. C1: jika ada carry keluar, tambahkan ke LSB (end-around carry). C2 menghindari ±0 → lebih praktis.</p></div>
+                    <div class="theory-card"><h3>✏️ Latihan (jawaban di slide)</h3><p>1) −58 (8-bit C2) → biner, oktal & hex.<br>2) <code>10111111</code> (C2) → desimal.<br>3) 75 − 103 via penjumlahan.<br>4) −25 dalam SM & C1 (8-bit).</p>
+                    <p style="font-size:0.85rem">Jawaban: 1) <code>11000110</code>=0xC6, 2) −65, 3) <code>11100100</code>=−28, 4) SM=<code>10011001</code>, C1=<code>11100110</code>.</p></div>
+                </div>
+            </div>
+            </div><!-- /w2-overflow -->
+
+            <div class="tab-panel cheatsheet-panel" id="w2-cheatsheet">
+                <div class="cheatsheet">
+                    <h4>📋 Cheatsheet Minggu 2 — Bilangan Negatif</h4>
+                    <h5>3 skema (8-bit)</h5>
+                    <table><tr><th>Skema</th><th>Rentang</th><th>−X dari +X</th><th>Nol ganda?</th></tr>
+                    <tr><td>SM</td><td>−127..+127</td><td>Set MSB=1</td><td>Ya (+0/−0)</td></tr>
+                    <tr><td>C1</td><td>−127..+127</td><td>NOT semua bit</td><td>Ya</td></tr>
+                    <tr><td>C2</td><td>−128..+127</td><td>NOT + 1</td><td>Tidak ⭐</td></tr></table>
+                    <h5>Rentang C2</h5>
+                    <table><tr><th>Lebar</th><th>Min</th><th>Max</th></tr>
+                    <tr><td>4-bit</td><td>−8</td><td>+7</td></tr>
+                    <tr><td>8-bit</td><td>−128</td><td>+127</td></tr>
+                    <tr><td>16-bit</td><td>−32768</td><td>+32767</td></tr></table>
+                    <h5>Rumus kunci</h5>
+                    <p>A − B = <code>A + C2(B)</code> • Overflow = <code>carry-in MSB XOR carry-out MSB</code> • Sign extension: <strong>salin MSB</strong> (cth −37: <code>11011011</code> → <code>11111111 11011011</code>) • C1 carry keluar → tambah ke LSB.</p>
+                    <div class="no-print" style="margin-top:12px"><button class="btn btn-convert btn-sm print-btn">🖨️ Cetak Cheatsheet</button></div>
+                </div>
+            </div>
+
+            <div class="tab-panel" id="w2-quiz">
+                <div class="interactive-card">
+                    <div class="score-bar"><span class="score-label">Skor Latihan:</span><span class="score-value" id="quiz2-score">0 / 5</span><div class="progress-track"><div class="progress-fill" id="quiz2-progress" style="width:0%"></div></div></div>
+                    <div id="quiz2-questions"></div>
+                    <button class="btn btn-secondary btn-sm mt-16" id="reset-quiz2">🔄 Acak Soal Baru</button>
+                </div>
+            </div>
+        </section>
+        <section class="week-content" id="week-3">
+            <div class="content-header">
+                <h2>Minggu 3: Aljabar Boolean & Gerbang Logika</h2>
+                <p class="description">Variabel & operator AND/OR/NOT, prioritas NOT→AND→OR, hukum Boolean, tabel kebenaran ↔ ekspresi, bentuk standar SOP (Σm) / POS (ΠM).</p>
+            </div>
+
+            <div class="content-tabs">
+                <button class="content-tab active" data-tab="w3-belajar">📖 Pembelajaran</button>
+                <button class="content-tab" data-tab="w3-gates">🔌 Gerbang</button>
+                <button class="content-tab" data-tab="w3-hukum">📜 Hukum</button>
+                <button class="content-tab" data-tab="w3-sop">➕ SOP</button>
+                <button class="content-tab" data-tab="w3-pos">✖️ POS</button>
+                <button class="content-tab" data-tab="w3-cheatsheet">📋 Cheatsheet</button>
+                <button class="content-tab" data-tab="w3-quiz">📝 Latihan</button>
+            </div>
+
+            <div class="tab-panel active" id="w3-belajar">
+            <div class="theory-section">
+                <div class="theory-grid">
+                    <div class="theory-card"><h3>🔌 Operator Dasar</h3><p><strong>AND</strong> (·), <strong>OR</strong> (+), <strong>NOT</strong> (garis atas / '). Prioritas: kurung dulu, lalu NOT, AND, OR. Contoh: <code>A + B·C' = A + (B·C')</code>.</p></div>
+                    <div class="theory-card"><h3>📜 Hukum Penting</h3><ul><li>Identitas: A+0=A, A·1=A</li><li>Komplemen: A+A'=1, A·A'=0</li><li>Idempoten, Involusi (A'')=A</li><li>De Morgan: (A·B)'=A'+B', (A+B)'=A'·B'</li><li>Absorpsi: A+A·B=A; Konsensus, Distributif</li></ul></div>
+                    <div class="theory-card"><h3>📐 SOP vs POS</h3><p><strong>SOP / Minterm:</strong> jumlah dari kali — tiap suku memuat semua variabel. Contoh <code>G = xy + x'y</code>. Tanpa komplemen dibaca 1.<br><strong>POS / Maxterm:</strong> kali dari jumlah — contoh <code>(x'+y)(x+y')</code>. Tanpa komplemen dibaca 0.</p></div>
+                </div>
+                <div class="interactive-card">
+                    <h4>⚙️ Prioritas operasi (tanpa kurung): NOT → AND → OR</h4>
+                    <p>Kurung selalu dikerjakan dulu. Contoh: <code>A + B·C' = A + (B·C')</code> — NOT C dulu, AND dengan B, terakhir OR dengan A.</p>
+                </div>
+            </div>
+            </div><!-- /w3-belajar -->
+
+            <div class="tab-panel" id="w3-gates">
+            <div class="converter-card">
+                <div class="card-header"><h3>🔌 Simulator Gerbang Logika</h3><span class="badge">Klik input</span></div>
+                <div style="padding:1.5rem"><div class="gate-grid" id="gate-grid"></div>
+                <p style="font-size:0.9rem;color:#666">7 gerbang: AND OR NOT NAND NOR XOR XNOR. Klik tombol A/B untuk toggle 0/1. Contoh XOR: output 1 hanya jika input beda (dipakai di SOP slide Contoh 2).</p></div>
+            </div>
+            </div><!-- /w3-gates -->
+
+            <div class="tab-panel" id="w3-hukum">
+                <div class="interactive-card">
+                    <h4>📜 Hukum-Hukum Aljabar Boolean</h4>
+                    <p>Prinsip fundamental untuk menyederhanakan ekspresi logika:</p>
+                    <div style="overflow-x:auto"><table class="truth-table">
+                        <thead><tr><th>Hukum</th><th>OR (+)</th><th>AND (•)</th></tr></thead>
+                        <tbody>
+                        <tr><td><strong>Identitas</strong></td><td>A + 0 = A</td><td>A • 1 = A</td></tr>
+                        <tr><td><strong>Dominansi</strong></td><td>A + 1 = 1</td><td>A • 0 = 0</td></tr>
+                        <tr><td><strong>Idempoten</strong></td><td>A + A = A</td><td>A • A = A</td></tr>
+                        <tr><td><strong>Komplemen</strong></td><td>A + A' = 1</td><td>A • A' = 0</td></tr>
+                        <tr><td><strong>Involusi</strong></td><td colspan="2">(A')' = A</td></tr>
+                        <tr><td><strong>Komutatif</strong></td><td>A + B = B + A</td><td>A • B = B • A</td></tr>
+                        <tr><td><strong>Asosiatif</strong></td><td>A + (B + C)</td><td>A • (B • C)</td></tr>
+                        <tr><td><strong>Distributif</strong></td><td>A + BC = (A+B)(A+C)</td><td>A(B + C) = AB + AC</td></tr>
+                        <tr><td><strong>De Morgan</strong></td><td>(A + B)' = A' • B'</td><td>(A • B)' = A' + B'</td></tr>
+                        <tr><td><strong>Absorpsi</strong></td><td>A + AB = A</td><td>A(A + B) = A</td></tr>
+                        </tbody>
+                    </table></div>
+                    <div class="info-box tip"><strong>De Morgan paling penting:</strong> komplemen dari jumlah = kali dari komplemen, dan sebaliknya.</div>
+                </div>
+            </div>
+
+            <div class="tab-panel" id="w3-sop">
+                <div class="interactive-card">
+                    <h4>➕ SOP / Minterm (Σm)</h4>
+                    <p>Tiap suku = AND semua variabel (tanpa ' dibaca 1, dengan ' dibaca 0), suku-suku di-OR. Contoh: <code>G = x'y'z + xyz + x'y'z'</code> → mintermnya m1 + m7 + m0. Dibangun dari <strong>baris output = 1</strong>.</p>
+                </div>
+            <div class="converter-card">
+                <div class="card-header"><h3>📊 Truth Table → SOP / POS</h3><span class="badge">2–3 variabel</span></div>
+                <div style="padding:1.5rem">
+                    <div class="form-row">
+                        <div class="option-group"><label>Jumlah variabel:</label><select id="bool-nvar"><option value="2">2 (x,y)</option><option value="3" selected>3 (x,y,z)</option></select></div>
+                        <div class="option-group"><label>&nbsp;</label><button class="btn btn-convert" id="bool-gen">Buat Tabel</button></div>
+                        <div class="option-group"><label>&nbsp;</label><button class="btn btn-reset" id="bool-demo">Contoh XOR</button></div>
+                    </div>
+                    <div id="bool-table-wrap"></div>
+                    <div class="triple-grid">
+                        <div class="triple-card"><h4>SOP (Σm)</h4><div class="mono" id="sop-out">-</div></div>
+                        <div class="triple-card"><h4>POS (ΠM)</h4><div class="mono" id="pos-out">-</div></div>
+                    </div>
+                    <div class="steps-content" id="bool-steps"><p class="placeholder-text">Atur output F di tabel (klik 0/1), SOP & POS dihitung otomatis. SOP dari baris F=1, POS dari baris F=0.</p></div>
+                </div>
+            </div>
+            </div><!-- /w3-sop -->
+
+            <div class="tab-panel" id="w3-pos">
+                <div class="interactive-card">
+                    <h4>✖️ POS / Maxterm (ΠM)</h4>
+                    <p>Tiap suku = OR semua variabel (tanpa ' dibaca <strong>0</strong>, dengan ' dibaca 1), suku-suku di-AND. Contoh: <code>f(x,y) = (x' + y)(x + y')</code>. Dibangun dari <strong>baris output = 0</strong>.</p>
+                    <div class="info-box tip"><strong>Praktik:</strong> buka tab SOP, atur tabel F, lalu baca hasil POS (ΠM) — maxterm = komplemen indeks minterm. Contoh f = Σm(0,2,4) → POS = ΠM(1,3,5,6,7).</div>
+                    <p style="font-size:13px">Konversi POS↔SOP: kembangkan sukunya (distributif) lalu sederhanakan dengan hukum Boolean / K-Map (Minggu 4).</p>
+                </div>
+            </div>
+
+            <div class="tab-panel cheatsheet-panel" id="w3-cheatsheet">
+                <div class="cheatsheet">
+                    <h4>📋 Cheatsheet Minggu 3 — Aljabar Boolean</h4>
+                    <h5>Prioritas</h5>
+                    <p><code>( )</code> → <code>NOT</code> → <code>AND</code> → <code>OR</code></p>
+                    <h5>Hukum kilat</h5>
+                    <table><tr><th>Hukum</th><th>Rumus</th></tr>
+                    <tr><td>Komplemen</td><td><code>A+A'=1</code>, <code>A•A'=0</code></td></tr>
+                    <tr><td>De Morgan</td><td><code>(A+B)'=A'B'</code>, <code>(AB)'=A'+B'</code></td></tr>
+                    <tr><td>Absorpsi</td><td><code>A+AB=A</code>, <code>A(A+B)=A</code></td></tr>
+                    <tr><td>Distributif</td><td><code>A+BC=(A+B)(A+C)</code></td></tr></table>
+                    <h5>SOP vs POS</h5>
+                    <table><tr><th></th><th>SOP (Σm)</th><th>POS (ΠM)</th></tr>
+                    <tr><td>Dari baris</td><td>F = 1</td><td>F = 0</td></tr>
+                    <tr><td>Variabel asli dibaca</td><td>1</td><td>0</td></tr>
+                    <tr><td>Penghubung</td><td>OR dari AND</td><td>AND dari OR</td></tr></table>
+                    <div class="no-print" style="margin-top:12px"><button class="btn btn-convert btn-sm print-btn">🖨️ Cetak Cheatsheet</button></div>
+                </div>
+            </div>
+
+            <div class="tab-panel" id="w3-quiz">
+                <div class="theory-section"><div class="theory-grid">
+                    <div class="theory-card"><h3>✏️ Latihan 2–4 (slide)</h3><p><strong>L2:</strong> Sederhanakan + buat rangkaian & truth table.<br><strong>L3:</strong> Tabel C, D, Q lalu gerbang tunggal pengganti.<br><strong>L4:</strong> C=AND, D=OR, Q=C XOR D — rangkaian, tabel, persamaan.</p></div>
+                    <div class="theory-card"><h3>💡 Tips</h3><p>De Morgan untuk NAND/NOR, Absorpsi untuk suku redundan, cek dengan truth table. K-Map (Minggu 4) lebih intuitif untuk 3–4 variabel.</p></div>
+                </div></div>
+                <div class="interactive-card">
+                    <div class="score-bar"><span class="score-label">Skor Kuis:</span><span class="score-value" id="quiz3-score">0 / 5</span><div class="progress-track"><div class="progress-fill" id="quiz3-progress" style="width:0%"></div></div></div>
+                    <div id="quiz3-questions"></div>
+                    <button class="btn btn-secondary btn-sm mt-16" id="reset-quiz3">🔄 Acak Soal Baru</button>
+                </div>
+            </div>
+        </section>
+        <section class="week-content" id="week-4">
+            <div class="content-header">
+                <h2>Minggu 4: Penyederhanaan Karnaugh Map (K-Map)</h2>
+                <p class="description">Lebih intuitif dari aljabar manual. Aturan: kelompokkan 1-2-4-8 sel bertetangga (wrap-around boleh), tiap sel beda 1 variabel (Gray code), sebesar & sesedikit mungkin, X (don't care) boleh ikut.</p>
+            </div>
+
+            <div class="content-tabs">
+                <button class="content-tab active" data-tab="w4-konsep">🗺️ Konsep</button>
+                <button class="content-tab" data-tab="w4-aturan">📏 Aturan</button>
+                <button class="content-tab" data-tab="w4-k2">2️⃣ K-Map 2</button>
+                <button class="content-tab" data-tab="w4-k3">3️⃣ K-Map 3</button>
+                <button class="content-tab" data-tab="w4-lab">🧪 Lab</button>
+                <button class="content-tab" data-tab="w4-k4">4️⃣ K-Map 4</button>
+                <button class="content-tab" data-tab="w4-dontcare">❓ Don't Care</button>
+                <button class="content-tab" data-tab="w4-kasus">🏭 Kasus</button>
+                <button class="content-tab" data-tab="w4-cheatsheet">📋 Cheatsheet</button>
+                <button class="content-tab" data-tab="w4-quiz">📝 Latihan</button>
+            </div>
+
+            <div class="tab-panel active" id="w4-konsep">
+                <div class="interactive-card">
+                    <h4>🗺️ Mengapa K-Map?</h4>
+                    <p>Tabel kebenaran disusun 2D dengan <strong>Kode Gray</strong> (<code>00 → 01 → 11 → 10</code>) — hanya 1 bit berubah antar kotak bersebelahan, sehingga variabel redundan terlihat langsung dan bisa dieliminasi.</p>
+                    <div class="grid-2">
+                        <div class="interactive-card" style="margin:0"><h5>⚡ Aljabar manual</h5><p style="font-size:13px">Butuh kejelian hukum, rentan keliru, sulit pastikan minimal.</p></div>
+                        <div class="interactive-card" style="margin:0"><h5>⭐ K-Map</h5><p style="font-size:13px">Grafis & intuitif, grup 1-2-4-8-16, hasil minimal SOP/POS.</p></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-panel" id="w4-aturan">
+                <div class="interactive-card">
+                    <h4>📏 5 Aturan Emas Pengelompokan</h4>
+                    <div class="steps-container">
+                        <div class="step-item"><div class="step-number">1</div><div class="step-content"><h5>Ukuran = 2<sup>n</sup></h5><p>Hanya 1, 2, 4, 8, 16. Dilarang 3, 5, 6!</p></div></div>
+                        <div class="step-item"><div class="step-number">2</div><div class="step-content"><h5>Persegi / persegi panjang</h5><p>Tidak boleh diagonal atau bentuk L.</p></div></div>
+                        <div class="step-item"><div class="step-number">3</div><div class="step-content"><h5>Sebesar mungkin</h5><p>Makin besar grup → makin banyak variabel tereliminasi.</p></div></div>
+                        <div class="step-item"><div class="step-number">4</div><div class="step-content"><h5>Tepi menyambung (wrap-around)</h5><p>Kiri-kanan & atas-bawah tersambung; 4 sudut = 1 grup!</p></div></div>
+                        <div class="step-item"><div class="step-number">5</div><div class="step-content"><h5>Boleh overlap</h5><p>Satu angka 1 boleh masuk beberapa grup.</p></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-panel" id="w4-k2">
+                <div class="interactive-card">
+                    <h4>2️⃣ K-Map 2 Variabel (A, B) — baris A, kolom B</h4>
+                    <p><strong>Contoh:</strong> <code>Q = AB + A'B + AB'</code> (m1, m2, m3) → grup m1+m3 mengeliminasi A (sisa B), grup m2+m3 mengeliminasi B (sisa A) → <b>Q = A + B</b>.</p>
+                    <button class="btn btn-convert btn-sm" data-kmap-preset="2|1,2,3">▶ Buka contoh ini di Lab</button>
+                </div>
+            </div>
+
+            <div class="tab-panel" id="w4-k3">
+                <div class="interactive-card">
+                    <h4>3️⃣ K-Map 3 Variabel — baris A, kolom BC (Gray)</h4>
+                    <p><strong>Contoh:</strong> <code>Q = ABC' + AB'C' + AB'C + ABC</code> (m4–m7, seluruh baris A=1) → satu grup 4 → B dan C tereliminasi → <b>Q = A</b>.</p>
+                    <button class="btn btn-convert btn-sm" data-kmap-preset="3|4,5,6,7">▶ Buka contoh ini di Lab</button>
+                </div>
+            </div>
+
+            <div class="tab-panel" id="w4-lab">
+            <div class="converter-card">
+                <div class="card-header"><h3>🧩 K-Map Interaktif (klik: 0→1→X→0)</h3><span class="badge">2 / 3 / 4 var</span></div>
+                <div style="padding:1.5rem;text-align:center">
+                    <div class="form-row" style="justify-content:center">
+                        <div class="option-group" style="max-width:200px"><label>Variabel:</label><select id="kmap-nvar"><option value="2">2 var (A,B)</option><option value="3" selected>3 var (A,B,C)</option><option value="4">4 var (A,B,C,D)</option></select></div>
+                        <div class="option-group"><label>&nbsp;</label><button class="btn btn-convert" id="kmap-solve">Sederhanakan</button></div>
+                        <div class="option-group"><label>&nbsp;</label><button class="btn btn-reset" id="kmap-clear">Clear</button></div>
+                        <div class="option-group"><label>&nbsp;</label><button class="btn btn-example" id="kmap-demo">Contoh Alarm</button></div>
+                    </div>
+                    <div id="kmap-wrap"></div>
+                    <div class="result-display" id="kmap-result" style="margin-top:1rem">-</div>
+                    <div class="steps-content steps-list" id="kmap-steps"><p class="placeholder-text">Klik sel untuk set 1 / X, lalu Sederhanakan.</p></div>
+                </div>
+            </div>
+            </div><!-- /w4-lab -->
+
+            <div class="tab-panel" id="w4-k4">
+                <div class="interactive-card">
+                    <h4>4️⃣ K-Map 4 Variabel — baris AB, kolom CD (Gray)</h4>
+                    <p><strong>Contoh:</strong> <code>Q = A'BC'D + ABC'D + A'BCD + ABCD</code> (m5, m13, m7, m15 — kolom CD=01 &amp; 11 pada baris B=1) → grup 4 mengeliminasi A dan C → <b>Q = BD</b>.</p>
+                    <button class="btn btn-convert btn-sm" data-kmap-preset="4|5,7,13,15">▶ Buka contoh ini di Lab</button>
+                </div>
+            </div>
+
+            <div class="tab-panel" id="w4-dontcare">
+                <div class="interactive-card">
+                    <h4>👻 Don't Care (X)</h4>
+                    <p>Kondisi yang tak terjadi / tak peduli hasilnya. Di Lab, klik sel 2× untuk menjadikannya <b>X</b>.</p>
+                    <div class="info-box tip"><strong>Aturan:</strong> X boleh dianggap 1 untuk <em>memperbesar</em> grup, atau 0 (diabaikan) jika tak membantu. Jangan paksa X masuk grup kecil.</div>
+                </div>
+            </div>
+
+            <div class="tab-panel" id="w4-kasus">
+                <div class="interactive-card">
+                    <h4>🚨 Studi Kasus: Alarm Gedung (4 sensor)</h4>
+                    <p>A=pintu, B=jendela, C=gerak, D=asap. Alarm = <code>A·C + B·C + D</code> → minterm 1,3,5,6,7,9,10,11,13,14,15.</p>
+                    <button class="btn btn-convert btn-sm" data-kmap-preset="4|1,3,5,6,7,9,10,11,13,14,15">▶ Buktikan di Lab (hasil: D + AC + BC)</button>
+                </div>
+                <div class="interactive-card">
+                    <h4>🅿️ Latihan: Gerbang Parkir</h4>
+                    <p>A=kartu valid, B=kendaraan ada, C=penuh, D=darurat. Buka jika <code>A·B·C' + D</code> → minterm 1,3,5,7,9,11,12,13,15.</p>
+                    <button class="btn btn-convert btn-sm" data-kmap-preset="4|1,3,5,7,9,11,12,13,15">▶ Buka di Lab</button>
+                </div>
+            </div>
+
+            <div class="tab-panel cheatsheet-panel" id="w4-cheatsheet">
+                <div class="cheatsheet">
+                    <h4>📋 Cheatsheet Minggu 4 — K-Map</h4>
+                    <h5>Aturan kilat</h5>
+                    <p>Grup = <code>2ⁿ</code> (1,2,4,8,16) • persegi • sebesar mungkin • wrap-around • boleh overlap • Gray <code>00-01-11-10</code>.</p>
+                    <h5>Eliminasi</h5>
+                    <p>Variabel yang <em>berubah</em> dalam grup → hilang. Grup 2 = 1 var hilang, grup 4 = 2 var, grup 8 = 3 var.</p>
+                    <h5>Contoh hafalan</h5>
+                    <table><tr><th>Soal</th><th>Hasil</th></tr>
+                    <tr><td><code>AB+A'B+AB'</code></td><td><code>A+B</code></td></tr>
+                    <tr><td><code>Σm(4,5,6,7)</code> 3-var</td><td><code>A</code></td></tr>
+                    <tr><td><code>Σm(5,7,13,15)</code> 4-var</td><td><code>BD</code></td></tr>
+                    <tr><td>Alarm <code>AC+BC+D</code></td><td><code>D+AC+BC</code></td></tr></table>
+                    <div class="no-print" style="margin-top:12px"><button class="btn btn-convert btn-sm print-btn">🖨️ Cetak Cheatsheet</button></div>
+                </div>
+            </div>
+
+            <div class="tab-panel" id="w4-quiz">
+                <div class="interactive-card">
+                    <h4>✏️ Latihan slide</h4>
+                    <p>1) Minimalkan <code>Q = ABCD' + AB'C'D + A'BCD</code> di Lab.<br>2) Selesaikan kasus parkir di atas, tulis persamaan minimalnya.</p>
+                </div>
+                <div class="interactive-card">
+                    <div class="score-bar"><span class="score-label">Skor Kuis:</span><span class="score-value" id="quiz4-score">0 / 5</span><div class="progress-track"><div class="progress-fill" id="quiz4-progress" style="width:0%"></div></div></div>
+                    <div id="quiz4-questions"></div>
+                    <button class="btn btn-secondary btn-sm mt-16" id="reset-quiz4">🔄 Acak Soal Baru</button>
+                </div>
+            </div>
+        </section>
+        <section class="week-content" id="week-5">
+            <div class="placeholder-content">
+                <div class="placeholder-icon">📚</div>
+                <h2>Minggu 5</h2>
+                <p>Materi akan segera tersedia.</p>
+                <button class="btn btn-primary">Edit Materi</button>
+            </div>
+        </section>
+        <section class="week-content" id="week-6">
+            <div class="placeholder-content">
+                <div class="placeholder-icon">📚</div>
+                <h2>Minggu 6</h2>
+                <p>Materi akan segera tersedia.</p>
+                <button class="btn btn-primary">Edit Materi</button>
+            </div>
+        </section>
+        <section class="week-content" id="week-7">
+            <div class="placeholder-content">
+                <div class="placeholder-icon">📚</div>
+                <h2>Minggu 7</h2>
+                <p>Materi akan segera tersedia.</p>
+                <button class="btn btn-primary">Edit Materi</button>
+            </div>
+        </section>
+        <section class="week-content" id="week-8">
+            <div class="placeholder-content">
+                <div class="placeholder-icon">📚</div>
+                <h2>Minggu 8</h2>
+                <p>Materi akan segera tersedia.</p>
+                <button class="btn btn-primary">Edit Materi</button>
+            </div>
+        </section>
+        <section class="week-content" id="week-9">
+            <div class="placeholder-content">
+                <div class="placeholder-icon">📚</div>
+                <h2>Minggu 9</h2>
+                <p>Materi akan segera tersedia.</p>
+                <button class="btn btn-primary">Edit Materi</button>
+            </div>
+        </section>
+        <section class="week-content" id="week-10">
+            <div class="placeholder-content">
+                <div class="placeholder-icon">📚</div>
+                <h2>Minggu 10</h2>
+                <p>Materi akan segera tersedia.</p>
+                <button class="btn btn-primary">Edit Materi</button>
+            </div>
+        </section>
+        <section class="week-content" id="week-11">
+            <div class="placeholder-content">
+                <div class="placeholder-icon">📚</div>
+                <h2>Minggu 11</h2>
+                <p>Materi akan segera tersedia.</p>
+                <button class="btn btn-primary">Edit Materi</button>
+            </div>
+        </section>
+        <section class="week-content" id="week-12">
+            <div class="placeholder-content">
+                <div class="placeholder-icon">📚</div>
+                <h2>Minggu 12</h2>
+                <p>Materi akan segera tersedia.</p>
+                <button class="btn btn-primary">Edit Materi</button>
+            </div>
+        </section>
+        <section class="week-content" id="week-13">
+            <div class="placeholder-content">
+                <div class="placeholder-icon">📚</div>
+                <h2>Minggu 13</h2>
+                <p>Materi akan segera tersedia.</p>
+                <button class="btn btn-primary">Edit Materi</button>
+            </div>
+        </section>
+        <section class="week-content" id="week-14">
+            <div class="placeholder-content">
+                <div class="placeholder-icon">📚</div>
+                <h2>Minggu 14</h2>
+                <p>Materi akan segera tersedia.</p>
+                <button class="btn btn-primary">Edit Materi</button>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>© 2026 Media Ajar Sistem Digital</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script src="js/signed.js"></script>
+    <script src="js/boolean.js"></script>
+    <script src="js/kmap.js"></script>
+    <script src="js/learn.js"></script>
+</body>
+</html>
