@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minggu 5: Adder & Subtractor — Media Ajar Sistem Digital</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-week="5">
+    <div id="app-header"></div>
+    <div id="app-nav"></div>
+
+    <main class="main-content">
+        <section class="week-content active" id="week-5">
+            <div class="content-header">
+                <h2>Minggu 5: Adder & Subtractor (Rangkaian Aritmetika)</h2>
+                <p class="description">Penjumlahan biner, Half Adder (S=A⊕B, C=A·B), Full Adder, Ripple Carry Adder, Carry Lookahead Adder (Generate/Propagate), Half/Full Subtractor, Adder-Subtractor terintegrasi mode M.</p>
+            </div>
+
+            <div class="objectives-box">
+                <h4>🎯 Setelah mempelajari minggu ini, Anda mampu:</h4>
+                <ul>
+                    <li>Menjumlahkan bilangan biner multi-bit beserta carry-nya.</li>
+                    <li>Merancang half adder dan full adder dari gerbang logika dasar.</li>
+                    <li>Menjelaskan perbedaan RCA dan CLA dari sisi kecepatan serta jumlah gerbang.</li>
+                    <li>Merancang rangkaian subtractor dan adder-subtractor terintegrasi (mode M).</li>
+                </ul>
+            </div>
+            <div class="prereq-box">
+                <span>📌 <strong>Prasyarat:</strong> aljabar Boolean & gerbang logika (Minggu 3), bilangan bertanda 2's complement (Minggu 2).</span>
+                <span>⏱️ <strong>Estimasi:</strong> 2 × 50 menit.</span>
+            </div>
+
+            <div class="content-tabs">
+                <button class="content-tab active" data-tab="w5-belajar">📖 Pembelajaran</button>
+                <button class="content-tab" data-tab="w5-half">➕ Half Adder</button>
+                <button class="content-tab" data-tab="w5-full">⭐ Full Adder</button>
+                <button class="content-tab" data-tab="w5-rca">🔗 RCA 4-bit</button>
+                <button class="content-tab" data-tab="w5-cla">⚡ CLA G/P</button>
+                <button class="content-tab" data-tab="w5-sub">➖ Subtractor</button>
+                <button class="content-tab" data-tab="w5-addsub">🔀 Add/Sub</button>
+                <button class="content-tab" data-tab="w5-cheatsheet">📋 Cheatsheet</button>
+                <button class="content-tab" data-tab="w5-quiz">📝 Latihan</button>
+            </div>
+
+            <div class="tab-panel active" id="w5-belajar">
+            <div class="theory-section">
+                <div class="theory-grid">
+                    <div class="theory-card"><h3>➕ Penjumlahan Biner</h3><p>Aturan per kolom: 0+0=0, 0+1=1, 1+1=0 simpan 1, 1+1+1=1 simpan 1. Contoh <code>1011₂ (11) + 0111₂ (7) = 10010₂ (18)</code> — kerjakan dari LSB ke MSB dengan carry berantai.</p></div>
+                    <div class="theory-card"><h3>🧱 Hierarki Adder</h3><p><strong>Half</strong> (2 input, tanpa Cin) → <strong>Full</strong> (3 input, ada Cin) → <strong>RCA</strong> (N full dirantai, lambat tapi hemat) → <strong>CLA</strong> (carry dihitung paralel via G/P, cepat).</p></div>
+                    <div class="theory-card"><h3>➖ Pengurangan = Penjumlahan</h3><p>Hardware hanya butuh adder: <code>A − B = A + C2(B)</code>. Subtractor punya output <strong>Difference (D)</strong> dan <strong>Borrow (B)</strong>. Mode M pada Adder-Subtractor: M=0 tambah, M=1 kurang (B di-XOR dengan M, Cin=M).</p></div>
+                </div>
+                <div class="theory-grid">
+                    <div class="theory-card"><h3>🏧 Analogi: kasir + "titipan"</h3><p>Menjumlah 1 kolom desimal <code>7 + 8 = 5, simpan 1</code> — angka "simpanan 1" itulah <strong>carry</strong>. Half adder = kasir yang <em>tidak menerima titipan</em> dari kolom sebelah (hanya untuk kolom paling kanan/LSB). Full adder = kasir lengkap yang menerima titipan (Cin) dari kolom sebelumnya.</p><p>RCA = 4 kasir berderet estafet: kasir-2 tak bisa selesai sebelum menerima titipan kasir-1 — makanya lambat (delay O(N)). CLA = kasir menelepon duluan menanyakan "ada titipan nggak?" lewat jalur cepat G/P — semua kolom hitung carry hampir bersamaan.</p></div>
+                    <div class="theory-card"><h3>🧮 Contoh lengkap 11 + 7</h3><p>Tulis biner 4-bit: A=<code>1011</code>, B=<code>0111</code>. Kerjakan dari kanan: bit0: 1+1=0 simpan1; bit1: 1+1+titipan1 = 1 simpan1 (1+1+1=3, tulis 1 simpan 1); bit2: 0+1+1 = 0 simpan1; bit3: 1+0+1 = 0 simpan1. Titipan terakhir (C4=1) jadi bit ke-5: hasil <code>10010₂ = 18</code>. ✔️</p><p>Untuk 11 − 7: ubah B jadi C2-nya (<code>0111→1001</code>), lalu jumlahkan: <code>1011 + 1001 = (1)0100</code> → buang carry → <code>0100 = 4</code>. ✔️ Coba ulangi di tab RCA dan Add/Sub!</p></div>
+                </div>
+                <div class="misconception-box">
+                    <h4>⚠️ Miskonsepsi yang sering terjadi</h4>
+                    <div class="mc-item"><span class="mc-wrong">Salah:</span> “half adder bisa dipakai untuk semua kolom.” <span class="mc-right">Benar:</span> half adder tidak punya Cin, hanya cocok untuk kolom LSB.</div>
+                    <div class="mc-item"><span class="mc-wrong">Salah:</span> “CLA tidak membutuhkan full adder.” <span class="mc-right">Benar:</span> CLA tetap memakai full adder; yang dibuat cepat hanyalah perhitungan carry-nya.</div>
+                    <div class="mc-item"><span class="mc-wrong">Salah:</span> “untuk mengurangi selalu butuh rangkaian subtractor khusus.” <span class="mc-right">Benar:</span> pengurangan cukup memakai adder + komplemen 2 dari pengurang (mode M).</div>
+                </div>
+            </div>
+            </div><!-- /w5-belajar -->
+
+            <div class="tab-panel" id="w5-half">
+            <div class="converter-card">
+                <div class="card-header"><h3>➕ Simulator Half Adder</h3><span class="badge">Klik A / B</span></div>
+                <div style="padding:1.5rem">
+                    <p>S = A⊕B (XOR), C = A·B (AND). Tidak punya Cin — hanya untuk kolom LSB.</p>
+                    <div class="quiz-input-row">
+                        <button class="btn btn-convert btn-sm tgl" id="w5-ha-a">A=0</button>
+                        <button class="btn btn-convert btn-sm tgl" id="w5-ha-b">B=0</button>
+                    </div>
+                    <div class="triple-grid">
+                        <div class="triple-card"><h4>Sum (S)</h4><div class="mono" id="w5-ha-s">0</div></div>
+                        <div class="triple-card"><h4>Carry (C)</h4><div class="mono" id="w5-ha-c">0</div></div>
+                    </div>
+                    <div class="steps-content" id="w5-ha-steps"></div>
+                    <div class="info-box warning"><strong>Kekurangan:</strong> tak bisa terima carry dari kolom sebelumnya → untuk bit ≥1 wajib Full Adder.</div>
+                </div>
+            </div>
+            <figure class="svg-figure">
+                <span class="fig-title">Gambar 5.2 — Skematik Half Adder dari gerbang XOR dan AND</span>
+                <div data-svg="half-adder"></div>
+                <figcaption>Input A masuk ke kedua gerbang; B juga. Sum diambil dari XOR, Carry dari AND.</figcaption>
+            </figure>
+            </div><!-- /w5-half -->
+
+            <div class="tab-panel" id="w5-full">
+            <div class="converter-card">
+                <div class="card-header"><h3>⭐ Simulator Full Adder (1-bit)</h3><span class="badge">S=A⊕B⊕Cin</span></div>
+                <div style="padding:1.5rem">
+                    <p>Cout = AB + Cin(A⊕B). Klik input lalu Hitung.</p>
+                    <div class="quiz-input-row">
+                        <button class="btn btn-convert btn-sm tgl" id="w5-fa-a">A=0</button>
+                        <button class="btn btn-convert btn-sm tgl" id="w5-fa-b">B=0</button>
+                        <button class="btn btn-convert btn-sm tgl" id="w5-fa-cin">Cin=0</button>
+                        <button class="btn btn-convert btn-sm" id="w5-fa-btn">Hitung ➔</button>
+                    </div>
+                    <div class="result-display" id="w5-fa-result">-</div>
+                    <div class="steps-content" id="w5-fa-steps"></div>
+                </div>
+            </div>
+            <figure class="svg-figure">
+                <span class="fig-title">Gambar 5.3 — Full Adder = dua Half Adder + satu gerbang OR</span>
+                <div data-svg="full-adder"></div>
+                <figcaption>Sum pertama menjadi input half adder kedua; kedua carry digabung dengan OR menjadi Cout.</figcaption>
+            </figure>
+            </div><!-- /w5-full -->
+
+            <div class="tab-panel" id="w5-rca">
+            <div class="converter-card">
+                <div class="card-header"><h3>🔗 Simulator Ripple Carry Adder 4-bit</h3><span class="badge">Carry berantai</span></div>
+                <div style="padding:1.5rem">
+                    <div class="form-row">
+                        <div class="option-group"><label>A (0–15):</label><input id="w5-rca-a" type="text" value="11" style="width:100%;padding:0.875rem;border:2px solid var(--border-color);border-radius:8px;font-family:'Courier New',monospace"></div>
+                        <div class="option-group"><label>B (0–15):</label><input id="w5-rca-b" type="text" value="7" style="width:100%;padding:0.875rem;border:2px solid var(--border-color);border-radius:8px;font-family:'Courier New',monospace"></div>
+                        <div class="option-group"><label>&nbsp;</label><button class="btn btn-convert" id="w5-rca-btn">Jumlahkan ➔</button></div>
+                    </div>
+                    <div class="result-display" id="w5-rca-result">-</div>
+                    <div class="steps-content" id="w5-rca-steps"></div>
+                    <div class="info-box warning"><strong>Kelemahan RCA:</strong> carry harus menunggu kolom sebelumnya (delay O(N)) → untuk N besar gunakan CLA.</div>
+                </div>
+            </div>
+            <figure class="svg-figure">
+                <span class="fig-title">Gambar 5.4 — Ripple Carry Adder 4-bit (4 Full Adder berantai)</span>
+                <div data-svg="rca4"></div>
+                <figcaption>Carry keluaran tiap bit menjadi masukan bit berikutnya — seperti estafet, sehingga lambat untuk N besar.</figcaption>
+            </figure>
+            </div><!-- /w5-rca -->
+
+            <div class="tab-panel" id="w5-cla">
+            <div class="converter-card">
+                <div class="card-header"><h3>⚡ Kalkulator CLA: Generate / Propagate</h3><span class="badge">G=A·B, P=A⊕B</span></div>
+                <div style="padding:1.5rem">
+                    <p>C1 = G0 + P0·C0, C2 = G1 + P1·G0 + P1·P0·C0, dst — carry dihitung paralel.</p>
+                    <div class="form-row">
+                        <div class="option-group"><label>A (0–15):</label><input id="w5-cla-a" type="text" value="11" style="width:100%;padding:0.875rem;border:2px solid var(--border-color);border-radius:8px;font-family:'Courier New',monospace"></div>
+                        <div class="option-group"><label>B (0–15):</label><input id="w5-cla-b" type="text" value="7" style="width:100%;padding:0.875rem;border:2px solid var(--border-color);border-radius:8px;font-family:'Courier New',monospace"></div>
+                        <div class="option-group"><label>C0:</label><select id="w5-cla-c0"><option value="0">0</option><option value="1">1</option></select></div>
+                        <div class="option-group"><label>&nbsp;</label><button class="btn btn-convert" id="w5-cla-btn">Hitung G/P ➔</button></div>
+                    </div>
+                    <div class="result-display" id="w5-cla-result">-</div>
+                    <div class="steps-content" id="w5-cla-steps"></div>
+                    <div class="info-box tip"><strong>RCA vs CLA:</strong> RCA hemat gerbang & lambat (O(N)); CLA cepat (O(log N)) tapi butuh logika carry tambahan.</div>
+                </div>
+            </div>
+            <figure class="svg-figure">
+                <span class="fig-title">Gambar 5.5 — Carry Lookahead Adder: G/P + blok logika carry paralel</span>
+                <div data-svg="cla-gp"></div>
+                <figcaption>Setiap bit menghasilkan Generate (G) dan Propagate (P); blok carry menghitung semua carry hampir bersamaan.</figcaption>
+            </figure>
+            </div><!-- /w5-cla -->
+
+            <div class="tab-panel" id="w5-sub">
+            <div class="converter-card">
+                <div class="card-header"><h3>➖ Simulator Full Subtractor (1-bit)</h3><span class="badge">D=A⊕B⊕Bin</span></div>
+                <div style="padding:1.5rem">
+                    <p>Bout = A'B + Bin(A⊕B)'. Klik input lalu Hitung.</p>
+                    <div class="quiz-input-row">
+                        <button class="btn btn-convert btn-sm tgl" id="w5-sub-a">A=0</button>
+                        <button class="btn btn-convert btn-sm tgl" id="w5-sub-b">B=0</button>
+                        <button class="btn btn-convert btn-sm tgl" id="w5-sub-bin">Bin=0</button>
+                        <button class="btn btn-convert btn-sm" id="w5-sub-btn">Hitung ➔</button>
+                    </div>
+                    <div class="result-display" id="w5-sub-result">-</div>
+                    <div class="steps-content" id="w5-sub-steps"></div>
+                    <div class="info-box tip"><strong>Half Subtractor:</strong> D=A⊕B, Bout=A'·B (tanpa Bin, hanya kolom LSB).</div>
+                </div>
+            </div>
+            </div><!-- /w5-sub -->
+
+            <div class="tab-panel" id="w5-addsub">
+            <div class="converter-card">
+                <div class="card-header"><h3>🔀 Adder-Subtractor Terintegrasi 4-bit</h3><span class="badge">M=0 add, M=1 sub</span></div>
+                <div style="padding:1.5rem">
+                    <div class="form-row">
+                        <div class="option-group"><label>A (0–15):</label><input id="w5-as-a" type="text" value="11" style="width:100%;padding:0.875rem;border:2px solid var(--border-color);border-radius:8px;font-family:'Courier New',monospace"></div>
+                        <div class="option-group"><label>B (0–15):</label><input id="w5-as-b" type="text" value="7" style="width:100%;padding:0.875rem;border:2px solid var(--border-color);border-radius:8px;font-family:'Courier New',monospace"></div>
+                        <div class="option-group"><label>Mode M:</label><select id="w5-as-mode"><option value="0">M=0 : A+B</option><option value="1">M=1 : A−B</option></select></div>
+                        <div class="option-group"><label>&nbsp;</label><button class="btn btn-convert" id="w5-as-btn">Eksekusi ➔</button></div>
+                    </div>
+                    <div class="result-display" id="w5-as-result">-</div>
+                    <div class="steps-content" id="w5-as-steps"></div>
+                </div>
+            </div>
+            <figure class="svg-figure">
+                <span class="fig-title">Gambar 5.6 — Adder-Subtractor terintegrasi (kendali mode M)</span>
+                <div data-svg="adder-subtractor"></div>
+                <figcaption>M=0 → B diteruskan apa adanya (penjumlahan); M=1 → B dibalik dan Cin=1 sehingga menjadi komplemen 2 (pengurangan).</figcaption>
+            </figure>
+            </div><!-- /w5-addsub -->
+
+            <div class="tab-panel cheatsheet-panel" id="w5-cheatsheet">
+                <div class="cheatsheet">
+                    <h4>📋 Cheatsheet Minggu 5 — Adder & Subtractor</h4>
+                    <h5>Rumus adder</h5>
+                    <table><tr><th>Blok</th><th>Sum</th><th>Carry</th></tr>
+                    <tr><td>Half</td><td><code>S=A⊕B</code></td><td><code>C=A·B</code></td></tr>
+                    <tr><td>Full</td><td><code>S=A⊕B⊕Cin</code></td><td><code>Cout=AB+Cin(A⊕B)</code></td></tr>
+                    <tr><td>CLA</td><td colspan="2"><code>G=A·B, P=A⊕B, C1=G0+P0C0</code></td></tr></table>
+                    <h5>Subtractor</h5>
+                    <table><tr><th>Blok</th><th>Diff</th><th>Borrow</th></tr>
+                    <tr><td>Half</td><td><code>D=A⊕B</code></td><td><code>B=A'·B</code></td></tr>
+                    <tr><td>Full</td><td><code>D=A⊕B⊕Bin</code></td><td><code>Bout=A'B+Bin(A⊕B)'</code></td></tr></table>
+                    <h5>Kilat</h5>
+                    <p>RCA = rantai full adder (lambat O(N)) • CLA = carry paralel via G/P (cepat) • Add/Sub: <code>B⊕M, Cin=M</code> (M=0 tambah, M=1 kurang) • Contoh: <code>1011+0111=10010</code>.</p>
+                    <div class="no-print" style="margin-top:12px"><button class="btn btn-convert btn-sm print-btn">🖨️ Cetak Cheatsheet</button></div>
+                </div>
+            </div>
+
+            <div class="tab-panel" id="w5-quiz">
+                <div class="interactive-card">
+                    <div class="score-bar"><span class="score-label">Skor Kuis:</span><span class="score-value" id="quiz5-score">0 / 5</span><div class="progress-track"><div class="progress-fill" id="quiz5-progress" style="width:0%"></div></div></div>
+                    <div id="quiz5-questions"></div>
+                    <button class="btn btn-secondary btn-sm mt-16" id="reset-quiz5">🔄 Acak Soal Baru</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer" id="app-footer"></footer>
+
+    <script src="js/shell.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/signed.js"></script>
+    <script src="js/boolean.js"></script>
+    <script src="js/kmap.js"></script>
+    <script src="js/comb.js"></script>
+    <script src="js/seq.js"></script>
+    <script src="js/svg-kit.js"></script>
+    <script src="js/learn.js"></script>
+</body>
+</html>

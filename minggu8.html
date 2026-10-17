@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minggu 8: Latch, Flip-Flop & Counter — Media Ajar Sistem Digital</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-week="8">
+    <div id="app-header"></div>
+    <div id="app-nav"></div>
+
+    <main class="main-content">
+        <section class="week-content active" id="week-8">
+            <div class="content-header">
+                <h2>Minggu 8: Latch, Flip-Flop & Counter</h2>
+                <p class="description">Elemen penyimpan: SR latch NOR/NAND, D latch, flip-flop SR/JK/D/T (edge-triggered), counter sinkron vs ripple, up/down, modulo-N.</p>
+            </div>
+
+            <div class="content-tabs">
+                <button class="content-tab active" data-tab="w8-belajar">📖 Pembelajaran</button>
+                <button class="content-tab" data-tab="w8-srlatch">🔒 SR Latch</button>
+                <button class="content-tab" data-tab="w8-dlatch">🔓 D Latch</button>
+                <button class="content-tab" data-tab="w8-ff">⏱️ Flip-Flop</button>
+                <button class="content-tab" data-tab="w8-counter">🔢 Counter</button>
+                <button class="content-tab" data-tab="w8-cheatsheet">📋 Cheatsheet</button>
+                <button class="content-tab" data-tab="w8-quiz">📝 Latihan</button>
+            </div>
+
+            <div class="tab-panel active" id="w8-belajar">
+            <div class="theory-section">
+                <div class="theory-grid">
+                    <div class="theory-card"><h3>🔒 Latch (level-triggered)</h3><p>Bistabel yang mengikuti input selama enable aktif. SR latch NOR: S=1 set (Q=1), R=1 reset (Q=0), S=R=1 <strong>tak valid</strong>. D latch: Q mengikuti D saat EN=1 (menghilangkan kondisi tak valid).</p></div>
+                    <div class="theory-card"><h3>⏱️ Flip-Flop (edge-triggered)</h3><p>Menyimpan hanya saat sisi clock (naik/turun). JK = SR tanpa kondisi tak valid (J=K=1 → toggle). D: Q=D (penyimpan data). T: T=1 → toggle (bit counter).</p></div>
+                    <div class="theory-card"><h3>🔢 Counter</h3><p><strong>Sinkron:</strong> semua FF satu clock (cepat). <strong>Ripple/asinkron:</strong> output FF jadi clock FF berikut (lambat, glitch). <strong>Modulo-N:</strong> mencacah 0..N−1 lalu reset (N state).</p></div>
+                </div>
+                <div class="theory-grid">
+                    <div class="theory-card"><h3>📝 Analogi: sticky note, foto & odometer</h3><p><strong>Latch</strong> = sticky note di papan tulis: selama papan "terbuka" (EN=1), semua orang melihat tulisan terbaru — tapi siapa pun bisa menimpanya kapan saja. <strong>Flip-flop</strong> = foto yang dijepret <em>tepat saat bunyi "cekrek"</em> (sisi clock): apa pun yang terjadi sebelum/sesudahnya tidak masuk foto. Inilah beda level-triggered vs edge-triggered.</p><p><strong>Counter</strong> = odometer motor: tiap "klik" jarak, digit kanan berputar; tiap putaran penuh digit kanan, digit sebelahnya +1. Ripple counter persis seperti odometer mekanik (berantai, lambat), sedangkan synchronous counter seperti odometer digital (semua digit dihitung chip sekaligus).</p></div>
+                    <div class="theory-card"><h3>🧮 Mengapa JK "menyembuhkan" SR?</h3><p>Masalah SR: S=R=1 memaksa Q dan Q' sama-sama 0 — melanggar janji "selalu berlawanan". JK menambahkan <strong>umpan balik</strong>: input J dikaitkan dengan Q' dan K dengan Q, sehingga J=K=1 tidak lagi memaksa, melainkan <em>membalik</em> nilai lama (toggle).</p><p>Cek: Q=0 → J efektif (jalur Q'=1 terbuka) → Q jadi 1. Q=1 → K efektif → Q jadi 0. Selalu berbalik — deterministik! D flip-flop lahir dari ide "S dan R jangan pernah sama": hubungkan D ke S dan NOT-D ke R. T flip-flop = JK dengan J=K=T (satu input pengendali toggle).</p></div>
+                </div>
+            </div>
+            </div><!-- /w8-belajar -->
+
+            <div class="tab-panel" id="w8-srlatch">
+            <div class="converter-card">
+                <div class="card-header"><h3>🔒 Simulator SR Latch (NOR)</h3><span class="badge">Klik S / R</span></div>
+                <div style="padding:1.5rem">
+                    <div class="quiz-input-row">
+                        <button class="btn btn-convert btn-sm tgl" id="w8-sr-s">S=0</button>
+                        <button class="btn btn-convert btn-sm tgl" id="w8-sr-r">R=0</button>
+                        <button class="btn btn-convert btn-sm" id="w8-sr-clk">Set Q=0 (awal)</button>
+                    </div>
+                    <div class="triple-grid">
+                        <div class="triple-card"><h4>Q</h4><div class="mono" id="w8-sr-q">0</div></div>
+                        <div class="triple-card"><h4>Q'</h4><div class="mono" id="w8-sr-qn">1</div></div>
+                    </div>
+                    <div class="steps-content" id="w8-sr-steps"></div>
+                    <div class="info-box warning"><strong>S=R=1 tak valid:</strong> Q=Q'=0 (melanggar komplementer) → hindari, atau pakai JK flip-flop.</div>
+                </div>
+            </div>
+            </div><!-- /w8-srlatch -->
+
+            <div class="tab-panel" id="w8-dlatch">
+            <div class="converter-card">
+                <div class="card-header"><h3>🔓 Simulator D Latch</h3><span class="badge">EN level</span></div>
+                <div style="padding:1.5rem">
+                    <div class="quiz-input-row">
+                        <button class="btn btn-convert btn-sm tgl" id="w8-dl-d">D=0</button>
+                        <button class="btn btn-convert btn-sm tgl on" id="w8-dl-en">EN=1</button>
+                    </div>
+                    <div class="result-display" id="w8-dl-out">Q = 0</div>
+                    <div class="steps-content" id="w8-dl-steps"></div>
+                </div>
+            </div>
+            </div><!-- /w8-dlatch -->
+
+            <div class="tab-panel" id="w8-ff">
+            <div class="converter-card">
+                <div class="card-header"><h3>⏱️ Lab Flip-Flop (JK / D / T)</h3><span class="badge">Tombol Clock ⏰</span></div>
+                <div style="padding:1.5rem">
+                    <div class="form-row">
+                        <div class="option-group"><label>Jenis:</label><select id="w8-ff-type"><option value="JK">JK</option><option value="D">D</option><option value="T">T</option><option value="SR">SR</option></select></div>
+                        <div class="option-group"><label>&nbsp;</label><button class="btn btn-convert btn-sm tgl" id="w8-ff-j">J/D/T/S=0</button></div>
+                        <div class="option-group"><label>&nbsp;</label><button class="btn btn-convert btn-sm tgl" id="w8-ff-k">K/R=0</button></div>
+                        <div class="option-group"><label>&nbsp;</label><button class="btn btn-convert" id="w8-ff-clock">⏰ Clock ↑</button></div>
+                        <div class="option-group"><label>&nbsp;</label><button class="btn btn-reset" id="w8-ff-reset">Reset Q</button></div>
+                    </div>
+                    <div class="result-display" id="w8-ff-out">Q = 0</div>
+                    <div class="steps-content" id="w8-ff-steps"></div>
+                    <div class="info-box tip"><strong>Karakteristik:</strong> SR: Q⁺=S+R'Q • JK: Q⁺=JQ'+K'Q (J=K=1 toggle) • D: Q⁺=D • T: Q⁺=TQ'+T'Q.</div>
+                </div>
+            </div>
+            </div><!-- /w8-ff -->
+
+            <div class="tab-panel" id="w8-counter">
+            <div class="converter-card">
+                <div class="card-header"><h3>🔢 Simulator Counter (sinkron / ripple, up/down, modulo)</h3><span class="badge">Tombol Clock ⏰</span></div>
+                <div style="padding:1.5rem">
+                    <div class="form-row">
+                        <div class="option-group"><label>Lebar:</label><select id="w8-ct-n"><option value="3">3-bit</option><option value="4" selected>4-bit</option></select></div>
+                        <div class="option-group"><label>Arah:</label><select id="w8-ct-dir"><option value="up">Up</option><option value="down">Down</option></select></div>
+                        <div class="option-group"><label>Modulo (0=max):</label><input id="w8-ct-mod" type="text" value="0" style="width:100%;padding:0.875rem;border:2px solid var(--border-color);border-radius:8px;font-family:'Courier New',monospace"></div>
+                        <div class="option-group"><label>&nbsp;</label><button class="btn btn-convert" id="w8-ct-clock">⏰ Clock</button></div>
+                        <div class="option-group"><label>&nbsp;</label><button class="btn btn-reset" id="w8-ct-reset">Reset</button></div>
+                    </div>
+                    <div class="result-display" id="w8-ct-out">0 (0000)</div>
+                    <div class="steps-content" id="w8-ct-steps"><p class="placeholder-text">Klik Clock untuk mencacah. Modulo-N: mis. modulo 10 → 0..9 lalu kembali 0.</p></div>
+                </div>
+            </div>
+            </div><!-- /w8-counter -->
+
+            <div class="tab-panel cheatsheet-panel" id="w8-cheatsheet">
+                <div class="cheatsheet">
+                    <h4>📋 Cheatsheet Minggu 8 — Latch / FF / Counter</h4>
+                    <table><tr><th>Elemen</th><th>Persamaan</th><th>Catatan</th></tr>
+                    <tr><td>SR latch</td><td><code>S=1 set, R=1 reset</code></td><td>S=R=1 tak valid</td></tr>
+                    <tr><td>D latch</td><td><code>Q=D saat EN=1</code></td><td>Tak ada kondisi tak valid</td></tr>
+                    <tr><td>JK FF</td><td><code>Q⁺=JQ'+K'Q</code></td><td>J=K=1 toggle</td></tr>
+                    <tr><td>D FF</td><td><code>Q⁺=D</code></td><td>Penyimpan data sinkron</td></tr>
+                    <tr><td>T FF</td><td><code>Q⁺=TQ'+T'Q</code></td><td>T=1 toggle (counter)</td></tr></table>
+                    <p>Counter sinkron = 1 clock (cepat) • Ripple = bertingkat (lambat) • Modulo-N = N state (0..N−1).</p>
+                    <div class="no-print" style="margin-top:12px"><button class="btn btn-convert btn-sm print-btn">🖨️ Cetak Cheatsheet</button></div>
+                </div>
+            </div>
+
+            <div class="tab-panel" id="w8-quiz">
+                <div class="interactive-card">
+                    <div class="score-bar"><span class="score-label">Skor Kuis:</span><span class="score-value" id="quiz8-score">0 / 5</span><div class="progress-track"><div class="progress-fill" id="quiz8-progress" style="width:0%"></div></div></div>
+                    <div id="quiz8-questions"></div>
+                    <button class="btn btn-secondary btn-sm mt-16" id="reset-quiz8">🔄 Acak Soal Baru</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer" id="app-footer"></footer>
+
+    <script src="js/shell.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/signed.js"></script>
+    <script src="js/boolean.js"></script>
+    <script src="js/kmap.js"></script>
+    <script src="js/comb.js"></script>
+    <script src="js/seq.js"></script>
+    <script src="js/svg-kit.js"></script>
+    <script src="js/learn.js"></script>
+</body>
+</html>

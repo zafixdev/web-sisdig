@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minggu 14: Review Semester & Tryout UAS — Media Ajar Sistem Digital</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-week="14">
+    <div id="app-header"></div>
+    <div id="app-nav"></div>
+
+    <main class="main-content">
+        <section class="week-content active" id="week-14">
+            <div class="content-header">
+                <h2>Minggu 14: Review Semester & Tryout UAS</h2>
+                <p class="description">Peta konsep 14 minggu, cheatsheet gabungan yang bisa dicetak, dan tryout campuran 10 soal.</p>
+            </div>
+
+            <div class="content-tabs">
+                <button class="content-tab active" data-tab="w14-belajar">📖 Pembelajaran</button>
+                <button class="content-tab" data-tab="w14-tryout">🎯 Tryout UAS</button>
+                <button class="content-tab" data-tab="w14-cheatsheet">📋 Cheatsheet</button>
+                <button class="content-tab" data-tab="w14-quiz">📝 Latihan</button>
+            </div>
+
+            <div class="tab-panel active" id="w14-belajar">
+            <div class="theory-section">
+                <div class="theory-grid">
+                    <div class="theory-card"><h3>🗺️ Peta 14 minggu</h3><p>M1 konversi • M2 signed • M3 Boolean/SOP-POS • M4 K-Map • M5 adder • M6 NAND/MUX • M7 DEC/ENC/7seg • M8 latch/FF/counter • M9 register • M10 FSM • M11 memori • M12 ADC/DAC/PLD • M13 proyek • M14 tryout.</p></div>
+                    <div class="theory-card"><h3>📝 Kisi UAS</h3><p>Konversi + C2/overflow, SOP/POS + K-Map 4-var, desain adder/MUX/decoder, analisis FF/counter/register, FSM sederhana, kapasitas memori, ADC/DAC. Kerjakan tryout di tab sebelah!</p></div>
+                    <div class="theory-card"><h3>💡 Strategi</h3><p>Hafalkan rumus kilat di cheatsheet gabungan, lalu uji dengan tryout 10 soal (target ≥ 8 benar). Ulangi kuis minggu yang skornya rendah.</p></div>
+                </div>
+                <div class="theory-grid">
+                    <div class="theory-card"><h3>🎯 Cara memakai halaman ini (30 menit)</h3><p><strong>10 menit:</strong> baca peta 14 minggu, tandai 3 minggu yang paling tidak dikuasai. <strong>10 menit:</strong> kerjakan tryout tanpa mencontek — jujur itu data diagnosis, bukan nilai. <strong>10 menit:</strong> kembali ke kuis minggu yang salah + baca cheatsheet-nya, lalu ulangi tryout. Skor naik = belajar efektif.</p><p>Prioritas hafalan: C2 (NOT+1) + overflow, De Morgan, aturan grup K-Map, rumus full adder & MUX 2:1, persamaan JK/D/T, kapasitas 2ⁿ×m, step ADC. Tujuh hal ini mencakup ±70% soal tipikal UAS.</p></div>
+                    <div class="theory-card"><h3>🔗 Satu benang merah semester ini</h3><p>Perhatikan polanya: M1–M2 mengajarkan <em>bahasa angka</em>, M3–M4 mengajarkan <em>menyederhanakan logika</em>, M5–M7 membangun <em>blok kombinasional</em> dari logika itu, M8–M10 menambahkan <em>waktu & ingatan</em> (clock, state), M11–M12 menghubungkan ke <em>dunia nyata</em> (memori, analog). Proyek M13 = merangkai semuanya.</p><p>Jika satu konsep terasa asing saat ujian, tarik benang ini: "blok ini mengubah apa menjadi apa, dipicu oleh apa?" — hampir semua soal sistem digital terjawab dari tiga pertanyaan itu.</p></div>
+                </div>
+            </div>
+            </div><!-- /w14-belajar -->
+
+            <div class="tab-panel" id="w14-tryout">
+                <div class="interactive-card">
+                    <div class="score-bar"><span class="score-label">Skor Tryout:</span><span class="score-value" id="quiz14b-score">0 / 10</span><div class="progress-track"><div class="progress-fill" id="quiz14b-progress" style="width:0%"></div></div></div>
+                    <div id="quiz14b-questions"></div>
+                    <button class="btn btn-secondary btn-sm mt-16" id="reset-quiz14b">🔄 Acak Soal Baru</button>
+                </div>
+            </div>
+
+            <div class="tab-panel cheatsheet-panel" id="w14-cheatsheet">
+                <div class="cheatsheet">
+                    <h4>📋 Cheatsheet Gabungan Semester (1 halaman)</h4>
+                    <p><code>Bin↔Des↔Hex/Okt</code> • C2=<code>NOT+1</code>, overflow=<code>Cin⊕Cout</code> • De Morgan, SOP(Σm)/POS(ΠM) • K-Map grup 2ⁿ, Gray • Half <code>S=A⊕B,C=AB</code>, Full <code>Cout=AB+Cin(A⊕B)</code>, CLA <code>G=AB,P=A⊕B</code> • MUX <code>Y=S'I0+SI1</code> • DEC <code>Yi=mi·EN</code>, ENC <code>A1=D2+D3</code> • FF: JK <code>JQ'+K'Q</code>, D <code>Q⁺=D</code>, T toggle • Mod-N=N state • Register PIPO/SISO/SIPO/PISO • FSM Mealy/Moore • Memori <code>2ⁿ×m</code> • ADC <code>step=Vref/2ⁿ</code>, DAC <code>Vout=Vref·kode/2ⁿ</code>.</p>
+                    <div class="no-print" style="margin-top:12px"><button class="btn btn-convert btn-sm print-btn">🖨️ Cetak Cheatsheet</button></div>
+                </div>
+            </div>
+
+            <div class="tab-panel" id="w14-quiz">
+                <div class="interactive-card">
+                    <div class="score-bar"><span class="score-label">Skor Kuis:</span><span class="score-value" id="quiz14-score">0 / 5</span><div class="progress-track"><div class="progress-fill" id="quiz14-progress" style="width:0%"></div></div></div>
+                    <div id="quiz14-questions"></div>
+                    <button class="btn btn-secondary btn-sm mt-16" id="reset-quiz14">🔄 Acak Soal Baru</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer" id="app-footer"></footer>
+
+    <script src="js/shell.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/signed.js"></script>
+    <script src="js/boolean.js"></script>
+    <script src="js/kmap.js"></script>
+    <script src="js/comb.js"></script>
+    <script src="js/seq.js"></script>
+    <script src="js/svg-kit.js"></script>
+    <script src="js/learn.js"></script>
+</body>
+</html>

@@ -1,0 +1,1851 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Media Ajar - Sistem Digital</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="header-top">
+                <div class="logo">
+                    <span class="logo-icon">🔢</span>
+                    <h1>Media Ajar Sistem Digital</h1>
+                </div>
+                <button class="theme-toggle" id="theme-toggle" title="Ganti terang/gelap">🌙 Dark</button>
+            </div>
+            <p class="subtitle">Mata Kuliah: Sistem Digital | Semester 1 (3 SKS)</p>
+        </div>
+    </header>
+
+    <nav class="tab-navigation">
+        <div class="tab-container">
+            <button class="tab-btn active" data-week="1">Minggu 1</button>
+            <button class="tab-btn" data-week="2">Minggu 2</button>
+            <button class="tab-btn" data-week="3">Minggu 3</button>
+            <button class="tab-btn" data-week="4">Minggu 4</button>
+            <button class="tab-btn" data-week="5">Minggu 5</button>
+            <button class="tab-btn" data-week="6">Minggu 6</button>
+            <button class="tab-btn" data-week="7">Minggu 7</button>
+            <button class="tab-btn" data-week="8">Minggu 8</button>
+            <button class="tab-btn" data-week="9">Minggu 9</button>
+            <button class="tab-btn" data-week="10">Minggu 10</button>
+            <button class="tab-btn" data-week="11">Minggu 11</button>
+            <button class="tab-btn" data-week="12">Minggu 12</button>
+            <button class="tab-btn" data-week="13">Minggu 13</button>
+            <button class="tab-btn" data-week="14">Minggu 14</button>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <!-- Minggu 1 - Pendahuluan + Konversi Bilangan -->
+        <section class="week-content active" id="week-1">
+            <div class="content-header">
+                <h2>Minggu 1: Pendahuluan Sistem Digital & Konversi Bilangan</h2>
+                <p class="description">Definisi, karakteristik, Analog vs Digital, aplikasi sehari-hari, dan dasar sistem bilangan (Biner, Oktal, Heksadesimal, Desimal). Konverter di bawah memakai metode Biner sebagai basis utama.</p>
+            </div>
+
+            <div class="content-tabs">
+                <button class="content-tab active" data-tab="w1-belajar">📖 Pembelajaran</button>
+                <button class="content-tab" data-tab="w1-konverter">⚡ Konverter</button>
+                <button class="content-tab" data-tab="w1-dec2bin">🔢 Des→Bin</button>
+                <button class="content-tab" data-tab="w1-bin2hex">🔠 Bin→Hex</button>
+                <button class="content-tab" data-tab="w1-bin2oct">🎱 Bin→Okt</button>
+                <button class="content-tab" data-tab="w1-bin2dec">➕ Bin→Des</button>
+                <button class="content-tab" data-tab="w1-cheatsheet">📋 Cheatsheet</button>
+                <button class="content-tab" data-tab="w1-quiz">📝 Latihan</button>
+            </div>
+
+            <div class="tab-panel active" id="w1-belajar">
+            <div class="theory-section">
+                <div class="theory-grid">
+                    <div class="theory-card">
+                        <h3>📖 Definisi</h3>
+                        <p>Sistem digital bekerja dengan data berbasis angka biner (0 dan 1) untuk pengolahan informasi dengan akurasi tinggi. Data bersifat <strong>diskrit</strong> (terputus), bukan kontinu — sehingga mudah diproses, disimpan, dan ditransmisikan komputer.</p>
+                    </div>
+                    <div class="theory-card">
+                        <h3>🛡️ Karakteristik</h3>
+                        <ul>
+                            <li><strong>Andal:</strong> tahan noise / gangguan eksternal dibanding analog.</li>
+                            <li><strong>Diskrit:</strong> 0/1 = off/on sirkuit elektronik.</li>
+                            <li><strong>Efisien:</strong> semua data (teks, gambar, suara) direpresentasikan biner.</li>
+                        </ul>
+                    </div>
+                    <div class="theory-card">
+                        <h3>⚖️ Analog vs Digital</h3>
+                        <table class="mini-table">
+                            <tr><th>Aspek</th><th>Analog</th><th>Digital</th></tr>
+                            <tr><td>Sinyal</td><td>Kontinu (gel. suara)</td><td>Diskrit (0/1)</td></tr>
+                            <tr><td>Akurasi</td><td>Rentan distorsi</td><td>Tinggi, tanpa distorsi</td></tr>
+                            <tr><td>Contoh</td><td>Radio tradisional</td><td>Komputer, smartphone</td></tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="theory-grid">
+                    <div class="theory-card">
+                        <h3>🏠 Aplikasi Sehari-hari</h3>
+                        <ul>
+                            <li><strong>Otomasi rumah:</strong> lampu pintar, termostat, kunci digital.</li>
+                            <li><strong>Komunikasi:</strong> ponsel, WiFi, Bluetooth, konferensi video.</li>
+                            <li><strong>Konsumen & IoT:</strong> smart TV, konsol game, kulkas pintar.</li>
+                            <li><strong>Komputasi & AI:</strong> hitung cepat, big data, algoritma learning.</li>
+                        </ul>
+                    </div>
+                    <div class="theory-card">
+                        <h3>🔢 Dasar Bilangan (MSB/LSB)</h3>
+                        <p>Basis 2 (0,1). Setiap digit = <strong>bit</strong>. MSB = Most Significant Bit, LSB = Least Significant Bit.</p>
+                        <p>Kelompok bit: 4-bit = <strong>Nibble</strong>, 8-bit = <strong>Byte</strong>, 16-bit = <strong>Word</strong>.</p>
+                        <p>Biner→Desimal: jumlahkan bobot 2<sup>n</sup>. Desimal→Biner: bagi berulang dengan 2. Oktal (basis 8) & Heksa (basis 16, 0-9 A-F) memadatkan biner.</p>
+                    </div>
+                    <div class="theory-card">
+                        <h3>💡 Analogi: bit = saklar lampu</h3>
+                        <p>Bayangkan 4 saklar lampu berderet. Tiap saklar hanya punya 2 keadaan: <strong>mati (0)</strong> atau <strong>nyala (1)</strong> — itulah 1 <strong>bit</strong>. Komputer jutaan "saklar" mikroskopis (transistor) yang disusun membentuk angka, huruf, gambar, bahkan video.</p>
+                        <p>MSB vs LSB: seperti angka desimal <code>5<b>3</b>21</code> — digit <code>5</code> (ribuan) paling menentukan nilai (MSB), digit <code>1</code> (satuan) paling kecil pengaruhnya (LSB). Pada biner <code><b>1</b>011<b>0</b></code>, bit kiri (MSB, bobot 16) jauh lebih "berat" dari bit kanan (LSB, bobot 1).</p>
+                    </div>
+                </div>
+                <div class="theory-grid">
+                    <div class="theory-card">
+                        <h3>🧮 Cara membaca bobot (contoh 10110₂)</h3>
+                        <p>Tulis bobot tiap posisi dari kanan: <code>16 - 8 - 4 - 2 - 1</code>. Kalikan dengan bitnya, yang bitnya 1 ikut dijumlah:</p>
+                        <p><code>1×16 + 0×8 + 1×4 + 1×2 + 0×1 = 16 + 4 + 2 = 22₁₀</code>.</p>
+                        <p>Sebaliknya desimal→biner: bagi 2 berulang, catat <strong>sisa</strong>. Contoh 25: 25→sisa <b>1</b>, 12→<b>0</b>, 6→<b>0</b>, 3→<b>1</b>, 1→<b>1</b>. Baca sisa dari <strong>bawah ke atas</strong>: <code>11001₂</code>. Coba buktikan di tab Des→Bin!</p>
+                    </div>
+                    <div class="theory-card">
+                        <h3>🔠 Mengapa ada Oktal & Heksa?</h3>
+                        <p>Analogi: NIK 16 digit sulit dibaca sekaligus, jadi dikelompokkan <code>3174-xxxx-xxxx</code>. Biner pun begitu — <code>11010110</code> melelahkan dibaca, maka dikelompokkan: per <strong>3 bit</strong> jadi 1 digit <strong>oktal</strong> (<code>11|010|110</code> → <code>326₈</code>), per <strong>4 bit</strong> jadi 1 digit <strong>heksa</strong> (<code>1101|0110</code> → <code>D6₁₆</code>).</p>
+                        <p>Mengapa 3 dan 4? Karena 2³ = 8 dan 2⁴ = 16 — pas 1 digit! Heksa huruf A–F = nilai 10–15 (mis. <code>2F₁₆ = 2×16 + 15 = 47₁₀</code>). Programmer memakai heksa untuk alamat memori & warna (<code>#FF0000</code> = merah).</p>
+                    </div>
+                </div>
+            </div>
+            </div><!-- /w1-belajar -->
+
+            <div class="tab-panel" id="w1-konverter">
+            <div class="converter-section">
+                <div class="converter-card">
+                    <div class="card-header">
+                        <h3>🧮 Konverter Bilangan</h3>
+                        <span class="badge">Interaktif</span>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="number-input">Masukkan Bilangan:</label>
+                        <input type="text" id="number-input" placeholder="Contoh: 1101 atau FF atau 77 atau 255" autocomplete="off">
+                    </div>
+
+                    <div class="conversion-options">
+                        <div class="option-group">
+                            <label>Dari Basis:</label>
+                            <select id="from-base">
+                                <option value="binary">Biner (0, 1)</option>
+                                <option value="hexadecimal">Heksadesimal (0-9, A-F)</option>
+                                <option value="octal">Oktal (0-7)</option>
+                                <option value="decimal">Desimal (0-9)</option>
+                            </select>
+                        </div>
+
+                        <div class="swap-btn" id="swap-btn" title="Tukar basis">⇄</div>
+
+                        <div class="option-group">
+                            <label>Ke Basis:</label>
+                            <select id="to-base">
+                                <option value="hexadecimal">Heksadesimal (0-9, A-F)</option>
+                                <option value="binary">Biner (0, 1)</option>
+                                <option value="octal">Oktal (0-7)</option>
+                                <option value="decimal">Desimal (0-9)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="button-group">
+                        <button class="btn btn-convert" id="convert-btn">Konversi</button>
+                        <button class="btn btn-reset" id="reset-btn">Reset</button>
+                    </div>
+
+                    <div class="result-section" id="result-section">
+                        <div class="result-header">
+                            <h4>Hasil Konversi:</h4>
+                            <button class="btn-copy" id="copy-btn" title="Salin hasil">📋</button>
+                        </div>
+                        <div class="result-display" id="result-display">-</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="steps-section">
+                <div class="steps-card">
+                    <div class="card-header">
+                        <h3>📝 Langkah Konversi</h3>
+                        <span class="badge">Step-by-Step</span>
+                    </div>
+                    <div class="steps-content" id="steps-content">
+                        <p class="placeholder-text">Masukkan bilangan dan klik "Konversi" untuk melihat langkah-langkahnya.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="visualization-section">
+                <div class="vis-card">
+                    <div class="card-header">
+                        <h3>👁️ Visualisasi Pengelompokan Bit</h3>
+                        <span class="badge">Animasi</span>
+                    </div>
+                    <div class="vis-content" id="vis-content">
+                        <div class="bit-group-container" id="bit-groups">
+                            <!-- Bit groups will be rendered here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="reference-section">
+                <h3>📊 Tabel Referensi Cepat</h3>
+                <div class="reference-tables">
+                    <div class="ref-table-card">
+                        <h4>Biner → Heksadesimal (4 bit)</h4>
+                        <table class="ref-table">
+                            <thead>
+                                <tr><th>Biner</th><th>Heksa</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>0000</td><td>0</td></tr>
+                                <tr><td>0001</td><td>1</td></tr>
+                                <tr><td>0010</td><td>2</td></tr>
+                                <tr><td>0011</td><td>3</td></tr>
+                                <tr><td>0100</td><td>4</td></tr>
+                                <tr><td>0101</td><td>5</td></tr>
+                                <tr><td>0110</td><td>6</td></tr>
+                                <tr><td>0111</td><td>7</td></tr>
+                                <tr><td>1000</td><td>8</td></tr>
+                                <tr><td>1001</td><td>9</td></tr>
+                                <tr><td>1010</td><td>A</td></tr>
+                                <tr><td>1011</td><td>B</td></tr>
+                                <tr><td>1100</td><td>C</td></tr>
+                                <tr><td>1101</td><td>D</td></tr>
+                                <tr><td>1110</td><td>E</td></tr>
+                                <tr><td>1111</td><td>F</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="ref-table-card">
+                        <h4>Biner → Oktal (3 bit)</h4>
+                        <table class="ref-table">
+                            <thead>
+                                <tr><th>Biner</th><th>Oktal</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>000</td><td>0</td></tr>
+                                <tr><td>001</td><td>1</td></tr>
+                                <tr><td>010</td><td>2</td></tr>
+                                <tr><td>011</td><td>3</td></tr>
+                                <tr><td>100</td><td>4</td></tr>
+                                <tr><td>101</td><td>5</td></tr>
+                                <tr><td>110</td><td>6</td></tr>
+                                <tr><td>111</td><td>7</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="examples-section">
+                <h3>✨ Contoh Soal Interaktif</h3>
+                <div class="examples-grid">
+                    <div class="example-card" data-example="11010">
+                        <div class="example-number">1</div>
+                        <p>Konversi <strong>11010₂</strong> ke heksadesimal</p>
+                        <button class="btn btn-example">Coba Sekarang</button>
+                    </div>
+                    <div class="example-card" data-example="10110111">
+                        <div class="example-number">2</div>
+                        <p>Konversi <strong>10110111₂</strong> ke oktal</p>
+                        <button class="btn btn-example">Coba Sekarang</button>
+                    </div>
+                    <div class="example-card" data-example="11111111">
+                        <div class="example-number">3</div>
+                        <p>Konversi <strong>11111111₂</strong> ke desimal</p>
+                        <button class="btn btn-example">Coba Sekarang</button>
+                    </div>
+                    <div class="example-card" data-example="FF" data-from="hexadecimal">
+                        <div class="example-number">4</div>
+                        <p>Konversi <strong>FF₁₆</strong> ke biner</p>
+                        <button class="btn btn-example">Coba Sekarang</button>
+                    </div>
+                </div>
+            </div>
+            </div><!-- /w1-konverter -->
+
+            <div class="tab-panel" id="w1-dec2bin">
+                <div class="interactive-card">
+                    <h4>🔢 Desimal → Biner: bagi berulang dengan 2</h4>
+                    <p>Bagi bilangan dengan 2 berulang kali, catat sisa dari <strong>bawah ke atas</strong> (LSB → MSB).</p>
+                    <div class="quiz-input-row">
+                        <input type="number" class="quiz-input" id="w1-dec-in" value="25" min="0" placeholder="Desimal...">
+                        <button class="btn btn-convert btn-sm" id="w1-dec-btn">Hitung Langkah ➔</button>
+                    </div>
+                    <div id="w1-dec-steps"></div>
+                </div>
+            </div>
+
+            <div class="tab-panel" id="w1-bin2hex">
+                <div class="interactive-card">
+                    <h4>🔠 Biner → Heksadesimal: kelompok 4-bit</h4>
+                    <p>Kelompokkan per <strong>4 bit dari kanan (LSB)</strong>, tiap kelompok = 1 digit heksa (0–9, A–F).</p>
+                    <div class="quiz-input-row">
+                        <input type="text" class="quiz-input" id="w1-hex-in" value="11010110" placeholder="Biner...">
+                        <button class="btn btn-convert btn-sm" id="w1-hex-btn">Kelompokkan ➔</button>
+                    </div>
+                    <div id="w1-hex-res"></div>
+                </div>
+            </div>
+
+            <div class="tab-panel" id="w1-bin2oct">
+                <div class="interactive-card">
+                    <h4>🎱 Biner → Oktal: kelompok 3-bit</h4>
+                    <p>Kelompokkan per <strong>3 bit dari kanan (LSB)</strong>, tiap kelompok = 1 digit oktal (0–7).</p>
+                    <div class="quiz-input-row">
+                        <input type="text" class="quiz-input" id="w1-oct-in" value="11010110" placeholder="Biner...">
+                        <button class="btn btn-convert btn-sm" id="w1-oct-btn">Kelompokkan ➔</button>
+                    </div>
+                    <div id="w1-oct-res"></div>
+                </div>
+            </div>
+
+            <div class="tab-panel" id="w1-bin2dec">
+                <div class="interactive-card">
+                    <h4>➕ Biner → Desimal: jumlahkan bobot 2<sup>n</sup></h4>
+                    <p>Bit 1 dikali bobot posisinya (2<sup>n</sup> dari kanan, mulai 2<sup>0</sup>=1), lalu dijumlahkan.</p>
+                    <div class="quiz-input-row">
+                        <input type="text" class="quiz-input" id="w1-bdec-in" value="10110" placeholder="Biner...">
+                        <button class="btn btn-convert btn-sm" id="w1-bdec-btn">Hitung Bobot ➔</button>
+                    </div>
+                    <div id="w1-bdec-res"></div>
+                </div>
+            </div>
+
+            <div class="tab-panel cheatsheet-panel" id="w1-cheatsheet">
+                <div class="cheatsheet">
+                    <h4>📋 Cheatsheet Minggu 1 — Konversi Bilangan</h4>
+                    <p style="font-size:13px;color:var(--text-secondary)">Biner adalah sentral semua konversi. Klik Cetak untuk mencetak ringkasan ini.</p>
+                    <h5>Metode</h5>
+                    <table><tr><th>Konversi</th><th>Cara</th><th>Contoh</th></tr>
+                    <tr><td>Des → Bin</td><td>Bagi 2 berulang, baca sisa bawah→atas</td><td><code>25₁₀ = 11001₂</code></td></tr>
+                    <tr><td>Bin → Des</td><td>Σ bit×2<sup>n</sup></td><td><code>10110₂ = 22₁₀</code></td></tr>
+                    <tr><td>Bin → Hex</td><td>Kelompok 4-bit dari LSB (2⁴=16)</td><td><code>11010110₂ = D6₁₆</code></td></tr>
+                    <tr><td>Bin → Okt</td><td>Kelompok 3-bit dari LSB (2³=8)</td><td><code>11010110₂ = 326₈</code></td></tr>
+                    <tr><td>Hex/Okt → Bin</td><td>1 digit → 4 / 3 bit</td><td><code>2F₁₆ = 101111₂</code></td></tr></table>
+                    <h5>Satuan bit</h5>
+                    <table><tr><th>Nama</th><th>Ukuran</th></tr>
+                    <tr><td>Nibble</td><td>4 bit (= 1 digit heksa)</td></tr>
+                    <tr><td>Byte</td><td>8 bit</td></tr>
+                    <tr><td>Word</td><td>16 bit</td></tr></table>
+                    <h5>MSB / LSB</h5>
+                    <p>MSB = bit paling kiri (bobot terbesar / bit tanda), LSB = bit paling kanan (2<sup>0</sup>).</p>
+                    <div class="no-print" style="margin-top:12px"><button class="btn btn-convert btn-sm print-btn">🖨️ Cetak Cheatsheet</button></div>
+                </div>
+            </div>
+
+            <div class="tab-panel" id="w1-quiz">
+                <div class="interactive-card">
+                    <div class="score-bar"><span class="score-label">Skor Latihan:</span><span class="score-value" id="quiz1-score">0 / 5</span><div class="progress-track"><div class="progress-fill" id="quiz1-progress" style="width:0%"></div></div></div>
+                    <div id="quiz1-questions"></div>
+                    <button class="btn btn-secondary btn-sm mt-16" id="reset-quiz1">🔄 Acak Soal Baru</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Minggu 2 - Bilangan Negatif & Operasi -->
+        <section class="week-content" id="week-2">
+            <div class="content-header">
+                <h2>Minggu 2: Bilangan Negatif & Operasi Biner</h2>
+                <p class="description">Sign-Magnitude, 1's Complement, 2's Complement (standar CPU), negatif di Hex/Octal, pengurangan via penjumlahan, overflow, sign extension, end-around carry.</p>
+            </div>
+
+            <div class="content-tabs">
+                <button class="content-tab active" data-tab="w2-banding">⚖️ Perbandingan</button>
+                <button class="content-tab" data-tab="w2-sm">➕ Sign-Magnitude</button>
+                <button class="content-tab" data-tab="w2-c1">🔄 1's Complement</button>
+                <button class="content-tab" data-tab="w2-c2">⭐ 2's Complement</button>
+                <button class="content-tab" data-tab="w2-sub">➕ Pengurangan</button>
+                <button class="content-tab" data-tab="w2-overflow">⚠️ Overflow+</button>
+                <button class="content-tab" data-tab="w2-cheatsheet">📋 Cheatsheet</button>
+                <button class="content-tab" data-tab="w2-quiz">📝 Latihan</button>
+            </div>
+
+            <div class="tab-panel active" id="w2-banding">
+            <div class="theory-section">
+                <div class="theory-grid">
+                    <div class="theory-card"><h3>SM</h3><p>MSB = tanda (0=+, 1=−), sisa bit = magnitudo. 8-bit: −127..+127. Ada +0 (<code>00000000</code>) dan −0 (<code>10000000</code>). Contoh +13=<code>00001101</code>, −13=<code>10001101</code>.</p></div>
+                    <div class="theory-card"><h3>C1</h3><p>Negatif = <strong>NOT semua bit</strong>. 8-bit: −127..+127, masih ada ±0. Contoh −13 = <code>11110010</code>. Butuh <em>end-around carry</em>.</p></div>
+                    <div class="theory-card"><h3>C2 ⭐</h3><p>Negatif = <strong>NOT + 1</strong>. 8-bit: −128..+127, satu nol. Aritmetika paling sederhana. Contoh −13 = <code>11110011</code>, −37 = <code>11011011</code>, −1 (16-bit) = <code>FFFF</code>.</p></div>
+                </div>
+                <div class="theory-grid">
+                    <div class="theory-card"><h3>🕰️ Analogi: C2 seperti jam dinding</h3><p>Jam 12-jaman: 10 + 5 jam = 3 (bukan 15) — angka "melompat" karena melingkar. Biner 8-bit pun melingkar: setelah <code>11111111</code> (255) kembali ke <code>00000000</code> (0). Karena itu <code>11111111</code> bisa dibaca sebagai <strong>−1</strong>: −1 + 1 = 0, dan memang <code>11111111 + 00000001 = (1)00000000</code> (carry ke-9 dibuang)!</p><p>Jadi bilangan negatif = " berjalan mundur" dari nol. Inilah alasan C2: pengurangan otomatis menjadi penjumlahan maju-mundur pada lingkaran yang sama.</p></div>
+                    <div class="theory-card"><h3>🧮 Cara berpikir NOT + 1 (contoh −37)</h3><p>Langkah 1 — tulis positifnya 8-bit: +37 = <code>00100101</code>. Langkah 2 — balik semua bit (NOT): <code>11011010</code>. Langkah 3 — tambah 1: <code>11011011</code> — inilah −37!</p><p>Cek balik: 37 + (−37) = <code>00100101 + 11011011 = (1)00000000</code> → 0 (carry dibuang). Selalu begitu: suatu bilangan + negatifnya = 0. Itulah definisi negatif yang benar.</p></div>
+                    <div class="theory-card"><h3>🤔 Mengapa CPU memilih C2?</h3><p>Tiga alasan: (1) <strong>satu nol saja</strong> — SM/C1 punya +0 dan −0 sehingga perbandingan "apakah nol?" butuh 2 pengecekan; (2) <strong>pengurangan gratis</strong> — cukup adder, tak perlu unit subtractor; (3) <strong>overflow mudah dideteksi</strong> — cukup XOR dua carry terakhir. Harga yang dibayar: ada satu nilai ekstra (−128) tanpa pasangan positif — wajar, karena total 256 pola harus dibagi dua.</p></div>
+                </div>
+            </div>
+
+            <div class="converter-card">
+                <div class="card-header"><h3>🔄 Konverter Signed (SM / C1 / C2)</h3><span class="badge">Interaktif</span></div>
+                <div style="padding:1.5rem">
+                    <div class="form-row">
+                        <div class="option-group"><label>Desimal bertanda:</label><input id="signed-input" type="text" placeholder="Contoh: -13 atau 58" autocomplete="off" style="width:100%;padding:0.875rem;font-size:1.1rem;border:2px solid var(--border-color);border-radius:8px;font-family:'Courier New',monospace"></div>
+                        <div class="option-group"><label>Lebar bit:</label><select id="signed-width"><option value="4">4-bit</option><option value="8" selected>8-bit</option><option value="16">16-bit</option></select></div>
+                        <div class="option-group"><label>&nbsp;</label><button class="btn btn-convert" id="signed-btn">Konversi</button></div>
+                    </div>
+                    <div class="triple-grid">
+                        <div class="triple-card"><h4>Sign-Magnitude</h4><div class="mono" id="sm-out">-</div></div>
+                        <div class="triple-card"><h4>1's Complement</h4><div class="mono" id="c1-out">-</div></div>
+                        <div class="triple-card"><h4>2's Complement</h4><div class="mono" id="c2-out">-</div></div>
+                    </div>
+                    <div class="form-row">
+                        <div class="option-group"><label>C2 Hex:</label><div class="mono" id="signed-hex">-</div></div>
+                        <div class="option-group"><label>C2 Oktal:</label><div class="mono" id="signed-oct">-</div></div>
+                    </div>
+                    <div class="steps-content" id="signed-steps"><p class="placeholder-text">Masukkan desimal lalu klik Konversi. Contoh: −58 → C2 = 11000110 = 0xC6.</p></div>
+                </div>
+            </div>
+            </div><!-- /w2-banding -->
+
+            <div class="tab-panel" id="w2-sm">
+                <div class="interactive-card">
+                    <h4>➕ Sign-Magnitude (SM)</h4>
+                    <p>MSB = bit tanda (<code>0 = +</code>, <code>1 = −</code>), sisa bit = magnitudo (nilai mutlak).</p>
+                    <div class="info-box tip"><strong>Struktur 8-bit:</strong> 1 bit tanda + 7 bit magnitudo. Rentang −127..+127.</div>
+                    <div class="grid-2">
+                        <div class="interactive-card" style="margin:0"><strong>+13:</strong><p style="font-family:monospace;font-size:16px"><b style="color:var(--green)">0</b>000 1101</p><span style="font-size:11px">MSB=0 (+), magnitudo 13</span></div>
+                        <div class="interactive-card" style="margin:0"><strong>−13:</strong><p style="font-family:monospace;font-size:16px"><b style="color:var(--red)">1</b>000 1101</p><span style="font-size:11px">MSB=1 (−), magnitudo 13</span></div>
+                    </div>
+                    <div class="info-box warning mt-16"><strong>Double zero:</strong> +0 = <code>00000000</code>, −0 = <code>10000000</code> — memperumit logika perbandingan hardware.</div>
+                    <p style="font-size:13px">Coba sendiri di tab Perbandingan: masukkan −25 → SM = <code>10011001</code>.</p>
+                </div>
+            </div>
+
+            <div class="tab-panel" id="w2-c1">
+                <div class="interactive-card">
+                    <h4>🔄 1's Complement (C1)</h4>
+                    <p>Negatif = <strong>inversi (NOT) semua bit</strong> dari representasi positif. Rentang 8-bit −127..+127, masih ada ±0.</p>
+                    <div class="info-box tip"><strong>Contoh −13:</strong> +13 = <code>00001101</code> → NOT → <code>11110010</code>. Cek di tab Perbandingan!</div>
+                    <div class="info-box warning"><strong>End-around carry:</strong> jika penjumlahan C1 menghasilkan carry keluar MSB, carry itu <strong>ditambahkan kembali ke LSB</strong>. Contoh 5 + (−5) → −0 pada C1.</div>
+                </div>
+            </div>
+
+            <div class="tab-panel" id="w2-c2">
+                <div class="interactive-card">
+                    <h4>⭐ 2's Complement (C2) — standar CPU/MCU</h4>
+                    <p>Rumus: <code>C2 = NOT(semua bit) + 1</code>. Rentang 8-bit −128..+127, hanya satu nol.</p>
+                    <div class="steps-container">
+                        <div class="step-item"><div class="step-number">1</div><div class="step-content"><h5>Biner nilai absolut</h5><p><code>+37 = 00100101</code></p></div></div>
+                        <div class="step-item"><div class="step-number">2</div><div class="step-content"><h5>Inversi semua bit</h5><p><code>NOT = 11011010</code></p></div></div>
+                        <div class="step-item"><div class="step-number">3</div><div class="step-content"><h5>Tambah 1</h5><p><code>11011010 + 1 = 11011011₂ = 0xDB</code> → inilah −37!</p></div></div>
+                    </div>
+                    <div class="info-box success"><strong>Unggul karena:</strong> satu nol + pengurangan cukup pakai adder (tanpa subtractor). C2→Desimal: jika MSB=1, nilai = −(2ⁿ − U). Contoh <code>11100110₂</code>: U=230, 256−230=26 → <b>−26</b>.</div>
+                </div>
+            </div>
+
+            <div class="tab-panel" id="w2-sub">
+            <div class="converter-card">
+                <div class="card-header"><h3>➕ Operasi C2: A − B = A + (C2 dari B)</h3><span class="badge">Adder only</span></div>
+                <div style="padding:1.5rem">
+                    <div class="form-row">
+                        <div class="option-group"><label>A:</label><input id="op-a" type="text" value="18" style="width:100%;padding:0.875rem;border:2px solid var(--border-color);border-radius:8px;font-family:'Courier New',monospace"></div>
+                        <div class="option-group"><label>Operasi:</label><select id="op-sel"><option value="sub">A − B</option><option value="add">A + B</option></select></div>
+                        <div class="option-group"><label>B:</label><input id="op-b" type="text" value="25" style="width:100%;padding:0.875rem;border:2px solid var(--border-color);border-radius:8px;font-family:'Courier New',monospace"></div>
+                        <div class="option-group"><label>&nbsp;</label><button class="btn btn-convert" id="op-btn">Hitung (8-bit C2)</button></div>
+                    </div>
+                    <div class="result-display" id="op-result">-</div>
+                    <div class="steps-content" id="op-steps"></div>
+                    <div class="info-box warning"><strong>Aturan overflow:</strong> positif + positif = negatif → OVERFLOW; negatif + negatif = positif → OVERFLOW; beda tanda tak pernah overflow. Formula hardware: <code>carry-in(MSB) XOR carry-out(MSB)</code>. Coba 100 + 60 (seharusnya +160 &gt; +127).</div>
+                </div>
+            </div>
+            </div><!-- /w2-sub -->
+
+            <div class="tab-panel" id="w2-overflow">
+            <div class="theory-section">
+                <div class="theory-grid">
+                    <div class="theory-card"><h3>📊 Perbandingan 3 Skema (8-bit)</h3>
+                        <table class="mini-table"><tr><th>Skema</th><th>Rentang</th><th>−X dari +X</th><th>Catatan</th></tr>
+                        <tr><td>SM</td><td>−127..+127</td><td>Set MSB=1</td><td>Ada +0/−0</td></tr>
+                        <tr><td>C1</td><td>−127..+127</td><td>NOT semua bit</td><td>End-around carry</td></tr>
+                        <tr><td>C2</td><td>−128..+127</td><td>NOT + 1</td><td>Standar CPU</td></tr></table>
+                    </div>
+                    <div class="theory-card"><h3>↔️ Sign Extension & C1 Carry</h3><p>Perlebar 8→16 bit: <strong>salin MSB</strong>. Contoh −37: <code>11011011</code> → <code>11111111 11011011</code>. C1: jika ada carry keluar, tambahkan ke LSB (end-around carry). C2 menghindari ±0 → lebih praktis.</p></div>
+                    <div class="theory-card"><h3>✏️ Latihan (jawaban di slide)</h3><p>1) −58 (8-bit C2) → biner, oktal & hex.<br>2) <code>10111111</code> (C2) → desimal.<br>3) 75 − 103 via penjumlahan.<br>4) −25 dalam SM & C1 (8-bit).</p>
+                    <p style="font-size:0.85rem">Jawaban: 1) <code>11000110</code>=0xC6, 2) −65, 3) <code>11100100</code>=−28, 4) SM=<code>10011001</code>, C1=<code>11100110</code>.</p></div>
+                </div>
+            </div>
+            </div><!-- /w2-overflow -->
+
+            <div class="tab-panel cheatsheet-panel" id="w2-cheatsheet">
+                <div class="cheatsheet">
+                    <h4>📋 Cheatsheet Minggu 2 — Bilangan Negatif</h4>
+                    <h5>3 skema (8-bit)</h5>
+                    <table><tr><th>Skema</th><th>Rentang</th><th>−X dari +X</th><th>Nol ganda?</th></tr>
+                    <tr><td>SM</td><td>−127..+127</td><td>Set MSB=1</td><td>Ya (+0/−0)</td></tr>
+                    <tr><td>C1</td><td>−127..+127</td><td>NOT semua bit</td><td>Ya</td></tr>
+                    <tr><td>C2</td><td>−128..+127</td><td>NOT + 1</td><td>Tidak ⭐</td></tr></table>
+                    <h5>Rentang C2</h5>
+                    <table><tr><th>Lebar</th><th>Min</th><th>Max</th></tr>
+                    <tr><td>4-bit</td><td>−8</td><td>+7</td></tr>
+                    <tr><td>8-bit</td><td>−128</td><td>+127</td></tr>
+                    <tr><td>16-bit</td><td>−32768</td><td>+32767</td></tr></table>
+                    <h5>Rumus kunci</h5>
+                    <p>A − B = <code>A + C2(B)</code> • Overflow = <code>carry-in MSB XOR carry-out MSB</code> • Sign extension: <strong>salin MSB</strong> (cth −37: <code>11011011</code> → <code>11111111 11011011</code>) • C1 carry keluar → tambah ke LSB.</p>
+                    <div class="no-print" style="margin-top:12px"><button class="btn btn-convert btn-sm print-btn">🖨️ Cetak Cheatsheet</button></div>
+                </div>
+            </div>
+
+            <div class="tab-panel" id="w2-quiz">
+                <div class="interactive-card">
+                    <div class="score-bar"><span class="score-label">Skor Latihan:</span><span class="score-value" id="quiz2-score">0 / 5</span><div class="progress-track"><div class="progress-fill" id="quiz2-progress" style="width:0%"></div></div></div>
+                    <div id="quiz2-questions"></div>
+                    <button class="btn btn-secondary btn-sm mt-16" id="reset-quiz2">🔄 Acak Soal Baru</button>
+                </div>
+            </div>
+        </section>
+        <section class="week-content" id="week-3">
+            <div class="content-header">
+                <h2>Minggu 3: Aljabar Boolean & Gerbang Logika</h2>
+                <p class="description">Variabel & operator AND/OR/NOT, prioritas NOT→AND→OR, hukum Boolean, tabel kebenaran ↔ ekspresi, bentuk standar SOP (Σm) / POS (ΠM).</p>
+            </div>
+
+            <div class="content-tabs">
+                <button class="content-tab active" data-tab="w3-belajar">📖 Pembelajaran</button>
+                <button class="content-tab" data-tab="w3-gates">🔌 Gerbang</button>
+                <button class="content-tab" data-tab="w3-hukum">📜 Hukum</button>
+                <button class="content-tab" data-tab="w3-sop">➕ SOP</button>
+                <button class="content-tab" data-tab="w3-pos">✖️ POS</button>
+                <button class="content-tab" data-tab="w3-cheatsheet">📋 Cheatsheet</button>
+                <button class="content-tab" data-tab="w3-quiz">📝 Latihan</button>
+            </div>
+
+            <div class="tab-panel active" id="w3-belajar">
+            <div class="theory-section">
+                <div class="theory-grid">
+                    <div class="theory-card"><h3>🔌 Operator Dasar</h3><p><strong>AND</strong> (·), <strong>OR</strong> (+), <strong>NOT</strong> (garis atas / '). Prioritas: kurung dulu, lalu NOT, AND, OR. Contoh: <code>A + B·C' = A + (B·C')</code>.</p></div>
+                    <div class="theory-card"><h3>📜 Hukum Penting</h3><ul><li>Identitas: A+0=A, A·1=A</li><li>Komplemen: A+A'=1, A·A'=0</li><li>Idempoten, Involusi (A'')=A</li><li>De Morgan: (A·B)'=A'+B', (A+B)'=A'·B'</li><li>Absorpsi: A+A·B=A; Konsensus, Distributif</li></ul></div>
+                    <div class="theory-card"><h3>📐 SOP vs POS</h3><p><strong>SOP / Minterm:</strong> jumlah dari kali — tiap suku memuat semua variabel. Contoh <code>G = xy + x'y</code>. Tanpa komplemen dibaca 1.<br><strong>POS / Maxterm:</strong> kali dari jumlah — contoh <code>(x'+y)(x+y')</code>. Tanpa komplemen dibaca 0.</p></div>
+                </div>
+                <div class="interactive-card">
+                    <h4>⚙️ Prioritas operasi (tanpa kurung): NOT → AND → OR</h4>
+                    <p>Kurung selalu dikerjakan dulu. Contoh: <code>A + B·C' = A + (B·C')</code> — NOT C dulu, AND dengan B, terakhir OR dengan A.</p>
+                </div>
+                <div class="theory-grid">
+                    <div class="theory-card"><h3>🚪 Analogi tiga gerbang</h3><p><strong>AND (·)</strong> = pintu brankas dua kunci: terbuka hanya jika <em>kunci A <u>dan</u> kunci B</em> diputar. <strong>OR (+)</strong> = pintu darurat mal: terbuka jika <em>pintu A <u>atau</u> pintu B</em> (atau keduanya) dibuka. <strong>NOT (')</strong> = lawan kata: "tidak dingin" = panas, 0 jadi 1 dan sebaliknya.</p><p>Dari analogi ini tabel kebenaran mudah dihafal: AND hanya 1 saat <code>1·1</code>; OR hanya 0 saat <code>0+0</code>; sisanya mengikuti logika bahasa sehari-hari.</p></div>
+                    <div class="theory-card"><h3>🧮 Membaca tabel kebenaran (contoh 2 variabel)</h3><p>Tabel 2 variabel selalu punya 4 baris: <code>00, 01, 10, 11</code> (hitung biner 0–3!). Tiap baris = 1 <strong>minterm</strong> (m0–m3). Untuk fungsi "lampu menyala jika saklar beda" (XOR): baris <code>01</code> dan <code>10</code> diberi output 1.</p><p>SOP dibaca dari baris output=1: baris <code>01</code> → suku <code>x'y</code> (yang 0 dikomplemen!), baris <code>10</code> → <code>xy'</code>. Hasil: <code>F = x'y + xy'</code>. Aturan jempol: <strong>SOP = yang 0 dikasih topi (komplemen)</strong>.</p></div>
+                    <div class="theory-card"><h3>🪞 De Morgan dengan kata-kata</h3><p>"Bukan (A atau B)" artinya "bukan A <em>dan</em> bukan B" — contoh: "dilarang makan <em>atau</em> minum" = "dilarang makan <em>dan</em> dilarang minum". Itulah <code>(A+B)' = A'·B'</code>!</p><p>Sebaliknya "bukan (A dan B)" = "bukan A <em>atau</em> bukan B": "tidak (rajin dan pintar)" = "malas atau bodoh (atau keduanya)". Itulah <code>(A·B)' = A'+B'</code>. Triknya: <strong>komplemen menukar AND↔OR</strong>.</p></div>
+                </div>
+            </div>
+            </div><!-- /w3-belajar -->
+
+            <div class="tab-panel" id="w3-gates">
+            <div class="converter-card">
+                <div class="card-header"><h3>🔌 Simulator Gerbang Logika</h3><span class="badge">Klik input</span></div>
+                <div style="padding:1.5rem"><div class="gate-grid" id="gate-grid"></div>
+                <p style="font-size:0.9rem;color:#666">7 gerbang: AND OR NOT NAND NOR XOR XNOR. Klik tombol A/B untuk toggle 0/1. Contoh XOR: output 1 hanya jika input beda (dipakai di SOP slide Contoh 2).</p></div>
+            </div>
+            </div><!-- /w3-gates -->
+
+            <div class="tab-panel" id="w3-hukum">
+                <div class="interactive-card">
+                    <h4>📜 Hukum-Hukum Aljabar Boolean</h4>
+                    <p>Prinsip fundamental untuk menyederhanakan ekspresi logika:</p>
+                    <div style="overflow-x:auto"><table class="truth-table">
+                        <thead><tr><th>Hukum</th><th>OR (+)</th><th>AND (•)</th></tr></thead>
+                        <tbody>
+                        <tr><td><strong>Identitas</strong></td><td>A + 0 = A</td><td>A • 1 = A</td></tr>
+                        <tr><td><strong>Dominansi</strong></td><td>A + 1 = 1</td><td>A • 0 = 0</td></tr>
+                        <tr><td><strong>Idempoten</strong></td><td>A + A = A</td><td>A • A = A</td></tr>
+                        <tr><td><strong>Komplemen</strong></td><td>A + A' = 1</td><td>A • A' = 0</td></tr>
+                        <tr><td><strong>Involusi</strong></td><td colspan="2">(A')' = A</td></tr>
+                        <tr><td><strong>Komutatif</strong></td><td>A + B = B + A</td><td>A • B = B • A</td></tr>
+                        <tr><td><strong>Asosiatif</strong></td><td>A + (B + C)</td><td>A • (B • C)</td></tr>
+                        <tr><td><strong>Distributif</strong></td><td>A + BC = (A+B)(A+C)</td><td>A(B + C) = AB + AC</td></tr>
+                        <tr><td><strong>De Morgan</strong></td><td>(A + B)' = A' • B'</td><td>(A • B)' = A' + B'</td></tr>
+                        <tr><td><strong>Absorpsi</strong></td><td>A + AB = A</td><td>A(A + B) = A</td></tr>
+                        </tbody>
+                    </table></div>
+                    <div class="info-box tip"><strong>De Morgan paling penting:</strong> komplemen dari jumlah = kali dari komplemen, dan sebaliknya.</div>
+                </div>
+            </div>
+
+            <div class="tab-panel" id="w3-sop">
+                <div class="interactive-card">
+                    <h4>➕ SOP / Minterm (Σm)</h4>
+                    <p>Tiap suku = AND semua variabel (tanpa ' dibaca 1, dengan ' dibaca 0), suku-suku di-OR. Contoh: <code>G = x'y'z + xyz + x'y'z'</code> → mintermnya m1 + m7 + m0. Dibangun dari <strong>baris output = 1</strong>.</p>
+                </div>
+            <div class="converter-card">
+                <div class="card-header"><h3>📊 Truth Table → SOP / POS</h3><span class="badge">2–3 variabel</span></div>
+                <div style="padding:1.5rem">
+                    <div class="form-row">
+                        <div class="option-group"><label>Jumlah variabel:</label><select id="bool-nvar"><option value="2">2 (x,y)</option><option value="3" selected>3 (x,y,z)</option></select></div>
+                        <div class="option-group"><label>&nbsp;</label><button class="btn btn-convert" id="bool-gen">Buat Tabel</button></div>
+                        <div class="option-group"><label>&nbsp;</label><button class="btn btn-reset" id="bool-demo">Contoh XOR</button></div>
+                    </div>
+                    <div id="bool-table-wrap"></div>
+                    <div class="triple-grid">
+                        <div class="triple-card"><h4>SOP (Σm)</h4><div class="mono" id="sop-out">-</div></div>
+                        <div class="triple-card"><h4>POS (ΠM)</h4><div class="mono" id="pos-out">-</div></div>
+                    </div>
+                    <div class="steps-content" id="bool-steps"><p class="placeholder-text">Atur output F di tabel (klik 0/1), SOP & POS dihitung otomatis. SOP dari baris F=1, POS dari baris F=0.</p></div>
+                </div>
+            </div>
+            </div><!-- /w3-sop -->
+
+            <div class="tab-panel" id="w3-pos">
+                <div class="interactive-card">
+                    <h4>✖️ POS / Maxterm (ΠM)</h4>
+                    <p>Tiap suku = OR semua variabel (tanpa ' dibaca <strong>0</strong>, dengan ' dibaca 1), suku-suku di-AND. Contoh: <code>f(x,y) = (x' + y)(x + y')</code>. Dibangun dari <strong>baris output = 0</strong>.</p>
+                    <div class="info-box tip"><strong>Praktik:</strong> buka tab SOP, atur tabel F, lalu baca hasil POS (ΠM) — maxterm = komplemen indeks minterm. Contoh f = Σm(0,2,4) → POS = ΠM(1,3,5,6,7).</div>
+                    <p style="font-size:13px">Konversi POS↔SOP: kembangkan sukunya (distributif) lalu sederhanakan dengan hukum Boolean / K-Map (Minggu 4).</p>
+                </div>
+            </div>
+
+            <div class="tab-panel cheatsheet-panel" id="w3-cheatsheet">
+                <div class="cheatsheet">
+                    <h4>📋 Cheatsheet Minggu 3 — Aljabar Boolean</h4>
+                    <h5>Prioritas</h5>
+                    <p><code>( )</code> → <code>NOT</code> → <code>AND</code> → <code>OR</code></p>
+                    <h5>Hukum kilat</h5>
+                    <table><tr><th>Hukum</th><th>Rumus</th></tr>
+                    <tr><td>Komplemen</td><td><code>A+A'=1</code>, <code>A•A'=0</code></td></tr>
+                    <tr><td>De Morgan</td><td><code>(A+B)'=A'B'</code>, <code>(AB)'=A'+B'</code></td></tr>
+                    <tr><td>Absorpsi</td><td><code>A+AB=A</code>, <code>A(A+B)=A</code></td></tr>
+                    <tr><td>Distributif</td><td><code>A+BC=(A+B)(A+C)</code></td></tr></table>
+                    <h5>SOP vs POS</h5>
+                    <table><tr><th></th><th>SOP (Σm)</th><th>POS (ΠM)</th></tr>
+                    <tr><td>Dari baris</td><td>F = 1</td><td>F = 0</td></tr>
+                    <tr><td>Variabel asli dibaca</td><td>1</td><td>0</td></tr>
+                    <tr><td>Penghubung</td><td>OR dari AND</td><td>AND dari OR</td></tr></table>
+                    <div class="no-print" style="margin-top:12px"><button class="btn btn-convert btn-sm print-btn">🖨️ Cetak Cheatsheet</button></div>
+                </div>
+            </div>
+
+            <div class="tab-panel" id="w3-quiz">
+                <div class="theory-section"><div class="theory-grid">
+                    <div class="theory-card"><h3>✏️ Latihan 2–4 (slide)</h3><p><strong>L2:</strong> Sederhanakan + buat rangkaian & truth table.<br><strong>L3:</strong> Tabel C, D, Q lalu gerbang tunggal pengganti.<br><strong>L4:</strong> C=AND, D=OR, Q=C XOR D — rangkaian, tabel, persamaan.</p></div>
+                    <div class="theory-card"><h3>💡 Tips</h3><p>De Morgan untuk NAND/NOR, Absorpsi untuk suku redundan, cek dengan truth table. K-Map (Minggu 4) lebih intuitif untuk 3–4 variabel.</p></div>
+                </div></div>
+                <div class="interactive-card">
+                    <div class="score-bar"><span class="score-label">Skor Kuis:</span><span class="score-value" id="quiz3-score">0 / 5</span><div class="progress-track"><div class="progress-fill" id="quiz3-progress" style="width:0%"></div></div></div>
+                    <div id="quiz3-questions"></div>
+                    <button class="btn btn-secondary btn-sm mt-16" id="reset-quiz3">🔄 Acak Soal Baru</button>
+                </div>
+            </div>
+        </section>
+        <section class="week-content" id="week-4">
+            <div class="content-header">
+                <h2>Minggu 4: Penyederhanaan Karnaugh Map (K-Map)</h2>
+                <p class="description">Lebih intuitif dari aljabar manual. Aturan: kelompokkan 1-2-4-8 sel bertetangga (wrap-around boleh), tiap sel beda 1 variabel (Gray code), sebesar & sesedikit mungkin, X (don't care) boleh ikut.</p>
+            </div>
+
+            <div class="content-tabs">
+                <button class="content-tab active" data-tab="w4-konsep">🗺️ Konsep</button>
+                <button class="content-tab" data-tab="w4-aturan">📏 Aturan</button>
+                <button class="content-tab" data-tab="w4-k2">2️⃣ K-Map 2</button>
+                <button class="content-tab" data-tab="w4-k3">3️⃣ K-Map 3</button>
+                <button class="content-tab" data-tab="w4-lab">🧪 Lab</button>
+                <button class="content-tab" data-tab="w4-k4">4️⃣ K-Map 4</button>
+                <button class="content-tab" data-tab="w4-dontcare">❓ Don't Care</button>
+                <button class="content-tab" data-tab="w4-kasus">🏭 Kasus</button>
+                <button class="content-tab" data-tab="w4-cheatsheet">📋 Cheatsheet</button>
+                <button class="content-tab" data-tab="w4-quiz">📝 Latihan</button>
+            </div>
+
+            <div class="tab-panel active" id="w4-konsep">
+                <div class="interactive-card">
+                    <h4>🗺️ Mengapa K-Map?</h4>
+                    <p>Tabel kebenaran disusun 2D dengan <strong>Kode Gray</strong> (<code>00 → 01 → 11 → 10</code>) — hanya 1 bit berubah antar kotak bersebelahan, sehingga variabel redundan terlihat langsung dan bisa dieliminasi.</p>
+                    <div class="grid-2">
+                        <div class="interactive-card" style="margin:0"><h5>⚡ Aljabar manual</h5><p style="font-size:13px">Butuh kejelian hukum, rentan keliru, sulit pastikan minimal.</p></div>
+                        <div class="interactive-card" style="margin:0"><h5>⭐ K-Map</h5><p style="font-size:13px">Grafis & intuitif, grup 1-2-4-8-16, hasil minimal SOP/POS.</p></div>
+                    </div>
+                    <div class="theory-grid" style="margin-top:12px">
+                        <div class="theory-card"><h3>🚗 Analogi: Gray code = odometer anti-lompat</h3><p>Odometer mobil 0999→1000 mengubah 4 digit sekaligus — sesaat terlihat angka ngawur (mis. 9999). Kode Gray menyusun kotak K-Map <code>00→01→11→10</code> sehingga kotak bertetangga <strong>selalu beda tepat 1 bit</strong>.</p><p>Akibatnya: dua kotak 1 yang bersebelahan pasti hanya beda 1 variabel — variabel itulah yang "goyah" dan boleh dibuang. Pengelompokan = mencari variabel yang <em>tidak pernah goyah</em> dalam grup.</p></div>
+                        <div class="theory-card"><h3>🧮 Contoh berpikir grup (2 variabel)</h3><p>Soal: <code>Q = AB + A'B + AB'</code> (semua minterm kecuali m0). Petakan: tiga kotak berisi 1 membentuk huruf L. Ambil pasangan vertikal (m1+m3): A berubah 0→1, B tetap 1 → sisa <code>B</code>. Ambil pasangan horizontal (m2+m3): B berubah, A tetap 1 → sisa <code>A</code>.</p><p>Hasil: <code>Q = A + B</code> — masuk akal! Fungsi ini hanya 0 saat A=0 <em>dan</em> B=0. K-Map membuat kesimpulan "oh, ini OR" terlihat langsung dari gambarnya.</p></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-panel" id="w4-aturan">
+                <div class="interactive-card">
+                    <h4>📏 5 Aturan Emas Pengelompokan</h4>
+                    <div class="steps-container">
+                        <div class="step-item"><div class="step-number">1</div><div class="step-content"><h5>Ukuran = 2<sup>n</sup></h5><p>Hanya 1, 2, 4, 8, 16. Dilarang 3, 5, 6!</p></div></div>
+                        <div class="step-item"><div class="step-number">2</div><div class="step-content"><h5>Persegi / persegi panjang</h5><p>Tidak boleh diagonal atau bentuk L.</p></div></div>
+                        <div class="step-item"><div class="step-number">3</div><div class="step-content"><h5>Sebesar mungkin</h5><p>Makin besar grup → makin banyak variabel tereliminasi.</p></div></div>
+                        <div class="step-item"><div class="step-number">4</div><div class="step-content"><h5>Tepi menyambung (wrap-around)</h5><p>Kiri-kanan & atas-bawah tersambung; 4 sudut = 1 grup!</p></div></div>
+                        <div class="step-item"><div class="step-number">5</div><div class="step-content"><h5>Boleh overlap</h5><p>Satu angka 1 boleh masuk beberapa grup.</p></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-panel" id="w4-k2">
+                <div class="interactive-card">
+                    <h4>2️⃣ K-Map 2 Variabel (A, B) — baris A, kolom B</h4>
+                    <p><strong>Contoh:</strong> <code>Q = AB + A'B + AB'</code> (m1, m2, m3) → grup m1+m3 mengeliminasi A (sisa B), grup m2+m3 mengeliminasi B (sisa A) → <b>Q = A + B</b>.</p>
+                    <button class="btn btn-convert btn-sm" data-kmap-preset="2|1,2,3">▶ Buka contoh ini di Lab</button>
+                </div>
+            </div>
+
+            <div class="tab-panel" id="w4-k3">
+                <div class="interactive-card">
+                    <h4>3️⃣ K-Map 3 Variabel — baris A, kolom BC (Gray)</h4>
+                    <p><strong>Contoh:</strong> <code>Q = ABC' + AB'C' + AB'C + ABC</code> (m4–m7, seluruh baris A=1) → satu grup 4 → B dan C tereliminasi → <b>Q = A</b>.</p>
+                    <button class="btn btn-convert btn-sm" data-kmap-preset="3|4,5,6,7">▶ Buka contoh ini di Lab</button>
+                </div>
+            </div>
+
+            <div class="tab-panel" id="w4-lab">
+            <div class="converter-card">
+                <div class="card-header"><h3>🧩 K-Map Interaktif (klik: 0→1→X→0)</h3><span class="badge">2 / 3 / 4 var</span></div>
+                <div style="padding:1.5rem;text-align:center">
+                    <div class="form-row" style="justify-content:center">
+                        <div class="option-group" style="max-width:200px"><label>Variabel:</label><select id="kmap-nvar"><option value="2">2 var (A,B)</option><option value="3" selected>3 var (A,B,C)</option><option value="4">4 var (A,B,C,D)</option></select></div>
+                        <div class="option-group"><label>&nbsp;</label><button class="btn btn-convert" id="kmap-solve">Sederhanakan</button></div>
+                        <div class="option-group"><label>&nbsp;</label><button class="btn btn-reset" id="kmap-clear">Clear</button></div>
+                        <div class="option-group"><label>&nbsp;</label><button class="btn btn-example" id="kmap-demo">Contoh Alarm</button></div>
+                    </div>
+                    <div id="kmap-wrap"></div>
+                    <div class="result-display" id="kmap-result" style="margin-top:1rem">-</div>
+                    <div class="steps-content steps-list" id="kmap-steps"><p class="placeholder-text">Klik sel untuk set 1 / X, lalu Sederhanakan.</p></div>
+                </div>
+            </div>
+            </div><!-- /w4-lab -->
+
+            <div class="tab-panel" id="w4-k4">
+                <div class="interactive-card">
+                    <h4>4️⃣ K-Map 4 Variabel — baris AB, kolom CD (Gray)</h4>
+                    <p><strong>Contoh:</strong> <code>Q = A'BC'D + ABC'D + A'BCD + ABCD</code> (m5, m13, m7, m15 — kolom CD=01 &amp; 11 pada baris B=1) → grup 4 mengeliminasi A dan C → <b>Q = BD</b>.</p>
+                    <button class="btn btn-convert btn-sm" data-kmap-preset="4|5,7,13,15">▶ Buka contoh ini di Lab</button>
+                </div>
+            </div>
+
+            <div class="tab-panel" id="w4-dontcare">
+                <div class="interactive-card">
+                    <h4>👻 Don't Care (X)</h4>
+                    <p>Kondisi yang tak terjadi / tak peduli hasilnya. Di Lab, klik sel 2× untuk menjadikannya <b>X</b>.</p>
+                    <div class="info-box tip"><strong>Aturan:</strong> X boleh dianggap 1 untuk <em>memperbesar</em> grup, atau 0 (diabaikan) jika tak membantu. Jangan paksa X masuk grup kecil.</div>
+                </div>
+            </div>
+
+            <div class="tab-panel" id="w4-kasus">
+                <div class="interactive-card">
+                    <h4>🚨 Studi Kasus: Alarm Gedung (4 sensor)</h4>
+                    <p>A=pintu, B=jendela, C=gerak, D=asap. Alarm = <code>A·C + B·C + D</code> → minterm 1,3,5,6,7,9,10,11,13,14,15.</p>
+                    <button class="btn btn-convert btn-sm" data-kmap-preset="4|1,3,5,6,7,9,10,11,13,14,15">▶ Buktikan di Lab (hasil: D + AC + BC)</button>
+                </div>
+                <div class="interactive-card">
+                    <h4>🅿️ Latihan: Gerbang Parkir</h4>
+                    <p>A=kartu valid, B=kendaraan ada, C=penuh, D=darurat. Buka jika <code>A·B·C' + D</code> → minterm 1,3,5,7,9,11,12,13,15.</p>
+                    <button class="btn btn-convert btn-sm" data-kmap-preset="4|1,3,5,7,9,11,12,13,15">▶ Buka di Lab</button>
+                </div>
+            </div>
+
+            <div class="tab-panel cheatsheet-panel" id="w4-cheatsheet">
+                <div class="cheatsheet">
+                    <h4>📋 Cheatsheet Minggu 4 — K-Map</h4>
+                    <h5>Aturan kilat</h5>
+                    <p>Grup = <code>2ⁿ</code> (1,2,4,8,16) • persegi • sebesar mungkin • wrap-around • boleh overlap • Gray <code>00-01-11-10</code>.</p>
+                    <h5>Eliminasi</h5>
+                    <p>Variabel yang <em>berubah</em> dalam grup → hilang. Grup 2 = 1 var hilang, grup 4 = 2 var, grup 8 = 3 var.</p>
+                    <h5>Contoh hafalan</h5>
+                    <table><tr><th>Soal</th><th>Hasil</th></tr>
+                    <tr><td><code>AB+A'B+AB'</code></td><td><code>A+B</code></td></tr>
+                    <tr><td><code>Σm(4,5,6,7)</code> 3-var</td><td><code>A</code></td></tr>
+                    <tr><td><code>Σm(5,7,13,15)</code> 4-var</td><td><code>BD</code></td></tr>
+                    <tr><td>Alarm <code>AC+BC+D</code></td><td><code>D+AC+BC</code></td></tr></table>
+                    <div class="no-print" style="margin-top:12px"><button class="btn btn-convert btn-sm print-btn">🖨️ Cetak Cheatsheet</button></div>
+                </div>
+            </div>
+
+            <div class="tab-panel" id="w4-quiz">
+                <div class="interactive-card">
+                    <h4>✏️ Latihan slide</h4>
+                    <p>1) Minimalkan <code>Q = ABCD' + AB'C'D + A'BCD</code> di Lab.<br>2) Selesaikan kasus parkir di atas, tulis persamaan minimalnya.</p>
+                </div>
+                <div class="interactive-card">
+                    <div class="score-bar"><span class="score-label">Skor Kuis:</span><span class="score-value" id="quiz4-score">0 / 5</span><div class="progress-track"><div class="progress-fill" id="quiz4-progress" style="width:0%"></div></div></div>
+                    <div id="quiz4-questions"></div>
+                    <button class="btn btn-secondary btn-sm mt-16" id="reset-quiz4">🔄 Acak Soal Baru</button>
+                </div>
+            </div>
+        </section>
+        <section class="week-content" id="week-5">
+            <div class="content-header">
+                <h2>Minggu 5: Adder & Subtractor (Rangkaian Aritmetika)</h2>
+                <p class="description">Penjumlahan biner, Half Adder (S=A⊕B, C=A·B), Full Adder, Ripple Carry Adder, Carry Lookahead Adder (Generate/Propagate), Half/Full Subtractor, Adder-Subtractor terintegrasi mode M.</p>
+            </div>
+
+            <div class="content-tabs">
+                <button class="content-tab active" data-tab="w5-belajar">📖 Pembelajaran</button>
+                <button class="content-tab" data-tab="w5-half">➕ Half Adder</button>
+                <button class="content-tab" data-tab="w5-full">⭐ Full Adder</button>
+                <button class="content-tab" data-tab="w5-rca">🔗 RCA 4-bit</button>
+                <button class="content-tab" data-tab="w5-cla">⚡ CLA G/P</button>
+                <button class="content-tab" data-tab="w5-sub">➖ Subtractor</button>
+                <button class="content-tab" data-tab="w5-addsub">🔀 Add/Sub</button>
+                <button class="content-tab" data-tab="w5-cheatsheet">📋 Cheatsheet</button>
+                <button class="content-tab" data-tab="w5-quiz">📝 Latihan</button>
+            </div>
+
+            <div class="tab-panel active" id="w5-belajar">
+            <div class="theory-section">
+                <div class="theory-grid">
+                    <div class="theory-card"><h3>➕ Penjumlahan Biner</h3><p>Aturan per kolom: 0+0=0, 0+1=1, 1+1=0 simpan 1, 1+1+1=1 simpan 1. Contoh <code>1011₂ (11) + 0111₂ (7) = 10010₂ (18)</code> — kerjakan dari LSB ke MSB dengan carry berantai.</p></div>
+                    <div class="theory-card"><h3>🧱 Hierarki Adder</h3><p><strong>Half</strong> (2 input, tanpa Cin) → <strong>Full</strong> (3 input, ada Cin) → <strong>RCA</strong> (N full dirantai, lambat tapi hemat) → <strong>CLA</strong> (carry dihitung paralel via G/P, cepat).</p></div>
+                    <div class="theory-card"><h3>➖ Pengurangan = Penjumlahan</h3><p>Hardware hanya butuh adder: <code>A − B = A + C2(B)</code>. Subtractor punya output <strong>Difference (D)</strong> dan <strong>Borrow (B)</strong>. Mode M pada Adder-Subtractor: M=0 tambah, M=1 kurang (B di-XOR dengan M, Cin=M).</p></div>
+                </div>
+                <div class="theory-grid">
+                    <div class="theory-card"><h3>🏧 Analogi: kasir + "titipan"</h3><p>Menjumlah 1 kolom desimal <code>7 + 8 = 5, simpan 1</code> — angka "simpanan 1" itulah <strong>carry</strong>. Half adder = kasir yang <em>tidak menerima titipan</em> dari kolom sebelah (hanya untuk kolom paling kanan/LSB). Full adder = kasir lengkap yang menerima titipan (Cin) dari kolom sebelumnya.</p><p>RCA = 4 kasir berderet estafet: kasir-2 tak bisa selesai sebelum menerima titipan kasir-1 — makanya lambat (delay O(N)). CLA = kasir menelepon duluan menanyakan "ada titipan nggak?" lewat jalur cepat G/P — semua kolom hitung carry hampir bersamaan.</p></div>
+                    <div class="theory-card"><h3>🧮 Contoh lengkap 11 + 7</h3><p>Tulis biner 4-bit: A=<code>1011</code>, B=<code>0111</code>. Kerjakan dari kanan: bit0: 1+1=0 simpan1; bit1: 1+1+titipan1 = 1 simpan1 (1+1+1=3, tulis 1 simpan 1); bit2: 0+1+1 = 0 simpan1; bit3: 1+0+1 = 0 simpan1. Titipan terakhir (C4=1) jadi bit ke-5: hasil <code>10010₂ = 18</code>. ✔️</p><p>Untuk 11 − 7: ubah B jadi C2-nya (<code>0111→1001</code>), lalu jumlahkan: <code>1011 + 1001 = (1)0100</code> → buang carry → <code>0100 = 4</code>. ✔️ Coba ulangi di tab RCA dan Add/Sub!</p></div>
+                </div>
+            </div>
+            </div><!-- /w5-belajar -->
+
+            <div class="tab-panel" id="w5-half">
+            <div class="converter-card">
+                <div class="card-header"><h3>➕ Simulator Half Adder</h3><span class="badge">Klik A / B</span></div>
+                <div style="padding:1.5rem">
+                    <p>S = A⊕B (XOR), C = A·B (AND). Tidak punya Cin — hanya untuk kolom LSB.</p>
+                    <div class="quiz-input-row">
+                        <button class="btn btn-convert btn-sm tgl" id="w5-ha-a">A=0</button>
+                        <button class="btn btn-convert btn-sm tgl" id="w5-ha-b">B=0</button>
+                    </div>
+                    <div class="triple-grid">
+                        <div class="triple-card"><h4>Sum (S)</h4><div class="mono" id="w5-ha-s">0</div></div>
+                        <div class="triple-card"><h4>Carry (C)</h4><div class="mono" id="w5-ha-c">0</div></div>
+                    </div>
+                    <div class="steps-content" id="w5-ha-steps"></div>
+                    <div class="info-box warning"><strong>Kekurangan:</strong> tak bisa terima carry dari kolom sebelumnya → untuk bit ≥1 wajib Full Adder.</div>
+                </div>
+            </div>
+            </div><!-- /w5-half -->
+
+            <div class="tab-panel" id="w5-full">
+            <div class="converter-card">
+                <div class="card-header"><h3>⭐ Simulator Full Adder (1-bit)</h3><span class="badge">S=A⊕B⊕Cin</span></div>
+                <div style="padding:1.5rem">
+                    <p>Cout = AB + Cin(A⊕B). Klik input lalu Hitung.</p>
+                    <div class="quiz-input-row">
+                        <button class="btn btn-convert btn-sm tgl" id="w5-fa-a">A=0</button>
+                        <button class="btn btn-convert btn-sm tgl" id="w5-fa-b">B=0</button>
+                        <button class="btn btn-convert btn-sm tgl" id="w5-fa-cin">Cin=0</button>
+                        <button class="btn btn-convert btn-sm" id="w5-fa-btn">Hitung ➔</button>
+                    </div>
+                    <div class="result-display" id="w5-fa-result">-</div>
+                    <div class="steps-content" id="w5-fa-steps"></div>
+                </div>
+            </div>
+            </div><!-- /w5-full -->
+
+            <div class="tab-panel" id="w5-rca">
+            <div class="converter-card">
+                <div class="card-header"><h3>🔗 Simulator Ripple Carry Adder 4-bit</h3><span class="badge">Carry berantai</span></div>
+                <div style="padding:1.5rem">
+                    <div class="form-row">
+                        <div class="option-group"><label>A (0–15):</label><input id="w5-rca-a" type="text" value="11" style="width:100%;padding:0.875rem;border:2px solid var(--border-color);border-radius:8px;font-family:'Courier New',monospace"></div>
+                        <div class="option-group"><label>B (0–15):</label><input id="w5-rca-b" type="text" value="7" style="width:100%;padding:0.875rem;border:2px solid var(--border-color);border-radius:8px;font-family:'Courier New',monospace"></div>
+                        <div class="option-group"><label>&nbsp;</label><button class="btn btn-convert" id="w5-rca-btn">Jumlahkan ➔</button></div>
+                    </div>
+                    <div class="result-display" id="w5-rca-result">-</div>
+                    <div class="steps-content" id="w5-rca-steps"></div>
+                    <div class="info-box warning"><strong>Kelemahan RCA:</strong> carry harus menunggu kolom sebelumnya (delay O(N)) → untuk N besar gunakan CLA.</div>
+                </div>
+            </div>
+            </div><!-- /w5-rca -->
+
+            <div class="tab-panel" id="w5-cla">
+            <div class="converter-card">
+                <div class="card-header"><h3>⚡ Kalkulator CLA: Generate / Propagate</h3><span class="badge">G=A·B, P=A⊕B</span></div>
+                <div style="padding:1.5rem">
+                    <p>C1 = G0 + P0·C0, C2 = G1 + P1·G0 + P1·P0·C0, dst — carry dihitung paralel.</p>
+                    <div class="form-row">
+                        <div class="option-group"><label>A (0–15):</label><input id="w5-cla-a" type="text" value="11" style="width:100%;padding:0.875rem;border:2px solid var(--border-color);border-radius:8px;font-family:'Courier New',monospace"></div>
+                        <div class="option-group"><label>B (0–15):</label><input id="w5-cla-b" type="text" value="7" style="width:100%;padding:0.875rem;border:2px solid var(--border-color);border-radius:8px;font-family:'Courier New',monospace"></div>
+                        <div class="option-group"><label>C0:</label><select id="w5-cla-c0"><option value="0">0</option><option value="1">1</option></select></div>
+                        <div class="option-group"><label>&nbsp;</label><button class="btn btn-convert" id="w5-cla-btn">Hitung G/P ➔</button></div>
+                    </div>
+                    <div class="result-display" id="w5-cla-result">-</div>
+                    <div class="steps-content" id="w5-cla-steps"></div>
+                    <div class="info-box tip"><strong>RCA vs CLA:</strong> RCA hemat gerbang & lambat (O(N)); CLA cepat (O(log N)) tapi butuh logika carry tambahan.</div>
+                </div>
+            </div>
+            </div><!-- /w5-cla -->
+
+            <div class="tab-panel" id="w5-sub">
+            <div class="converter-card">
+                <div class="card-header"><h3>➖ Simulator Full Subtractor (1-bit)</h3><span class="badge">D=A⊕B⊕Bin</span></div>
+                <div style="padding:1.5rem">
+                    <p>Bout = A'B + Bin(A⊕B)'. Klik input lalu Hitung.</p>
+                    <div class="quiz-input-row">
+                        <button class="btn btn-convert btn-sm tgl" id="w5-sub-a">A=0</button>
+                        <button class="btn btn-convert btn-sm tgl" id="w5-sub-b">B=0</button>
+                        <button class="btn btn-convert btn-sm tgl" id="w5-sub-bin">Bin=0</button>
+                        <button class="btn btn-convert btn-sm" id="w5-sub-btn">Hitung ➔</button>
+                    </div>
+                    <div class="result-display" id="w5-sub-result">-</div>
+                    <div class="steps-content" id="w5-sub-steps"></div>
+                    <div class="info-box tip"><strong>Half Subtractor:</strong> D=A⊕B, Bout=A'·B (tanpa Bin, hanya kolom LSB).</div>
+                </div>
+            </div>
+            </div><!-- /w5-sub -->
+
+            <div class="tab-panel" id="w5-addsub">
+            <div class="converter-card">
+                <div class="card-header"><h3>🔀 Adder-Subtractor Terintegrasi 4-bit</h3><span class="badge">M=0 add, M=1 sub</span></div>
+                <div style="padding:1.5rem">
+                    <div class="form-row">
+                        <div class="option-group"><label>A (0–15):</label><input id="w5-as-a" type="text" value="11" style="width:100%;padding:0.875rem;border:2px solid var(--border-color);border-radius:8px;font-family:'Courier New',monospace"></div>
+                        <div class="option-group"><label>B (0–15):</label><input id="w5-as-b" type="text" value="7" style="width:100%;padding:0.875rem;border:2px solid var(--border-color);border-radius:8px;font-family:'Courier New',monospace"></div>
+                        <div class="option-group"><label>Mode M:</label><select id="w5-as-mode"><option value="0">M=0 : A+B</option><option value="1">M=1 : A−B</option></select></div>
+                        <div class="option-group"><label>&nbsp;</label><button class="btn btn-convert" id="w5-as-btn">Eksekusi ➔</button></div>
+                    </div>
+                    <div class="result-display" id="w5-as-result">-</div>
+                    <div class="steps-content" id="w5-as-steps"></div>
+                </div>
+            </div>
+            </div><!-- /w5-addsub -->
+
+            <div class="tab-panel cheatsheet-panel" id="w5-cheatsheet">
+                <div class="cheatsheet">
+                    <h4>📋 Cheatsheet Minggu 5 — Adder & Subtractor</h4>
+                    <h5>Rumus adder</h5>
+                    <table><tr><th>Blok</th><th>Sum</th><th>Carry</th></tr>
+                    <tr><td>Half</td><td><code>S=A⊕B</code></td><td><code>C=A·B</code></td></tr>
+                    <tr><td>Full</td><td><code>S=A⊕B⊕Cin</code></td><td><code>Cout=AB+Cin(A⊕B)</code></td></tr>
+                    <tr><td>CLA</td><td colspan="2"><code>G=A·B, P=A⊕B, C1=G0+P0C0</code></td></tr></table>
+                    <h5>Subtractor</h5>
+                    <table><tr><th>Blok</th><th>Diff</th><th>Borrow</th></tr>
+                    <tr><td>Half</td><td><code>D=A⊕B</code></td><td><code>B=A'·B</code></td></tr>
+                    <tr><td>Full</td><td><code>D=A⊕B⊕Bin</code></td><td><code>Bout=A'B+Bin(A⊕B)'</code></td></tr></table>
+                    <h5>Kilat</h5>
+                    <p>RCA = rantai full adder (lambat O(N)) • CLA = carry paralel via G/P (cepat) • Add/Sub: <code>B⊕M, Cin=M</code> (M=0 tambah, M=1 kurang) • Contoh: <code>1011+0111=10010</code>.</p>
+                    <div class="no-print" style="margin-top:12px"><button class="btn btn-convert btn-sm print-btn">🖨️ Cetak Cheatsheet</button></div>
+                </div>
+            </div>
+
+            <div class="tab-panel" id="w5-quiz">
+                <div class="interactive-card">
+                    <div class="score-bar"><span class="score-label">Skor Kuis:</span><span class="score-value" id="quiz5-score">0 / 5</span><div class="progress-track"><div class="progress-fill" id="quiz5-progress" style="width:0%"></div></div></div>
+                    <div id="quiz5-questions"></div>
+                    <button class="btn btn-secondary btn-sm mt-16" id="reset-quiz5">🔄 Acak Soal Baru</button>
+                </div>
+            </div>
+        </section>
+        <section class="week-content" id="week-6">
+            <div class="content-header">
+                <h2>Minggu 6: Multilevel NAND/NOR & Multiplexer</h2>
+                <p class="description">Gerbang universal NAND/NOR, implementasi multilevel SOP→NAND dan POS→NOR, MUX 2:1 / 4:1 / 8:1 sebagai data selector.</p>
+            </div>
+
+            <div class="content-tabs">
+                <button class="content-tab active" data-tab="w6-belajar">📖 Pembelajaran</button>
+                <button class="content-tab" data-tab="w6-nand">🔌 NAND</button>
+                <button class="content-tab" data-tab="w6-nor">🔌 NOR</button>
+                <button class="content-tab" data-tab="w6-mux21">🔀 MUX 2:1</button>
+                <button class="content-tab" data-tab="w6-mux41">🔀 MUX 4:1</button>
+                <button class="content-tab" data-tab="w6-mux81">🔀 MUX 8:1</button>
+                <button class="content-tab" data-tab="w6-cheatsheet">📋 Cheatsheet</button>
+                <button class="content-tab" data-tab="w6-quiz">📝 Latihan</button>
+            </div>
+
+            <div class="tab-panel active" id="w6-belajar">
+            <div class="theory-section">
+                <div class="theory-grid">
+                    <div class="theory-card"><h3>🔌 Gerbang Universal</h3><p>NAND dan NOR bisa membangun NOT, AND, OR apa pun → cukup sediakan satu jenis IC. NOT dari NAND: hubungkan semua input jadi satu. AND = NAND + NOT.</p></div>
+                    <div class="theory-card"><h3>🏗️ Multilevel</h3><p>SOP → implementasi NAND-NAND (ganti AND→NAND, OR→NAND). POS → NOR-NOR. Aturan: komplemen ganda + De Morgan, bubble-pushing pada skematik.</p></div>
+                    <div class="theory-card"><h3>🔀 MUX = Data Selector</h3><p>Memilih 1 dari 2ⁿ input data via n select line. 2:1 butuh 1 select, 4:1 butuh 2, 8:1 butuh 3. Rumus 2:1: <code>Y = S'·I0 + S·I1</code>.</p></div>
+                </div>
+                <div class="theory-grid">
+                    <div class="theory-card"><h3>📺 Analogi: remote TV & kran cabang</h3><p>MUX 4:1 seperti TV dengan 4 channel dan tombol angka: tekan <code>10</code> (S1S0) → layar menampilkan channel D2. Select line = nomor channel, input data = isi siarannya.</p><p>Untuk NAND/NOR universal: bayangkan toko LEGO yang hanya menjual <em>satu bentuk bata</em> (mis. bata NAND) — ternyata semua model (rumah, mobil, pesawat = NOT, AND, OR) bisa dirakit hanya dari bata itu. Pabrik chip pun cukup memproduksi 1 jenis gerbang → murah & seragam. Trik konversinya: gandakan komplemen lalu De Morgan (SOP→NAND-NAND, POS→NOR-NOR).</p></div>
+                    <div class="theory-card"><h3>🧮 Membaca rumus MUX 2:1</h3><p><code>Y = S'·I0 + S·I1</code> dibaca: "jika S=0 pilih I0, jika S=1 pilih I1". Cek: S=0 → suku pertama <code>1·I0 = I0</code>, suku kedua <code>0·I1 = 0</code> → Y=I0 ✔️. S=1 → sebaliknya Y=I1 ✔️.</p><p>Untuk 4:1, select 2 bit membentuk 4 kombinasi <code>00,01,10,11</code> yang masing-masing "menyalakan" tepat 1 suku dari 4 suku — prinsipnya sama dengan minterm! Inilah alasan MUX bisa mengimplementasikan <em>fungsi logika apa pun</em>: hubungkan input D ke 0/1 sesuai tabel kebenaran.</p></div>
+                </div>
+            </div>
+            </div><!-- /w6-belajar -->
+
+            <div class="tab-panel" id="w6-nand">
+            <div class="converter-card">
+                <div class="card-header"><h3>🔌 SOP → NAND Multilevel</h3><span class="badge">NAND-NAND</span></div>
+                <div style="padding:1.5rem">
+                    <div class="form-row">
+                        <div class="option-group"><label>Contoh fungsi:</label><select id="w6-nand-sel"><option value="0">F = AB + CD</option><option value="1">F = AB + BC + AC</option><option value="2">F = A'B + AB'</option></select></div>
+                        <div class="option-group"><label>&nbsp;</label><button class="btn btn-convert" id="w6-nand-btn">Konversi ➔</button></div>
+                    </div>
+                    <div class="result-display" id="w6-nand-out">-</div>
+                    <div class="steps-content" id="w6-nand-steps"></div>
+                </div>
+            </div>
+            </div><!-- /w6-nand -->
+
+            <div class="tab-panel" id="w6-nor">
+            <div class="converter-card">
+                <div class="card-header"><h3>🔌 POS → NOR Multilevel</h3><span class="badge">NOR-NOR</span></div>
+                <div style="padding:1.5rem">
+                    <div class="form-row">
+                        <div class="option-group"><label>Contoh fungsi:</label><select id="w6-nor-sel"><option value="0">F = (A+B)(C+D)</option><option value="1">F = (A+B+C)(A+B'+C')</option></select></div>
+                        <div class="option-group"><label>&nbsp;</label><button class="btn btn-convert" id="w6-nor-btn">Konversi ➔</button></div>
+                    </div>
+                    <div class="result-display" id="w6-nor-out">-</div>
+                    <div class="steps-content" id="w6-nor-steps"></div>
+                </div>
+            </div>
+            </div><!-- /w6-nor -->
+
+            <div class="tab-panel" id="w6-mux21">
+            <div class="converter-card">
+                <div class="card-header"><h3>🔀 Simulator MUX 2:1</h3><span class="badge">Y=S'I0+SI1</span></div>
+                <div style="padding:1.5rem">
+                    <div class="quiz-input-row">
+                        <button class="btn btn-convert btn-sm tgl" id="w6-m21-i0">I0=0</button>
+                        <button class="btn btn-convert btn-sm tgl" id="w6-m21-i1">I1=0</button>
+                        <button class="btn btn-convert btn-sm tgl" id="w6-m21-s">S=0</button>
+                    </div>
+                    <div class="result-display" id="w6-m21-out">Y = -</div>
+                    <div class="steps-content" id="w6-m21-steps"></div>
+                </div>
+            </div>
+            </div><!-- /w6-mux21 -->
+
+            <div class="tab-panel" id="w6-mux41">
+            <div class="converter-card">
+                <div class="card-header"><h3>🔀 Simulator MUX 4:1</h3><span class="badge">2 select</span></div>
+                <div style="padding:1.5rem">
+                    <p>Y = S1'S0'I0 + S1'S0I1 + S1S0'I2 + S1S0I3.</p>
+                    <div class="quiz-input-row">
+                        <button class="btn btn-convert btn-sm tgl" id="w6-m41-d0">D0=0</button>
+                        <button class="btn btn-convert btn-sm tgl" id="w6-m41-d1">D1=0</button>
+                        <button class="btn btn-convert btn-sm tgl" id="w6-m41-d2">D2=0</button>
+                        <button class="btn btn-convert btn-sm tgl" id="w6-m41-d3">D3=0</button>
+                        <button class="btn btn-convert btn-sm tgl" id="w6-m41-s1">S1=0</button>
+                        <button class="btn btn-convert btn-sm tgl" id="w6-m41-s0">S0=0</button>
+                    </div>
+                    <div class="result-display" id="w6-m41-out">Y = -</div>
+                    <div class="steps-content" id="w6-m41-steps"></div>
+                </div>
+            </div>
+            </div><!-- /w6-mux41 -->
+
+            <div class="tab-panel" id="w6-mux81">
+            <div class="converter-card">
+                <div class="card-header"><h3>🔀 Simulator MUX 8:1</h3><span class="badge">3 select</span></div>
+                <div style="padding:1.5rem">
+                    <p>Pilih 1 dari 8 input via S2 S1 S0 (indeks = 4·S2+2·S1+S0).</p>
+                    <div class="quiz-input-row" id="w6-m81-data">
+                        <button class="btn btn-convert btn-sm tgl" id="w6-m81-d0">D0=0</button>
+                        <button class="btn btn-convert btn-sm tgl" id="w6-m81-d1">D1=0</button>
+                        <button class="btn btn-convert btn-sm tgl" id="w6-m81-d2">D2=0</button>
+                        <button class="btn btn-convert btn-sm tgl" id="w6-m81-d3">D3=0</button>
+                        <button class="btn btn-convert btn-sm tgl" id="w6-m81-d4">D4=0</button>
+                        <button class="btn btn-convert btn-sm tgl" id="w6-m81-d5">D5=0</button>
+                        <button class="btn btn-convert btn-sm tgl" id="w6-m81-d6">D6=0</button>
+                        <button class="btn btn-convert btn-sm tgl" id="w6-m81-d7">D7=0</button>
+                    </div>
+                    <div class="quiz-input-row">
+                        <button class="btn btn-convert btn-sm tgl" id="w6-m81-s2">S2=0</button>
+                        <button class="btn btn-convert btn-sm tgl" id="w6-m81-s1">S1=0</button>
+                        <button class="btn btn-convert btn-sm tgl" id="w6-m81-s0">S0=0</button>
+                    </div>
+                    <div class="result-display" id="w6-m81-out">Y = -</div>
+                    <div class="steps-content" id="w6-m81-steps"></div>
+                </div>
+            </div>
+            </div><!-- /w6-mux81 -->
+
+            <div class="tab-panel cheatsheet-panel" id="w6-cheatsheet">
+                <div class="cheatsheet">
+                    <h4>📋 Cheatsheet Minggu 6 — NAND/NOR & MUX</h4>
+                    <h5>Universal</h5>
+                    <p>NOT = <code>(A·A)'</code> • AND = NAND+NOT • OR = NOT-NOT + NAND (De Morgan). SOP→NAND-NAND, POS→NOR-NOR.</p>
+                    <h5>MUX kilat</h5>
+                    <table><tr><th>MUX</th><th>Select</th><th>Rumus</th></tr>
+                    <tr><td>2:1</td><td>1 (S)</td><td><code>Y=S'I0+SI1</code></td></tr>
+                    <tr><td>4:1</td><td>2 (S1S0)</td><td><code>Σ m·D</code> 4 suku</td></tr>
+                    <tr><td>8:1</td><td>3 (S2S1S0)</td><td><code>indeks=4S2+2S1+S0</code></td></tr></table>
+                    <div class="no-print" style="margin-top:12px"><button class="btn btn-convert btn-sm print-btn">🖨️ Cetak Cheatsheet</button></div>
+                </div>
+            </div>
+
+            <div class="tab-panel" id="w6-quiz">
+                <div class="interactive-card">
+                    <div class="score-bar"><span class="score-label">Skor Kuis:</span><span class="score-value" id="quiz6-score">0 / 5</span><div class="progress-track"><div class="progress-fill" id="quiz6-progress" style="width:0%"></div></div></div>
+                    <div id="quiz6-questions"></div>
+                    <button class="btn btn-secondary btn-sm mt-16" id="reset-quiz6">🔄 Acak Soal Baru</button>
+                </div>
+            </div>
+        </section>
+        <section class="week-content" id="week-7">
+            <div class="content-header">
+                <h2>Minggu 7: Decoder, Encoder & Display 7-Segmen</h2>
+                <p class="description">Kombinasional vs sekuensial, decoder 2-to-4 (+Enable) & 3-to-8, aplikasi memori/periferal, encoder 4-to-2 & priority, BCD ke 7-segmen (CA/CC).</p>
+            </div>
+
+            <div class="content-tabs">
+                <button class="content-tab active" data-tab="w7-belajar">📖 Pembelajaran</button>
+                <button class="content-tab" data-tab="w7-dec24">🔽 DEC 2-4</button>
+                <button class="content-tab" data-tab="w7-dec38">🔽 DEC 3-8</button>
+                <button class="content-tab" data-tab="w7-enc">🔼 ENC 4-2</button>
+                <button class="content-tab" data-tab="w7-priority">👑 Priority</button>
+                <button class="content-tab" data-tab="w7-bcd7seg">🔢 BCD-7Seg</button>
+                <button class="content-tab" data-tab="w7-cheatsheet">📋 Cheatsheet</button>
+                <button class="content-tab" data-tab="w7-quiz">📝 Latihan</button>
+            </div>
+
+            <div class="tab-panel active" id="w7-belajar">
+            <div class="theory-section">
+                <div class="theory-grid">
+                    <div class="theory-card"><h3>🔀 Kombinasional vs Sekuensial</h3><table class="mini-table"><tr><th>Aspek</th><th>Kombinasional</th><th>Sekuensial</th></tr><tr><td>Memori</td><td>Tidak ada</td><td>Ada (flip-flop)</td></tr><tr><td>Output</td><td>Hanya input kini</td><td>Input + state lalu</td></tr><tr><td>Contoh</td><td>Adder, MUX, DEC/ENC</td><td>Register, counter</td></tr></table></div>
+                    <div class="theory-card"><h3>🔽 Decoder</h3><p>n input → 2ⁿ output, tepat satu aktif. Dengan <strong>Enable (EN)</strong>: jika EN=0 semua mati. IC: 74xx138 (3-to-8), 74xx154 (4-to-16).</p></div>
+                    <div class="theory-card"><h3>🔼 Encoder</h3><p>Kebalikan decoder: 2ⁿ input (satu aktif) → n output. <strong>Priority encoder</strong> menyelesaikan konflik 2 input aktif (prioritas ke nomor terbesar, + output Valid).</p></div>
+                </div>
+                <div class="interactive-card"><h4>💡 Aplikasi decoder</h4><p>Address decoder memori, channel selector / data routing, peripheral enable, kunci keamanan, dan driver BCD→7-segmen.</p></div>
+                <div class="theory-grid">
+                    <div class="theory-card"><h3>🏨 Analogi: resepsionis & juri lomba</h3><p><strong>Decoder</strong> = resepsionis hotel: tamu menyebut nomor kamar 2-bit (<code>10</code> = kamar 2) → resepsionis menyalakan <em>tepat 1 lampu</em> (Y2) dari 4 lampu koridor. Sinyal <strong>Enable</strong> = saklar utama listrik: EN=0 → semua lampu mati apa pun nomornya.</p><p><strong>Encoder</strong> = juri lomba menunjuk pemenang: 4 peserta (D0–D3), yang angkat tangan (tepat satu!) dikodekan jadi nomor 2-bit. <strong>Priority encoder</strong> = 2 peserta angkat tangan bersamaan → juri memilih nomor terbesar (D3 menang atas D1) + bendera Valid "keputusan sah".</p></div>
+                    <div class="theory-card"><h3>🔢 Membaca display 7-segmen</h3><p>Digit <code>2</code> menyalakan segmen a,b,g,e,d — bayangkan menggambar angka 2: garis atas (a), kanan atas (b), tengah (g), kiri bawah (e), bawah (d). Segmen c & f mati.</p><p><strong>CC vs CA:</strong> Common Cathode = kaki bersama ke GND, segmen nyala dengan logika <code>1</code> (arus masuk per segmen). Common Anode = kaki bersama ke VCC, segmen nyala dengan logika <code>0</code> (arus keluar per segmen). Tertukar? Display menampilkan <em>negatif film</em> dari angka yang diinginkan — gejala khas yang mudah dikenali saat praktikum.</p></div>
+                </div>
+            </div>
+            </div><!-- /w7-belajar -->
+
+            <div class="tab-panel" id="w7-dec24">
+            <div class="converter-card">
+                <div class="card-header"><h3>🔽 Simulator Decoder 2-to-4 (+Enable)</h3><span class="badge">Yi = mi·EN</span></div>
+                <div style="padding:1.5rem">
+                    <div class="quiz-input-row">
+                        <button class="btn btn-convert btn-sm tgl" id="w7-d24-a">A=0</button>
+                        <button class="btn btn-convert btn-sm tgl" id="w7-d24-b">B=0</button>
+                        <button class="btn btn-convert btn-sm tgl on" id="w7-d24-en">EN=1</button>
+                    </div>
+                    <div class="triple-grid" id="w7-d24-out"></div>
+                    <div class="steps-content" id="w7-d24-steps"></div>
+                </div>
+            </div>
+            </div><!-- /w7-dec24 -->
+
+            <div class="tab-panel" id="w7-dec38">
+            <div class="converter-card">
+                <div class="card-header"><h3>🔽 Simulator Decoder 3-to-8</h3><span class="badge">74xx138</span></div>
+                <div style="padding:1.5rem">
+                    <div class="quiz-input-row">
+                        <button class="btn btn-convert btn-sm tgl" id="w7-d38-a">A=0</button>
+                        <button class="btn btn-convert btn-sm tgl" id="w7-d38-b">B=0</button>
+                        <button class="btn btn-convert btn-sm tgl" id="w7-d38-c">C=0</button>
+                        <button class="btn btn-convert btn-sm tgl on" id="w7-d38-en">EN=1</button>
+                    </div>
+                    <div class="triple-grid" id="w7-d38-out"></div>
+                    <div class="steps-content" id="w7-d38-steps"></div>
+                    <div class="info-box tip"><strong>Memory addressing:</strong> output decoder memilih 1 chip/alamat dari 8 bank memori berdasarkan 3 bit alamat.</div>
+                </div>
+            </div>
+            </div><!-- /w7-dec38 -->
+
+            <div class="tab-panel" id="w7-enc">
+            <div class="converter-card">
+                <div class="card-header"><h3>🔼 Simulator Encoder 4-to-2</h3><span class="badge">Satu aktif</span></div>
+                <div style="padding:1.5rem">
+                    <p>A1 = D2+D3, A0 = D1+D3, V = D0+D1+D2+D3. Tepat satu input = 1.</p>
+                    <div class="quiz-input-row">
+                        <button class="btn btn-convert btn-sm tgl" id="w7-enc-d0">D0=0</button>
+                        <button class="btn btn-convert btn-sm tgl" id="w7-enc-d1">D1=0</button>
+                        <button class="btn btn-convert btn-sm tgl" id="w7-enc-d2">D2=0</button>
+                        <button class="btn btn-convert btn-sm tgl" id="w7-enc-d3">D3=0</button>
+                    </div>
+                    <div class="result-display" id="w7-enc-out">-</div>
+                    <div class="steps-content" id="w7-enc-steps"></div>
+                </div>
+            </div>
+            </div><!-- /w7-enc -->
+
+            <div class="tab-panel" id="w7-priority">
+            <div class="converter-card">
+                <div class="card-header"><h3>👑 Simulator Priority Encoder 4-to-2</h3><span class="badge">D3 tertinggi</span></div>
+                <div style="padding:1.5rem">
+                    <p>Jika beberapa input 1, yang dikodekan = nomor terbesar. Contoh keyboard scanner.</p>
+                    <div class="quiz-input-row">
+                        <button class="btn btn-convert btn-sm tgl" id="w7-pri-d0">D0=0</button>
+                        <button class="btn btn-convert btn-sm tgl" id="w7-pri-d1">D1=0</button>
+                        <button class="btn btn-convert btn-sm tgl" id="w7-pri-d2">D2=0</button>
+                        <button class="btn btn-convert btn-sm tgl" id="w7-pri-d3">D3=0</button>
+                    </div>
+                    <div class="result-display" id="w7-pri-out">-</div>
+                    <div class="steps-content" id="w7-pri-steps"></div>
+                </div>
+            </div>
+            </div><!-- /w7-priority -->
+
+            <div class="tab-panel" id="w7-bcd7seg">
+            <div class="converter-card">
+                <div class="card-header"><h3>🔢 BCD → 7-Segmen</h3><span class="badge">CA / CC</span></div>
+                <div style="padding:1.5rem">
+                    <div class="form-row">
+                        <div class="option-group"><label>Digit hex (0–F):</label><select id="w7-seg-sel"><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8" selected>8</option><option value="9">9</option><option value="10">A</option><option value="11">b</option><option value="12">C</option><option value="13">d</option><option value="14">E</option><option value="15">F</option></select></div>
+                        <div class="option-group"><label>Tipe display:</label><select id="w7-seg-type"><option value="CC">Common Cathode (1=nyala)</option><option value="CA">Common Anode (0=nyala)</option></select></div>
+                    </div>
+                    <div class="grid-2">
+                        <div class="interactive-card" style="margin:0;text-align:center"><div id="w7-seg-display"></div><p style="font-size:12px">a di atas, g tengah, d bawah</p></div>
+                        <div class="interactive-card" style="margin:0"><div class="mono" id="w7-seg-out">-</div><div class="steps-content" id="w7-seg-steps"></div></div>
+                    </div>
+                </div>
+            </div>
+            </div><!-- /w7-bcd7seg -->
+
+            <div class="tab-panel cheatsheet-panel" id="w7-cheatsheet">
+                <div class="cheatsheet">
+                    <h4>📋 Cheatsheet Minggu 7 — DEC / ENC / 7-Seg</h4>
+                    <table><tr><th>Blok</th><th>In→Out</th><th>Rumus / Catatan</th></tr>
+                    <tr><td>DEC 2-4</td><td>2→4</td><td><code>Yi=mi·EN</code> (satu aktif)</td></tr>
+                    <tr><td>DEC 3-8</td><td>3→8</td><td><code>74xx138</code>, address memori</td></tr>
+                    <tr><td>ENC 4-2</td><td>4→2</td><td><code>A1=D2+D3, A0=D1+D3</code></td></tr>
+                    <tr><td>Priority</td><td>4→2+V</td><td><code>Menang = nomor terbesar</code></td></tr>
+                    <tr><td>BCD-7seg</td><td>4→7</td><td><code>CC:1=nyala, CA:0=nyala</code></td></tr></table>
+                    <h5>Decoder vs Encoder</h5>
+                    <p>Decoder: sedikit→banyak (pilih saluran). Encoder: banyak→sedikit (kompresi, mis. keypad scanner).</p>
+                    <div class="no-print" style="margin-top:12px"><button class="btn btn-convert btn-sm print-btn">🖨️ Cetak Cheatsheet</button></div>
+                </div>
+            </div>
+
+            <div class="tab-panel" id="w7-quiz">
+                <div class="interactive-card">
+                    <div class="score-bar"><span class="score-label">Skor Kuis:</span><span class="score-value" id="quiz7-score">0 / 5</span><div class="progress-track"><div class="progress-fill" id="quiz7-progress" style="width:0%"></div></div></div>
+                    <div id="quiz7-questions"></div>
+                    <button class="btn btn-secondary btn-sm mt-16" id="reset-quiz7">🔄 Acak Soal Baru</button>
+                </div>
+            </div>
+        </section>
+        <section class="week-content" id="week-8">
+            <div class="content-header">
+                <h2>Minggu 8: Latch, Flip-Flop & Counter</h2>
+                <p class="description">Elemen penyimpan: SR latch NOR/NAND, D latch, flip-flop SR/JK/D/T (edge-triggered), counter sinkron vs ripple, up/down, modulo-N.</p>
+            </div>
+
+            <div class="content-tabs">
+                <button class="content-tab active" data-tab="w8-belajar">📖 Pembelajaran</button>
+                <button class="content-tab" data-tab="w8-srlatch">🔒 SR Latch</button>
+                <button class="content-tab" data-tab="w8-dlatch">🔓 D Latch</button>
+                <button class="content-tab" data-tab="w8-ff">⏱️ Flip-Flop</button>
+                <button class="content-tab" data-tab="w8-counter">🔢 Counter</button>
+                <button class="content-tab" data-tab="w8-cheatsheet">📋 Cheatsheet</button>
+                <button class="content-tab" data-tab="w8-quiz">📝 Latihan</button>
+            </div>
+
+            <div class="tab-panel active" id="w8-belajar">
+            <div class="theory-section">
+                <div class="theory-grid">
+                    <div class="theory-card"><h3>🔒 Latch (level-triggered)</h3><p>Bistabel yang mengikuti input selama enable aktif. SR latch NOR: S=1 set (Q=1), R=1 reset (Q=0), S=R=1 <strong>tak valid</strong>. D latch: Q mengikuti D saat EN=1 (menghilangkan kondisi tak valid).</p></div>
+                    <div class="theory-card"><h3>⏱️ Flip-Flop (edge-triggered)</h3><p>Menyimpan hanya saat sisi clock (naik/turun). JK = SR tanpa kondisi tak valid (J=K=1 → toggle). D: Q=D (penyimpan data). T: T=1 → toggle (bit counter).</p></div>
+                    <div class="theory-card"><h3>🔢 Counter</h3><p><strong>Sinkron:</strong> semua FF satu clock (cepat). <strong>Ripple/asinkron:</strong> output FF jadi clock FF berikut (lambat, glitch). <strong>Modulo-N:</strong> mencacah 0..N−1 lalu reset (N state).</p></div>
+                </div>
+                <div class="theory-grid">
+                    <div class="theory-card"><h3>📝 Analogi: sticky note, foto & odometer</h3><p><strong>Latch</strong> = sticky note di papan tulis: selama papan "terbuka" (EN=1), semua orang melihat tulisan terbaru — tapi siapa pun bisa menimpanya kapan saja. <strong>Flip-flop</strong> = foto yang dijepret <em>tepat saat bunyi "cekrek"</em> (sisi clock): apa pun yang terjadi sebelum/sesudahnya tidak masuk foto. Inilah beda level-triggered vs edge-triggered.</p><p><strong>Counter</strong> = odometer motor: tiap "klik" jarak, digit kanan berputar; tiap putaran penuh digit kanan, digit sebelahnya +1. Ripple counter persis seperti odometer mekanik (berantai, lambat), sedangkan synchronous counter seperti odometer digital (semua digit dihitung chip sekaligus).</p></div>
+                    <div class="theory-card"><h3>🧮 Mengapa JK "menyembuhkan" SR?</h3><p>Masalah SR: S=R=1 memaksa Q dan Q' sama-sama 0 — melanggar janji "selalu berlawanan". JK menambahkan <strong>umpan balik</strong>: input J dikaitkan dengan Q' dan K dengan Q, sehingga J=K=1 tidak lagi memaksa, melainkan <em>membalik</em> nilai lama (toggle).</p><p>Cek: Q=0 → J efektif (jalur Q'=1 terbuka) → Q jadi 1. Q=1 → K efektif → Q jadi 0. Selalu berbalik — deterministik! D flip-flop lahir dari ide "S dan R jangan pernah sama": hubungkan D ke S dan NOT-D ke R. T flip-flop = JK dengan J=K=T (satu input pengendali toggle).</p></div>
+                </div>
+            </div>
+            </div><!-- /w8-belajar -->
+
+            <div class="tab-panel" id="w8-srlatch">
+            <div class="converter-card">
+                <div class="card-header"><h3>🔒 Simulator SR Latch (NOR)</h3><span class="badge">Klik S / R</span></div>
+                <div style="padding:1.5rem">
+                    <div class="quiz-input-row">
+                        <button class="btn btn-convert btn-sm tgl" id="w8-sr-s">S=0</button>
+                        <button class="btn btn-convert btn-sm tgl" id="w8-sr-r">R=0</button>
+                        <button class="btn btn-convert btn-sm" id="w8-sr-clk">Set Q=0 (awal)</button>
+                    </div>
+                    <div class="triple-grid">
+                        <div class="triple-card"><h4>Q</h4><div class="mono" id="w8-sr-q">0</div></div>
+                        <div class="triple-card"><h4>Q'</h4><div class="mono" id="w8-sr-qn">1</div></div>
+                    </div>
+                    <div class="steps-content" id="w8-sr-steps"></div>
+                    <div class="info-box warning"><strong>S=R=1 tak valid:</strong> Q=Q'=0 (melanggar komplementer) → hindari, atau pakai JK flip-flop.</div>
+                </div>
+            </div>
+            </div><!-- /w8-srlatch -->
+
+            <div class="tab-panel" id="w8-dlatch">
+            <div class="converter-card">
+                <div class="card-header"><h3>🔓 Simulator D Latch</h3><span class="badge">EN level</span></div>
+                <div style="padding:1.5rem">
+                    <div class="quiz-input-row">
+                        <button class="btn btn-convert btn-sm tgl" id="w8-dl-d">D=0</button>
+                        <button class="btn btn-convert btn-sm tgl on" id="w8-dl-en">EN=1</button>
+                    </div>
+                    <div class="result-display" id="w8-dl-out">Q = 0</div>
+                    <div class="steps-content" id="w8-dl-steps"></div>
+                </div>
+            </div>
+            </div><!-- /w8-dlatch -->
+
+            <div class="tab-panel" id="w8-ff">
+            <div class="converter-card">
+                <div class="card-header"><h3>⏱️ Lab Flip-Flop (JK / D / T)</h3><span class="badge">Tombol Clock ⏰</span></div>
+                <div style="padding:1.5rem">
+                    <div class="form-row">
+                        <div class="option-group"><label>Jenis:</label><select id="w8-ff-type"><option value="JK">JK</option><option value="D">D</option><option value="T">T</option><option value="SR">SR</option></select></div>
+                        <div class="option-group"><label>&nbsp;</label><button class="btn btn-convert btn-sm tgl" id="w8-ff-j">J/D/T/S=0</button></div>
+                        <div class="option-group"><label>&nbsp;</label><button class="btn btn-convert btn-sm tgl" id="w8-ff-k">K/R=0</button></div>
+                        <div class="option-group"><label>&nbsp;</label><button class="btn btn-convert" id="w8-ff-clock">⏰ Clock ↑</button></div>
+                        <div class="option-group"><label>&nbsp;</label><button class="btn btn-reset" id="w8-ff-reset">Reset Q</button></div>
+                    </div>
+                    <div class="result-display" id="w8-ff-out">Q = 0</div>
+                    <div class="steps-content" id="w8-ff-steps"></div>
+                    <div class="info-box tip"><strong>Karakteristik:</strong> SR: Q⁺=S+R'Q • JK: Q⁺=JQ'+K'Q (J=K=1 toggle) • D: Q⁺=D • T: Q⁺=TQ'+T'Q.</div>
+                </div>
+            </div>
+            </div><!-- /w8-ff -->
+
+            <div class="tab-panel" id="w8-counter">
+            <div class="converter-card">
+                <div class="card-header"><h3>🔢 Simulator Counter (sinkron / ripple, up/down, modulo)</h3><span class="badge">Tombol Clock ⏰</span></div>
+                <div style="padding:1.5rem">
+                    <div class="form-row">
+                        <div class="option-group"><label>Lebar:</label><select id="w8-ct-n"><option value="3">3-bit</option><option value="4" selected>4-bit</option></select></div>
+                        <div class="option-group"><label>Arah:</label><select id="w8-ct-dir"><option value="up">Up</option><option value="down">Down</option></select></div>
+                        <div class="option-group"><label>Modulo (0=max):</label><input id="w8-ct-mod" type="text" value="0" style="width:100%;padding:0.875rem;border:2px solid var(--border-color);border-radius:8px;font-family:'Courier New',monospace"></div>
+                        <div class="option-group"><label>&nbsp;</label><button class="btn btn-convert" id="w8-ct-clock">⏰ Clock</button></div>
+                        <div class="option-group"><label>&nbsp;</label><button class="btn btn-reset" id="w8-ct-reset">Reset</button></div>
+                    </div>
+                    <div class="result-display" id="w8-ct-out">0 (0000)</div>
+                    <div class="steps-content" id="w8-ct-steps"><p class="placeholder-text">Klik Clock untuk mencacah. Modulo-N: mis. modulo 10 → 0..9 lalu kembali 0.</p></div>
+                </div>
+            </div>
+            </div><!-- /w8-counter -->
+
+            <div class="tab-panel cheatsheet-panel" id="w8-cheatsheet">
+                <div class="cheatsheet">
+                    <h4>📋 Cheatsheet Minggu 8 — Latch / FF / Counter</h4>
+                    <table><tr><th>Elemen</th><th>Persamaan</th><th>Catatan</th></tr>
+                    <tr><td>SR latch</td><td><code>S=1 set, R=1 reset</code></td><td>S=R=1 tak valid</td></tr>
+                    <tr><td>D latch</td><td><code>Q=D saat EN=1</code></td><td>Tak ada kondisi tak valid</td></tr>
+                    <tr><td>JK FF</td><td><code>Q⁺=JQ'+K'Q</code></td><td>J=K=1 toggle</td></tr>
+                    <tr><td>D FF</td><td><code>Q⁺=D</code></td><td>Penyimpan data sinkron</td></tr>
+                    <tr><td>T FF</td><td><code>Q⁺=TQ'+T'Q</code></td><td>T=1 toggle (counter)</td></tr></table>
+                    <p>Counter sinkron = 1 clock (cepat) • Ripple = bertingkat (lambat) • Modulo-N = N state (0..N−1).</p>
+                    <div class="no-print" style="margin-top:12px"><button class="btn btn-convert btn-sm print-btn">🖨️ Cetak Cheatsheet</button></div>
+                </div>
+            </div>
+
+            <div class="tab-panel" id="w8-quiz">
+                <div class="interactive-card">
+                    <div class="score-bar"><span class="score-label">Skor Kuis:</span><span class="score-value" id="quiz8-score">0 / 5</span><div class="progress-track"><div class="progress-fill" id="quiz8-progress" style="width:0%"></div></div></div>
+                    <div id="quiz8-questions"></div>
+                    <button class="btn btn-secondary btn-sm mt-16" id="reset-quiz8">🔄 Acak Soal Baru</button>
+                </div>
+            </div>
+        </section>
+        <section class="week-content" id="week-9">
+            <div class="content-header">
+                <h2>Minggu 9: Register & Shift Register</h2>
+                <p class="description">Kumpulan D flip-flop: operasi load/clear/shift, PIPO, SISO, SIPO, PISO, ring counter, bidirectional & universal shift register.</p>
+            </div>
+
+            <div class="content-tabs">
+                <button class="content-tab active" data-tab="w9-belajar">📖 Pembelajaran</button>
+                <button class="content-tab" data-tab="w9-pipo">📥 PIPO</button>
+                <button class="content-tab" data-tab="w9-shift">➡️ Shift Lab</button>
+                <button class="content-tab" data-tab="w9-ring">⭕ Ring</button>
+                <button class="content-tab" data-tab="w9-uni">🌐 Universal</button>
+                <button class="content-tab" data-tab="w9-cheatsheet">📋 Cheatsheet</button>
+                <button class="content-tab" data-tab="w9-quiz">📝 Latihan</button>
+            </div>
+
+            <div class="tab-panel active" id="w9-belajar">
+            <div class="theory-section">
+                <div class="theory-grid">
+                    <div class="theory-card"><h3>📦 Register = N × D-FF</h3><p>Menyimpan N bit dengan 1 clock bersama + sinyal <strong>preset/clear</strong>. Operasi dasar: load paralel, clear/reset, hold, dan shift (geser kiri/kanan dengan serial-in).</p></div>
+                    <div class="theory-card"><h3>↔️ 4 Mode Serial/Paralel</h3><table class="mini-table"><tr><th>Mode</th><th>In→Out</th><th>Butuh clock</th></tr><tr><td>PIPO</td><td>Par→Par</td><td>1×</td></tr><tr><td>SISO</td><td>Ser→Ser</td><td>N×</td></tr><tr><td>SIPO</td><td>Ser→Par</td><td>N×</td></tr><tr><td>PISO</td><td>Par→Ser</td><td>N×</td></tr></table></div>
+                    <div class="theory-card"><h3>🌐 Lanjut</h3><p><strong>Ring counter:</strong> SISO dengan output kembali ke input (1 berputar). <strong>Bidirectional:</strong> geser kiri/kanan via MUX. <strong>Universal (74xx194):</strong> hold/shift-kiri/shift-kanan/load via 2 bit mode.</p></div>
+                </div>
+                <div class="theory-grid">
+                    <div class="theory-card"><h3>🗄️ Analogi: loker & ban berjalan</h3><p><strong>Register PIPO</strong> = 4 loker yang pintunya dibuka <em>serentak</em> saat bel (clock) berbunyi: 4 barang masuk sekaligus, 4 barang terlihat sekaligus. <strong>Shift register</strong> = ban berjalan sushi: tiap bel, semua piring geser 1 posisi; piring baru naik di ujung (serial-in), piring ujung satunya turun (serial-out).</p><p>Dari analogi ini jelas mengapa SIPO butuh N clock (menunggu 4 piring naik satu per satu) sedangkan PIPO cukup 1 clock (semua loker dibuka bersamaan). <strong>Ring counter</strong> = ban berjalan melingkar: piring yang turun langsung naik lagi di ujung awal — 1 piring spesial berputar terus, cocok sebagai "penunjuk giliran".</p></div>
+                    <div class="theory-card"><h3>🧮 Membaca mode universal (S1S0)</h3><p>Dua bit mode = 4 perintah: <code>00</code> hold (abaikan clock, data diam — seperti pause), <code>01</code> geser kanan (data bergerak ke bit lebih rendah, cocok menerima serial), <code>10</code> geser kiri, <code>11</code> load paralel (isi ulang 4 bit sekaligus).</p><p>Contoh: Q=<code>1011</code>, mode <code>01</code>, ser=0 → clock → Q=<code>0101</code> (semua geser kanan, bit kiri diisi 0, bit kanan <code>1</code> keluar). Ulangi 4× dan seluruh isi lama sudah "dipompa" keluar lewat serial-out — itulah cara PISO mengirim data lewat 1 kabel!</p></div>
+                </div>
+            </div>
+            </div><!-- /w9-belajar -->
+
+            <div class="tab-panel" id="w9-pipo">
+            <div class="converter-card">
+                <div class="card-header"><h3>📥 Simulator Register PIPO 4-bit</h3><span class="badge">Load paralel</span></div>
+                <div style="padding:1.5rem">
+                    <div class="quiz-input-row">
+                        <button class="btn btn-convert btn-sm tgl" id="w9-pipo-b3">b3=0</button>
+                        <button class="btn btn-convert btn-sm tgl" id="w9-pipo-b2">b2=0</button>
+                        <button class="btn btn-convert btn-sm tgl" id="w9-pipo-b1">b1=0</button>
+                        <button class="btn btn-convert btn-sm tgl" id="w9-pipo-b0">b0=0</button>
+                        <button class="btn btn-convert btn-sm" id="w9-pipo-load">⏰ Load (Clock)</button>
+                        <button class="btn btn-reset btn-sm" id="w9-pipo-clear">Clear</button>
+                    </div>
+                    <div class="result-display" id="w9-pipo-out">Q = 0000</div>
+                    <div class="steps-content" id="w9-pipo-steps"></div>
+                </div>
+            </div>
+            </div><!-- /w9-pipo -->
+
+            <div class="tab-panel" id="w9-shift">
+            <div class="converter-card">
+                <div class="card-header"><h3>➡️ Lab Shift Register (SISO/SIPO/PISO)</h3><span class="badge">Tombol Clock ⏰</span></div>
+                <div style="padding:1.5rem">
+                    <div class="form-row">
+                        <div class="option-group"><label>Mode:</label><select id="w9-sh-mode"><option value="SISO">SISO (ser→ser)</option><option value="SIPO">SIPO (ser→par)</option><option value="PISO">PISO (par→ser)</option></select></div>
+                        <div class="option-group"><label>Serial-in:</label><select id="w9-sh-sin"><option value="0">0</option><option value="1">1</option></select></div>
+                        <div class="option-group"><label>Data paralel (PISO):</label><input id="w9-sh-par" type="text" value="1011" style="width:100%;padding:0.875rem;border:2px solid var(--border-color);border-radius:8px;font-family:'Courier New',monospace"></div>
+                        <div class="option-group"><label>&nbsp;</label><button class="btn btn-convert" id="w9-sh-clock">⏰ Clock</button></div>
+                        <div class="option-group"><label>&nbsp;</label><button class="btn btn-reset" id="w9-sh-reset">Reset</button></div>
+                    </div>
+                    <div class="result-display" id="w9-sh-out">Q = 0000</div>
+                    <div class="steps-content" id="w9-sh-steps"></div>
+                </div>
+            </div>
+            </div><!-- /w9-shift -->
+
+            <div class="tab-panel" id="w9-ring">
+            <div class="converter-card">
+                <div class="card-header"><h3>⭕ Ring Counter 4-bit (SISO melingkar)</h3><span class="badge">1 berputar</span></div>
+                <div style="padding:1.5rem">
+                    <div class="quiz-input-row">
+                        <button class="btn btn-convert btn-sm" id="w9-ring-clock">⏰ Clock</button>
+                        <button class="btn btn-reset btn-sm" id="w9-ring-reset">Reset (1000)</button>
+                    </div>
+                    <div class="result-display" id="w9-ring-out">Q = 1000</div>
+                    <div class="steps-content" id="w9-ring-steps"></div>
+                </div>
+            </div>
+            </div><!-- /w9-ring -->
+
+            <div class="tab-panel" id="w9-uni">
+            <div class="converter-card">
+                <div class="card-header"><h3>🌐 Universal Shift Register (ala 74xx194)</h3><span class="badge">S1 S0 mode</span></div>
+                <div style="padding:1.5rem">
+                    <p>Mode: 00=hold, 01=shift kanan, 10=shift kiri, 11=load paralel.</p>
+                    <div class="form-row">
+                        <div class="option-group"><label>S1:</label><select id="w9-uni-s1"><option value="0">0</option><option value="1">1</option></select></div>
+                        <div class="option-group"><label>S0:</label><select id="w9-uni-s0"><option value="0">0</option><option value="1">1</option></select></div>
+                        <div class="option-group"><label>Ser-kanan / Ser-kiri:</label><select id="w9-uni-ser"><option value="0">0</option><option value="1">1</option></select></div>
+                        <div class="option-group"><label>Data paralel:</label><input id="w9-uni-par" type="text" value="1011" style="width:100%;padding:0.875rem;border:2px solid var(--border-color);border-radius:8px;font-family:'Courier New',monospace"></div>
+                        <div class="option-group"><label>&nbsp;</label><button class="btn btn-convert" id="w9-uni-clock">⏰ Clock</button></div>
+                        <div class="option-group"><label>&nbsp;</label><button class="btn btn-reset" id="w9-uni-reset">Reset</button></div>
+                    </div>
+                    <div class="result-display" id="w9-uni-out">Q = 0000</div>
+                    <div class="steps-content" id="w9-uni-steps"></div>
+                </div>
+            </div>
+            </div><!-- /w9-uni -->
+
+            <div class="tab-panel cheatsheet-panel" id="w9-cheatsheet">
+                <div class="cheatsheet">
+                    <h4>📋 Cheatsheet Minggu 9 — Register</h4>
+                    <table><tr><th>Mode</th><th>Arti</th><th>Clock untuk N bit</th></tr>
+                    <tr><td>PIPO</td><td>Paralel in, paralel out</td><td>1× (tercepat)</td></tr>
+                    <tr><td>SISO</td><td>Seri in, seri out (delay N)</td><td>N×</td></tr>
+                    <tr><td>SIPO</td><td>Seri→paralel (konversi)</td><td>N×</td></tr>
+                    <tr><td>PISO</td><td>Paralel→seri (konversi)</td><td>N×</td></tr></table>
+                    <p>Ring = SISO melingkar (1 panas berputar) • Universal S1S0: <code>00 hold, 01 kanan, 10 kiri, 11 load</code>.</p>
+                    <div class="no-print" style="margin-top:12px"><button class="btn btn-convert btn-sm print-btn">🖨️ Cetak Cheatsheet</button></div>
+                </div>
+            </div>
+
+            <div class="tab-panel" id="w9-quiz">
+                <div class="interactive-card">
+                    <div class="score-bar"><span class="score-label">Skor Kuis:</span><span class="score-value" id="quiz9-score">0 / 5</span><div class="progress-track"><div class="progress-fill" id="quiz9-progress" style="width:0%"></div></div></div>
+                    <div id="quiz9-questions"></div>
+                    <button class="btn btn-secondary btn-sm mt-16" id="reset-quiz9">🔄 Acak Soal Baru</button>
+                </div>
+            </div>
+        </section>
+        <section class="week-content" id="week-10">
+            <div class="content-header">
+                <h2>Minggu 10: Mesin State (FSM) — Analisis & Desain Sekuensial</h2>
+                <p class="description">Diagram state, tabel state/eksitasi, Mealy vs Moore, detektor sekuens, dan contoh lampu lalu lintas.</p>
+            </div>
+
+            <div class="content-tabs">
+                <button class="content-tab active" data-tab="w10-belajar">📖 Pembelajaran</button>
+                <button class="content-tab" data-tab="w10-model">⚖️ Mealy-Moore</button>
+                <button class="content-tab" data-tab="w10-detektor">🔍 Detektor 101</button>
+                <button class="content-tab" data-tab="w10-traffic">🚦 Traffic Light</button>
+                <button class="content-tab" data-tab="w10-cheatsheet">📋 Cheatsheet</button>
+                <button class="content-tab" data-tab="w10-quiz">📝 Latihan</button>
+            </div>
+
+            <div class="tab-panel active" id="w10-belajar">
+            <div class="theory-section">
+                <div class="theory-grid">
+                    <div class="theory-card"><h3>🧭 Apa itu FSM?</h3><p>Rangkaian sekuensial dengan <strong>state</strong> (keadaan) yang berpindah tiap clock sesuai input. Didesain lewat: diagram state → tabel state → tabel eksitasi FF → persamaan → rangkaian.</p></div>
+                    <div class="theory-card"><h3>⚖️ Mealy vs Moore</h3><table class="mini-table"><tr><th>Aspek</th><th>Mealy</th><th>Moore</th></tr><tr><td>Output</td><td>State + input</td><td>State saja</td></tr><tr><td>Respons</td><td>Lebih cepat</td><td>Stabil/sinkron</td></tr><tr><td>State</td><td>Lebih sedikit</td><td>Lebih banyak</td></tr></table></div>
+                    <div class="theory-card"><h3>🪜 Langkah desain</h3><p>1) Spesifikasi → 2) diagram state → 3) tabel state → 4) encoding (biner/Gray/one-hot) → 5) tabel eksitasi → 6) K-Map → 7) rangkaian + verifikasi timing.</p></div>
+                </div>
+                <div class="theory-grid">
+                    <div class="theory-card"><h3>🥤 Analogi: mesin penjual otomatis</h3><p>FSM = mesin penjual minuman: punya <strong>state</strong> (menunggu koin, total Rp3.000, total Rp5.000, mengeluarkan minuman) dan <strong>aturan pindah</strong> (masukkan Rp2.000 → pindah ke state total baru). Output (mengeluarkan minuman + kembalian) ditentukan state + koin terakhir (Mealy) atau murni state "sudah lunas" (Moore).</p><p>Desain FSM = menulis "buku panduan" mesin: daftar semua keadaan, untuk tiap keadaan tulis "jika input X maka pindah ke keadaan Y". Tabel state adalah buku panduan itu; diagram state adalah peta gambarnya. Keduanya sama isinya, beda penyajian.</p></div>
+                    <div class="theory-card"><h3>🧮 Membaca detektor "101" (overlap)</h3><p>Tiga state artinya "seberapa panjang awalan pola yang sudah kulihat": S0 = belum cocok apa-apa, S1 = baru lihat <code>1</code>, S2 = baru lihat <code>10</code>. Di S2 jika masuk <code>1</code> → pola lengkap → output 1!</p><p>Trik overlap: setelah deteksi, jangan kembali ke S0 melainkan ke S1 — karena <code>1</code> terakhir bisa jadi <em>awalan</em> pola berikutnya (mis. aliran <code>10101</code> mengandung pola 2×). Tanpa overlap, detektor melewatkan pola kedua. Coba ketik <code>10101</code> di simulator dan majukan langkah demi langkah!</p></div>
+                </div>
+            </div>
+            </div><!-- /w10-belajar -->
+
+            <div class="tab-panel" id="w10-model">
+                <div class="interactive-card">
+                    <h4>⚖️ Mealy vs Moore — kapan pakai apa?</h4>
+                    <p><strong>Mealy:</strong> output = f(state, input) — cocok untuk detektor sekuens (reaksi langsung). <strong>Moore:</strong> output = f(state) — cocok untuk controller (traffic light, elevator) karena output stabil per state.</p>
+                    <div class="info-box tip"><strong>Contoh:</strong> detektor "101" ala Mealy butuh 3 state; versi Moore butuh 4 state (output di state akhir).</div>
+                </div>
+            </div>
+
+            <div class="tab-panel" id="w10-detektor">
+            <div class="converter-card">
+                <div class="card-header"><h3>🔍 Simulator Detektor Sekuens "101" (Mealy, overlap)</h3><span class="badge">Ketik bit</span></div>
+                <div style="padding:1.5rem">
+                    <div class="form-row">
+                        <div class="option-group"><label>Aliran bit:</label><input id="w10-det-in" type="text" value="11010110" style="width:100%;padding:0.875rem;border:2px solid var(--border-color);border-radius:8px;font-family:'Courier New',monospace"></div>
+                        <div class="option-group"><label>&nbsp;</label><button class="btn btn-convert" id="w10-det-btn">Jalankan FSM ➔</button></div>
+                        <div class="option-group"><label>&nbsp;</label><button class="btn btn-convert btn-sm tgl" id="w10-det-step">Langkah: 0</button></div>
+                    </div>
+                    <div class="result-display" id="w10-det-out">-</div>
+                    <div class="steps-content" id="w10-det-steps"></div>
+                </div>
+            </div>
+            </div><!-- /w10-detektor -->
+
+            <div class="tab-panel" id="w10-traffic">
+            <div class="converter-card">
+                <div class="card-header"><h3>🚦 Simulator Traffic Light (Moore 4-state)</h3><span class="badge">S0→S1→S2→S3</span></div>
+                <div style="padding:1.5rem">
+                    <p>State: S0=Hijau, S1=Kuning, S2=Merah, S3=Merah-Kuning (siap jalan). Output hanya dari state (Moore).</p>
+                    <div class="quiz-input-row">
+                        <button class="btn btn-convert btn-sm" id="w10-tr-clock">⏰ Clock (next state)</button>
+                        <button class="btn btn-reset btn-sm" id="w10-tr-reset">Reset S0</button>
+                    </div>
+                    <div class="result-display" id="w10-tr-out">S0 — 🟢 HIJAU</div>
+                    <div class="steps-content" id="w10-tr-steps"></div>
+                </div>
+            </div>
+            </div><!-- /w10-traffic -->
+
+            <div class="tab-panel cheatsheet-panel" id="w10-cheatsheet">
+                <div class="cheatsheet">
+                    <h4>📋 Cheatsheet Minggu 10 — FSM</h4>
+                    <p>Alur: <code>spesifikasi → diagram → tabel state → encoding → eksitasi → K-Map → rangkaian</code>. Mealy = output(state,input); Moore = output(state). Detektor "101" overlap: akhir "10" dari pola bisa jadi awalan pola berikut.</p>
+                    <div class="no-print" style="margin-top:12px"><button class="btn btn-convert btn-sm print-btn">🖨️ Cetak Cheatsheet</button></div>
+                </div>
+            </div>
+
+            <div class="tab-panel" id="w10-quiz">
+                <div class="interactive-card">
+                    <div class="score-bar"><span class="score-label">Skor Kuis:</span><span class="score-value" id="quiz10-score">0 / 5</span><div class="progress-track"><div class="progress-fill" id="quiz10-progress" style="width:0%"></div></div></div>
+                    <div id="quiz10-questions"></div>
+                    <button class="btn btn-secondary btn-sm mt-16" id="reset-quiz10">🔄 Acak Soal Baru</button>
+                </div>
+            </div>
+        </section>
+        <section class="week-content" id="week-11">
+            <div class="content-header">
+                <h2>Minggu 11: Memori — Hierarki, RAM & ROM</h2>
+                <p class="description">Hierarki memori, organisasi address×data, operasi baca/tulis RAM, jenis ROM, dan menghitung kapasitas.</p>
+            </div>
+
+            <div class="content-tabs">
+                <button class="content-tab active" data-tab="w11-belajar">📖 Pembelajaran</button>
+                <button class="content-tab" data-tab="w11-ram">💾 RAM Lab</button>
+                <button class="content-tab" data-tab="w11-rom">📀 ROM</button>
+                <button class="content-tab" data-tab="w11-hitung">🧮 Kapasitas</button>
+                <button class="content-tab" data-tab="w11-cheatsheet">📋 Cheatsheet</button>
+                <button class="content-tab" data-tab="w11-quiz">📝 Latihan</button>
+            </div>
+
+            <div class="tab-panel active" id="w11-belajar">
+            <div class="theory-section">
+                <div class="theory-grid">
+                    <div class="theory-card"><h3>🏛️ Hierarki</h3><p>Register → Cache (SRAM) → RAM (DRAM) → Flash/SSD → HDD. Makin ke bawah: makin besar, murah, lambat. Cache menjembatani cepat-lambat.</p></div>
+                    <div class="theory-card"><h3>💾 RAM vs ROM</h3><table class="mini-table"><tr><th>Aspek</th><th>RAM</th><th>ROM</th></tr><tr><td>Isi</td><td>Baca+tulis, hilang saat mati</td><td>Baca saja, non-volatil</td></tr><tr><td>Jenis</td><td>SRAM, DRAM</td><td>PROM, EPROM, EEPROM/Flash</td></tr><tr><td>Pakai</td><td>Data kerja</td><td>Firmware/boot</td></tr></table></div>
+                    <div class="theory-card"><h3>🧮 Organisasi</h3><p>Memori 2<sup>n</sup>×m: n address line, m bit data. Kapasitas bit = 2<sup>n</sup>×m. Contoh 1K×8 = 1024×8 = 8 Kbit = 1 KB.</p></div>
+                </div>
+                <div class="theory-grid">
+                    <div class="theory-card"><h3>🏨 Analogi: hotel + meja kerja</h3><p><strong>Address</strong> = nomor kamar hotel: memberi nomor 5 → resepsionis (decoder!) mengantarmu ke <em>tepat 1 kamar</em> dari 16 kamar — persis cara address decoder memilih 1 sel memori. <strong>Data</strong> = isi koper di kamar itu.</p><p><strong>Hierarki</strong> = meja kerja vs gudang: barang di meja (register/cache) diambil sedetik tapi muat sedikit; barang di gudang (HDD) muat banyak tapi butuh jalan jauh. Komputer menaruh "barang yang sedang dikerjakan" di meja dan sisanya di gudang — itulah prinsip lokalitas yang membuat cache efektif.</p></div>
+                    <div class="theory-card"><h3>🧮 Membaca tulisan 1K×8</h3><p>"1K×8" dibaca: 1024 lokasi (K = 1024, bukan 1000!), tiap lokasi 8 bit (1 byte). Total = 8192 bit = 1024 byte = 1 KB. Rumus umumnya: n address line → 2<sup>n</sup> lokasi.</p><p>Contoh ujian: chip 11 address line, data 8 bit → 2<sup>11</sup>×8 = 2048×8 bit = 2048 byte = 2 KB. RAM vs ROM: RAM seperti papan tulis (ditulisi ulang, terhapus saat listrik mati), ROM seperti buku cetak (awet, tapi mengubahnya butuh "cetak ulang" = programmer/sinar UV/sinyal elektrik).</p></div>
+                </div>
+            </div>
+            </div><!-- /w11-belajar -->
+
+            <div class="tab-panel" id="w11-ram">
+            <div class="converter-card">
+                <div class="card-header"><h3>💾 Lab RAM 16×4 (baca / tulis)</h3><span class="badge">Address 0–15</span></div>
+                <div style="padding:1.5rem">
+                    <div class="form-row">
+                        <div class="option-group"><label>Address (0–15):</label><input id="w11-ram-addr" type="text" value="5" style="width:100%;padding:0.875rem;border:2px solid var(--border-color);border-radius:8px;font-family:'Courier New',monospace"></div>
+                        <div class="option-group"><label>Data 4-bit:</label><input id="w11-ram-data" type="text" value="1011" style="width:100%;padding:0.875rem;border:2px solid var(--border-color);border-radius:8px;font-family:'Courier New',monospace"></div>
+                        <div class="option-group"><label>&nbsp;</label><button class="btn btn-convert" id="w11-ram-write">✍️ Write</button></div>
+                        <div class="option-group"><label>&nbsp;</label><button class="btn btn-convert" id="w11-ram-read">📖 Read</button></div>
+                    </div>
+                    <div class="result-display" id="w11-ram-out">-</div>
+                    <div class="steps-content" id="w11-ram-steps"></div>
+                </div>
+            </div>
+            </div><!-- /w11-ram -->
+
+            <div class="tab-panel" id="w11-rom">
+                <div class="interactive-card">
+                    <h4>📀 ROM — memori baca saja</h4>
+                    <p>Diisi sekali (pabrik/programmer): PROM (sekali tulis), EPROM (hapus UV), EEPROM/Flash (hapus elektrik). Isi tetap walau listrik mati → cocok untuk bootloader & tabel konversi (mis. BCD→7seg di Minggu 7 bisa diimplementasikan sebagai ROM 16×7).</p>
+                    <div class="info-box tip"><strong>Decoder = ROM sederhana:</strong> address decoder memilih 1 baris, tiap baris menyimpan pola output tetap.</div>
+                </div>
+            </div>
+
+            <div class="tab-panel" id="w11-hitung">
+            <div class="converter-card">
+                <div class="card-header"><h3>🧮 Kalkulator Kapasitas Memori</h3><span class="badge">2ⁿ × m</span></div>
+                <div style="padding:1.5rem">
+                    <div class="form-row">
+                        <div class="option-group"><label>Address line (n):</label><input id="w11-cap-n" type="text" value="10" style="width:100%;padding:0.875rem;border:2px solid var(--border-color);border-radius:8px;font-family:'Courier New',monospace"></div>
+                        <div class="option-group"><label>Data bit (m):</label><input id="w11-cap-m" type="text" value="8" style="width:100%;padding:0.875rem;border:2px solid var(--border-color);border-radius:8px;font-family:'Courier New',monospace"></div>
+                        <div class="option-group"><label>&nbsp;</label><button class="btn btn-convert" id="w11-cap-btn">Hitung ➔</button></div>
+                    </div>
+                    <div class="result-display" id="w11-cap-out">-</div>
+                    <div class="steps-content" id="w11-cap-steps"></div>
+                </div>
+            </div>
+            </div><!-- /w11-hitung -->
+
+            <div class="tab-panel cheatsheet-panel" id="w11-cheatsheet">
+                <div class="cheatsheet">
+                    <h4>📋 Cheatsheet Minggu 11 — Memori</h4>
+                    <p>Hierarki: <code>register &gt; cache &gt; RAM &gt; flash &gt; HDD</code>. Kapasitas = <code>2ⁿ × m bit</code> (n=address, m=data). RAM baca-tulis volatil; ROM non-volatil (PROM/EPROM/EEPROM).</p>
+                    <div class="no-print" style="margin-top:12px"><button class="btn btn-convert btn-sm print-btn">🖨️ Cetak Cheatsheet</button></div>
+                </div>
+            </div>
+
+            <div class="tab-panel" id="w11-quiz">
+                <div class="interactive-card">
+                    <div class="score-bar"><span class="score-label">Skor Kuis:</span><span class="score-value" id="quiz11-score">0 / 5</span><div class="progress-track"><div class="progress-fill" id="quiz11-progress" style="width:0%"></div></div></div>
+                    <div id="quiz11-questions"></div>
+                    <button class="btn btn-secondary btn-sm mt-16" id="reset-quiz11">🔄 Acak Soal Baru</button>
+                </div>
+            </div>
+        </section>
+        <section class="week-content" id="week-12">
+            <div class="content-header">
+                <h2>Minggu 12: Konversi ADC/DAC & Logika Terprogram (PLD)</h2>
+                <p class="description">Menjembatani analog↔digital: resolusi & kuantisasi ADC, tangga R-2R DAC, serta PLA/PAL/CPLD/FPGA.</p>
+            </div>
+
+            <div class="content-tabs">
+                <button class="content-tab active" data-tab="w12-belajar">📖 Pembelajaran</button>
+                <button class="content-tab" data-tab="w12-adc">🎙️ ADC</button>
+                <button class="content-tab" data-tab="w12-dac">🔊 DAC</button>
+                <button class="content-tab" data-tab="w12-pld">🧩 PLD</button>
+                <button class="content-tab" data-tab="w12-cheatsheet">📋 Cheatsheet</button>
+                <button class="content-tab" data-tab="w12-quiz">📝 Latihan</button>
+            </div>
+
+            <div class="tab-panel active" id="w12-belajar">
+            <div class="theory-section">
+                <div class="theory-grid">
+                    <div class="theory-card"><h3>🎙️ ADC (Analog→Digital)</h3><p>Sampling → kuantisasi → encoding. Resolusi n bit = 2ⁿ level, step = Vref/2ⁿ. Makin banyak bit, makin halus (error kuantisasi ±½ LSB).</p></div>
+                    <div class="theory-card"><h3>🔊 DAC (Digital→Analog)</h3><p>Kebalikan ADC: kode biner → tegangan bertangga. R-2R ladder hanya butuh 2 nilai resistor. Output = Vref × kode/2ⁿ.</p></div>
+                    <div class="theory-card"><h3>🧩 PLD</h3><p>PLA (AND & OR programabel) → PAL (OR tetap) → CPLD → FPGA (blok logika + routing, bisa di-flash ulang). Satu chip menggantikan puluhan IC TTL.</p></div>
+                </div>
+                <div class="theory-grid">
+                    <div class="theory-card"><h3>📏 Analogi: gelas ukur & tangga</h3><p><strong>ADC</strong> = mengukur 2,3 liter air dengan gelas ukur 8-bit (256 garis): tiap garis = 5/256 ≈ 19,5 mL (1 step). Hasilnya garis ke-118 — ada sisa 0,3 mL yang tak terukur: itulah <strong>error kuantisasi</strong> (±½ garis). Gelas 10-bit (1024 garis) garisnya 4× lebih rapat → error 4× lebih kecil. Inilah arti resolusi!</p><p><strong>DAC</strong> = membangun menara dari balok: kode <code>10110000</code> (176) dengan Vref 5V → tinggi menara 5×176/256 ≈ 3,44 V. Tiap tambah 1 kode, menara naik 1 step — keluarannya <em>bertangga</em>, bukan miring mulus. Filter analog melembutkan tangga itu jadi sinyal audio mulus di speaker.</p></div>
+                    <div class="theory-card"><h3>🧮 Contoh hitung ADC → DAC bolak-balik</h3><p>ADC 8-bit, Vref=5V, Vin=2,3V: step = 5/256 = 0,0195V; kode = round(2,3/0,0195) = 118 (<code>01110110</code>). Umpankan kode ini ke DAC 8-bit Vref sama: Vout = 5×118/256 = 2,305V — meleset 0,005V dari aslinya (di bawah ½ step ✔️).</p><p><strong>PLD:</strong> skripsi butuh 20 gerbang acak? Dulu: solder 5 IC TTL. Kini: tulis persamaan di 1 FPGA, flash, selesai — salah desain? Flash ulang, tanpa solder ulang. PLA/PAL = versi kecilnya (SOP langsung!), CPLD/FPGA = versi raksasanya.</p></div>
+                </div>
+            </div>
+            </div><!-- /w12-belajar -->
+
+            <div class="tab-panel" id="w12-adc">
+            <div class="converter-card">
+                <div class="card-header"><h3>🎙️ Kalkulator ADC (kuantisasi)</h3><span class="badge">step = Vref/2ⁿ</span></div>
+                <div style="padding:1.5rem">
+                    <div class="form-row">
+                        <div class="option-group"><label>Vin (volt):</label><input id="w12-adc-vin" type="text" value="2.3" style="width:100%;padding:0.875rem;border:2px solid var(--border-color);border-radius:8px;font-family:'Courier New',monospace"></div>
+                        <div class="option-group"><label>Vref (volt):</label><input id="w12-adc-vref" type="text" value="5" style="width:100%;padding:0.875rem;border:2px solid var(--border-color);border-radius:8px;font-family:'Courier New',monospace"></div>
+                        <div class="option-group"><label>Resolusi (bit):</label><select id="w12-adc-n"><option value="4">4-bit</option><option value="8" selected>8-bit</option><option value="10">10-bit</option></select></div>
+                        <div class="option-group"><label>&nbsp;</label><button class="btn btn-convert" id="w12-adc-btn">Konversi ➔</button></div>
+                    </div>
+                    <div class="result-display" id="w12-adc-out">-</div>
+                    <div class="steps-content" id="w12-adc-steps"></div>
+                </div>
+            </div>
+            </div><!-- /w12-adc -->
+
+            <div class="tab-panel" id="w12-dac">
+            <div class="converter-card">
+                <div class="card-header"><h3>🔊 Kalkulator DAC (R-2R)</h3><span class="badge">Vout = Vref×kode/2ⁿ</span></div>
+                <div style="padding:1.5rem">
+                    <div class="form-row">
+                        <div class="option-group"><label>Kode biner:</label><input id="w12-dac-code" type="text" value="10110000" style="width:100%;padding:0.875rem;border:2px solid var(--border-color);border-radius:8px;font-family:'Courier New',monospace"></div>
+                        <div class="option-group"><label>Vref (volt):</label><input id="w12-dac-vref" type="text" value="5" style="width:100%;padding:0.875rem;border:2px solid var(--border-color);border-radius:8px;font-family:'Courier New',monospace"></div>
+                        <div class="option-group"><label>&nbsp;</label><button class="btn btn-convert" id="w12-dac-btn">Konversi ➔</button></div>
+                    </div>
+                    <div class="result-display" id="w12-dac-out">-</div>
+                    <div class="steps-content" id="w12-dac-steps"></div>
+                </div>
+            </div>
+            </div><!-- /w12-dac -->
+
+            <div class="tab-panel" id="w12-pld">
+                <div class="interactive-card">
+                    <h4>🧩 Memilih perangkat logika terprogram</h4>
+                    <table class="mini-table"><tr><th>Perangkat</th><th>AND</th><th>OR</th><th>Catatan</th></tr>
+                    <tr><td>PLA</td><td>Program</td><td>Program</td><td>Fleksibel, lambat</td></tr>
+                    <tr><td>PAL</td><td>Program</td><td>Tetap</td><td>Cepat, populer (16V8)</td></tr>
+                    <tr><td>CPLD</td><td colspan="2">Blok PAL + interconnect</td><td>Ratusan makro-sel</td></tr>
+                    <tr><td>FPGA</td><td colspan="2">LUT + routing + RAM/DSP</td><td>Ribuan–jutaan gerbang</td></tr></table>
+                    <div class="info-box tip"><strong>Alur FPGA:</strong> tulis HDL (Verilog/VHDL) → sintesis → place & route → bitstream → flash → uji di board.</div>
+                </div>
+            </div>
+
+            <div class="tab-panel cheatsheet-panel" id="w12-cheatsheet">
+                <div class="cheatsheet">
+                    <h4>📋 Cheatsheet Minggu 12 — ADC/DAC/PLD</h4>
+                    <p>ADC: <code>step=Vref/2ⁿ, kode=round(Vin/step)</code> • DAC: <code>Vout=Vref×kode/2ⁿ</code> • Error kuantisasi ±½ LSB • PLA/PAL→CPLD→FPGA (makin besar & fleksibel).</p>
+                    <div class="no-print" style="margin-top:12px"><button class="btn btn-convert btn-sm print-btn">🖨️ Cetak Cheatsheet</button></div>
+                </div>
+            </div>
+
+            <div class="tab-panel" id="w12-quiz">
+                <div class="interactive-card">
+                    <div class="score-bar"><span class="score-label">Skor Kuis:</span><span class="score-value" id="quiz12-score">0 / 5</span><div class="progress-track"><div class="progress-fill" id="quiz12-progress" style="width:0%"></div></div></div>
+                    <div id="quiz12-questions"></div>
+                    <button class="btn btn-secondary btn-sm mt-16" id="reset-quiz12">🔄 Acak Soal Baru</button>
+                </div>
+            </div>
+        </section>
+        <section class="week-content" id="week-13">
+            <div class="content-header">
+                <h2>Minggu 13: Proyek Terpadu — Counter 7-Segmen & Kunci Digital</h2>
+                <p class="description">Menggabungkan semua blok: counter modulo + decoder BCD→7seg + FSM kunci digital sebagai latihan proyek mini.</p>
+            </div>
+
+            <div class="content-tabs">
+                <button class="content-tab active" data-tab="w13-belajar">📖 Pembelajaran</button>
+                <button class="content-tab" data-tab="w13-count7">🔢 Counter-7Seg</button>
+                <button class="content-tab" data-tab="w13-kunci">🔐 Kunci Digital</button>
+                <button class="content-tab" data-tab="w13-cheatsheet">📋 Cheatsheet</button>
+                <button class="content-tab" data-tab="w13-quiz">📝 Latihan</button>
+            </div>
+
+            <div class="tab-panel active" id="w13-belajar">
+            <div class="theory-section">
+                <div class="theory-grid">
+                    <div class="theory-card"><h3>🎯 Brief proyek mini</h3><p>Pilih satu: (a) Counter 0–99 dengan 2 display 7-segmen + tombol up/down/reset; (b) Kunci digital 4-bit (kode rahasia, 3× salah → lockout). Nilai: fungsi benar, skematik rapi, demo video.</p></div>
+                    <div class="theory-card"><h3>🧱 Blok yang dipakai</h3><p>Clock + counter modulo-10/16 (M8) → register display (M9) → BCD→7seg (M7) → FSM controller (M10). Semua sudah dipelajari — tinggal dirangkai!</p></div>
+                    <div class="theory-card"><h3>✅ Checklist</h3><p>Tabel kebenaran lengkap → K-Map/sederhanakan (M4) → pilih IC/FPGA → simulasi → rakit → uji tepi (overflow, EN=0, salah kode).</p></div>
+                </div>
+                <div class="theory-grid">
+                    <div class="theory-card"><h3>🧭 Cara mengerjakan proyek (langkah 1–6)</h3><p><strong>1)</strong> Tulis spesifikasi 1 paragraf ("counter 0–99, tombol up/down, reset, 2 display"). <strong>2)</strong> Pecah jadi blok yang sudah dikenal: counter mod-10 satuan + puluhan (M8), register display (M9), decoder BCD→7seg (M7). <strong>3)</strong> Gambar diagram blok di kertas: clock → counter → decoder → display.</p><p><strong>4)</strong> Validasi tiap blok di simulator media ini <em>sebelum</em> merangkai. <strong>5)</strong> Rangkai & uji kasus tepi: tombol ditekan lama (debounce!), reset saat 99, carry antar digit. <strong>6)</strong> Dokumentasikan + rekam demo 2 menit. Nilai terbesar biasanya di demo yang menunjukkan kasus tepi ditangani.</p></div>
+                    <div class="theory-card"><h3>🔐 Cara berpikir FSM kunci digital</h3><p>Jangan bayangkan "membandingkan 4 bit sekaligus" — bayangkan satpam memeriksa digit <em>satu per satu</em>: digit-1 benar? lanjut. Salah? hitung 1 kesalahan. Tiga kesalahan → kunci 10 menit (state LOCKOUT, hanya reset yang bisa keluar).</p><p>State-nya: IDLE (tunggu input) → CEK (bandingkan) → BUKA (kode benar) / HITUNG-SALAH (kode salah, wrong+1) → LOCKOUT (wrong=3). Gambar 5 lingkaran ini + panahnya = diagram state proyekmu. Sederhana, tapi inilah FSM sungguhan seperti di kartu akses gedung.</p></div>
+                </div>
+            </div>
+            </div><!-- /w13-belajar -->
+
+            <div class="tab-panel" id="w13-count7">
+            <div class="converter-card">
+                <div class="card-header"><h3>🔢 Counter BCD 0–9 + Segmen (gabungan M7+M8)</h3><span class="badge">⏰ Clock manual</span></div>
+                <div style="padding:1.5rem">
+                    <div class="quiz-input-row">
+                        <button class="btn btn-convert btn-sm" id="w13-ct-clock">⏰ Clock</button>
+                        <button class="btn btn-reset btn-sm" id="w13-ct-reset">Reset 0</button>
+                    </div>
+                    <div class="grid-2">
+                        <div class="interactive-card" style="margin:0;text-align:center"><div id="w13-ct-seg"></div><div class="mono" id="w13-ct-out">0 (0000)</div></div>
+                        <div class="interactive-card" style="margin:0"><div class="steps-content" id="w13-ct-steps"><p class="placeholder-text">Klik Clock: counter modulo-10 → BCD → pola 7-segmen.</p></div></div>
+                    </div>
+                </div>
+            </div>
+            </div><!-- /w13-count7 -->
+
+            <div class="tab-panel" id="w13-kunci">
+            <div class="converter-card">
+                <div class="card-header"><h3>🔐 Kunci Digital 4-bit (FSM + lockout)</h3><span class="badge">Kode = 1011</span></div>
+                <div style="padding:1.5rem">
+                    <p>Masukkan 4 bit lalu ENTER. 3× salah beruntun → terkunci (reset untuk buka).</p>
+                    <div class="form-row">
+                        <div class="option-group"><label>Kode (4 bit):</label><input id="w13-key-in" type="text" value="1011" style="width:100%;padding:0.875rem;border:2px solid var(--border-color);border-radius:8px;font-family:'Courier New',monospace"></div>
+                        <div class="option-group"><label>&nbsp;</label><button class="btn btn-convert" id="w13-key-btn">ENTER ⏎</button></div>
+                        <div class="option-group"><label>&nbsp;</label><button class="btn btn-reset" id="w13-key-reset">Reset kunci</button></div>
+                    </div>
+                    <div class="result-display" id="w13-key-out">🔒 TERKUNCI (0/3 salah)</div>
+                    <div class="steps-content" id="w13-key-steps"></div>
+                </div>
+            </div>
+            </div><!-- /w13-kunci -->
+
+            <div class="tab-panel cheatsheet-panel" id="w13-cheatsheet">
+                <div class="cheatsheet">
+                    <h4>📋 Cheatsheet Minggu 13 — Proyek</h4>
+                    <p>Counter-7seg = <code>mod-10 → BCD → segmen (CC:1 nyala)</code> • Kunci = <code>FSM: bandingkan, counter salah, lockout di 3</code> • Dokumentasikan: spesifikasi → diagram → tabel → rangkaian → uji.</p>
+                    <div class="no-print" style="margin-top:12px"><button class="btn btn-convert btn-sm print-btn">🖨️ Cetak Cheatsheet</button></div>
+                </div>
+            </div>
+
+            <div class="tab-panel" id="w13-quiz">
+                <div class="interactive-card">
+                    <div class="score-bar"><span class="score-label">Skor Kuis:</span><span class="score-value" id="quiz13-score">0 / 5</span><div class="progress-track"><div class="progress-fill" id="quiz13-progress" style="width:0%"></div></div></div>
+                    <div id="quiz13-questions"></div>
+                    <button class="btn btn-secondary btn-sm mt-16" id="reset-quiz13">🔄 Acak Soal Baru</button>
+                </div>
+            </div>
+        </section>
+        <section class="week-content" id="week-14">
+            <div class="content-header">
+                <h2>Minggu 14: Review Semester & Tryout UAS</h2>
+                <p class="description">Peta konsep 14 minggu, cheatsheet gabungan yang bisa dicetak, dan tryout campuran 10 soal.</p>
+            </div>
+
+            <div class="content-tabs">
+                <button class="content-tab active" data-tab="w14-belajar">📖 Pembelajaran</button>
+                <button class="content-tab" data-tab="w14-tryout">🎯 Tryout UAS</button>
+                <button class="content-tab" data-tab="w14-cheatsheet">📋 Cheatsheet</button>
+                <button class="content-tab" data-tab="w14-quiz">📝 Latihan</button>
+            </div>
+
+            <div class="tab-panel active" id="w14-belajar">
+            <div class="theory-section">
+                <div class="theory-grid">
+                    <div class="theory-card"><h3>🗺️ Peta 14 minggu</h3><p>M1 konversi • M2 signed • M3 Boolean/SOP-POS • M4 K-Map • M5 adder • M6 NAND/MUX • M7 DEC/ENC/7seg • M8 latch/FF/counter • M9 register • M10 FSM • M11 memori • M12 ADC/DAC/PLD • M13 proyek • M14 tryout.</p></div>
+                    <div class="theory-card"><h3>📝 Kisi UAS</h3><p>Konversi + C2/overflow, SOP/POS + K-Map 4-var, desain adder/MUX/decoder, analisis FF/counter/register, FSM sederhana, kapasitas memori, ADC/DAC. Kerjakan tryout di tab sebelah!</p></div>
+                    <div class="theory-card"><h3>💡 Strategi</h3><p>Hafalkan rumus kilat di cheatsheet gabungan, lalu uji dengan tryout 10 soal (target ≥ 8 benar). Ulangi kuis minggu yang skornya rendah.</p></div>
+                </div>
+                <div class="theory-grid">
+                    <div class="theory-card"><h3>🎯 Cara memakai halaman ini (30 menit)</h3><p><strong>10 menit:</strong> baca peta 14 minggu, tandai 3 minggu yang paling tidak dikuasai. <strong>10 menit:</strong> kerjakan tryout tanpa mencontek — jujur itu data diagnosis, bukan nilai. <strong>10 menit:</strong> kembali ke kuis minggu yang salah + baca cheatsheet-nya, lalu ulangi tryout. Skor naik = belajar efektif.</p><p>Prioritas hafalan: C2 (NOT+1) + overflow, De Morgan, aturan grup K-Map, rumus full adder & MUX 2:1, persamaan JK/D/T, kapasitas 2ⁿ×m, step ADC. Tujuh hal ini mencakup ±70% soal tipikal UAS.</p></div>
+                    <div class="theory-card"><h3>🔗 Satu benang merah semester ini</h3><p>Perhatikan polanya: M1–M2 mengajarkan <em>bahasa angka</em>, M3–M4 mengajarkan <em>menyederhanakan logika</em>, M5–M7 membangun <em>blok kombinasional</em> dari logika itu, M8–M10 menambahkan <em>waktu & ingatan</em> (clock, state), M11–M12 menghubungkan ke <em>dunia nyata</em> (memori, analog). Proyek M13 = merangkai semuanya.</p><p>Jika satu konsep terasa asing saat ujian, tarik benang ini: "blok ini mengubah apa menjadi apa, dipicu oleh apa?" — hampir semua soal sistem digital terjawab dari tiga pertanyaan itu.</p></div>
+                </div>
+            </div>
+            </div><!-- /w14-belajar -->
+
+            <div class="tab-panel" id="w14-tryout">
+                <div class="interactive-card">
+                    <div class="score-bar"><span class="score-label">Skor Tryout:</span><span class="score-value" id="quiz14b-score">0 / 10</span><div class="progress-track"><div class="progress-fill" id="quiz14b-progress" style="width:0%"></div></div></div>
+                    <div id="quiz14b-questions"></div>
+                    <button class="btn btn-secondary btn-sm mt-16" id="reset-quiz14b">🔄 Acak Soal Baru</button>
+                </div>
+            </div>
+
+            <div class="tab-panel cheatsheet-panel" id="w14-cheatsheet">
+                <div class="cheatsheet">
+                    <h4>📋 Cheatsheet Gabungan Semester (1 halaman)</h4>
+                    <p><code>Bin↔Des↔Hex/Okt</code> • C2=<code>NOT+1</code>, overflow=<code>Cin⊕Cout</code> • De Morgan, SOP(Σm)/POS(ΠM) • K-Map grup 2ⁿ, Gray • Half <code>S=A⊕B,C=AB</code>, Full <code>Cout=AB+Cin(A⊕B)</code>, CLA <code>G=AB,P=A⊕B</code> • MUX <code>Y=S'I0+SI1</code> • DEC <code>Yi=mi·EN</code>, ENC <code>A1=D2+D3</code> • FF: JK <code>JQ'+K'Q</code>, D <code>Q⁺=D</code>, T toggle • Mod-N=N state • Register PIPO/SISO/SIPO/PISO • FSM Mealy/Moore • Memori <code>2ⁿ×m</code> • ADC <code>step=Vref/2ⁿ</code>, DAC <code>Vout=Vref·kode/2ⁿ</code>.</p>
+                    <div class="no-print" style="margin-top:12px"><button class="btn btn-convert btn-sm print-btn">🖨️ Cetak Cheatsheet</button></div>
+                </div>
+            </div>
+
+            <div class="tab-panel" id="w14-quiz">
+                <div class="interactive-card">
+                    <div class="score-bar"><span class="score-label">Skor Kuis:</span><span class="score-value" id="quiz14-score">0 / 5</span><div class="progress-track"><div class="progress-fill" id="quiz14-progress" style="width:0%"></div></div></div>
+                    <div id="quiz14-questions"></div>
+                    <button class="btn btn-secondary btn-sm mt-16" id="reset-quiz14">🔄 Acak Soal Baru</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>© 2026 Media Ajar Sistem Digital</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script src="js/signed.js"></script>
+    <script src="js/boolean.js"></script>
+    <script src="js/kmap.js"></script>
+    <script src="js/comb.js"></script>
+    <script src="js/seq.js"></script>
+    <script src="js/learn.js"></script>
+</body>
+</html>

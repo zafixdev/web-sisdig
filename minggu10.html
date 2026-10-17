@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minggu 10: Machine State (FSM) — Media Ajar Sistem Digital</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-week="10">
+    <div id="app-header"></div>
+    <div id="app-nav"></div>
+
+    <main class="main-content">
+        <section class="week-content active" id="week-10">
+            <div class="content-header">
+                <h2>Minggu 10: Mesin State (FSM) — Analisis & Desain Sekuensial</h2>
+                <p class="description">Diagram state, tabel state/eksitasi, Mealy vs Moore, detektor sekuens, dan contoh lampu lalu lintas.</p>
+            </div>
+
+            <div class="content-tabs">
+                <button class="content-tab active" data-tab="w10-belajar">📖 Pembelajaran</button>
+                <button class="content-tab" data-tab="w10-model">⚖️ Mealy-Moore</button>
+                <button class="content-tab" data-tab="w10-detektor">🔍 Detektor 101</button>
+                <button class="content-tab" data-tab="w10-traffic">🚦 Traffic Light</button>
+                <button class="content-tab" data-tab="w10-cheatsheet">📋 Cheatsheet</button>
+                <button class="content-tab" data-tab="w10-quiz">📝 Latihan</button>
+            </div>
+
+            <div class="tab-panel active" id="w10-belajar">
+            <div class="theory-section">
+                <div class="theory-grid">
+                    <div class="theory-card"><h3>🧭 Apa itu FSM?</h3><p>Rangkaian sekuensial dengan <strong>state</strong> (keadaan) yang berpindah tiap clock sesuai input. Didesain lewat: diagram state → tabel state → tabel eksitasi FF → persamaan → rangkaian.</p></div>
+                    <div class="theory-card"><h3>⚖️ Mealy vs Moore</h3><table class="mini-table"><tr><th>Aspek</th><th>Mealy</th><th>Moore</th></tr><tr><td>Output</td><td>State + input</td><td>State saja</td></tr><tr><td>Respons</td><td>Lebih cepat</td><td>Stabil/sinkron</td></tr><tr><td>State</td><td>Lebih sedikit</td><td>Lebih banyak</td></tr></table></div>
+                    <div class="theory-card"><h3>🪜 Langkah desain</h3><p>1) Spesifikasi → 2) diagram state → 3) tabel state → 4) encoding (biner/Gray/one-hot) → 5) tabel eksitasi → 6) K-Map → 7) rangkaian + verifikasi timing.</p></div>
+                </div>
+                <div class="theory-grid">
+                    <div class="theory-card"><h3>🥤 Analogi: mesin penjual otomatis</h3><p>FSM = mesin penjual minuman: punya <strong>state</strong> (menunggu koin, total Rp3.000, total Rp5.000, mengeluarkan minuman) dan <strong>aturan pindah</strong> (masukkan Rp2.000 → pindah ke state total baru). Output (mengeluarkan minuman + kembalian) ditentukan state + koin terakhir (Mealy) atau murni state "sudah lunas" (Moore).</p><p>Desain FSM = menulis "buku panduan" mesin: daftar semua keadaan, untuk tiap keadaan tulis "jika input X maka pindah ke keadaan Y". Tabel state adalah buku panduan itu; diagram state adalah peta gambarnya. Keduanya sama isinya, beda penyajian.</p></div>
+                    <div class="theory-card"><h3>🧮 Membaca detektor "101" (overlap)</h3><p>Tiga state artinya "seberapa panjang awalan pola yang sudah kulihat": S0 = belum cocok apa-apa, S1 = baru lihat <code>1</code>, S2 = baru lihat <code>10</code>. Di S2 jika masuk <code>1</code> → pola lengkap → output 1!</p><p>Trik overlap: setelah deteksi, jangan kembali ke S0 melainkan ke S1 — karena <code>1</code> terakhir bisa jadi <em>awalan</em> pola berikutnya (mis. aliran <code>10101</code> mengandung pola 2×). Tanpa overlap, detektor melewatkan pola kedua. Coba ketik <code>10101</code> di simulator dan majukan langkah demi langkah!</p></div>
+                </div>
+            </div>
+            </div><!-- /w10-belajar -->
+
+            <div class="tab-panel" id="w10-model">
+                <div class="interactive-card">
+                    <h4>⚖️ Mealy vs Moore — kapan pakai apa?</h4>
+                    <p><strong>Mealy:</strong> output = f(state, input) — cocok untuk detektor sekuens (reaksi langsung). <strong>Moore:</strong> output = f(state) — cocok untuk controller (traffic light, elevator) karena output stabil per state.</p>
+                    <div class="info-box tip"><strong>Contoh:</strong> detektor "101" ala Mealy butuh 3 state; versi Moore butuh 4 state (output di state akhir).</div>
+                </div>
+            </div>
+
+            <div class="tab-panel" id="w10-detektor">
+            <div class="converter-card">
+                <div class="card-header"><h3>🔍 Simulator Detektor Sekuens "101" (Mealy, overlap)</h3><span class="badge">Ketik bit</span></div>
+                <div style="padding:1.5rem">
+                    <div class="form-row">
+                        <div class="option-group"><label>Aliran bit:</label><input id="w10-det-in" type="text" value="11010110" style="width:100%;padding:0.875rem;border:2px solid var(--border-color);border-radius:8px;font-family:'Courier New',monospace"></div>
+                        <div class="option-group"><label>&nbsp;</label><button class="btn btn-convert" id="w10-det-btn">Jalankan FSM ➔</button></div>
+                        <div class="option-group"><label>&nbsp;</label><button class="btn btn-convert btn-sm tgl" id="w10-det-step">Langkah: 0</button></div>
+                    </div>
+                    <div class="result-display" id="w10-det-out">-</div>
+                    <div class="steps-content" id="w10-det-steps"></div>
+                </div>
+            </div>
+            </div><!-- /w10-detektor -->
+
+            <div class="tab-panel" id="w10-traffic">
+            <div class="converter-card">
+                <div class="card-header"><h3>🚦 Simulator Traffic Light (Moore 4-state)</h3><span class="badge">S0→S1→S2→S3</span></div>
+                <div style="padding:1.5rem">
+                    <p>State: S0=Hijau, S1=Kuning, S2=Merah, S3=Merah-Kuning (siap jalan). Output hanya dari state (Moore).</p>
+                    <div class="quiz-input-row">
+                        <button class="btn btn-convert btn-sm" id="w10-tr-clock">⏰ Clock (next state)</button>
+                        <button class="btn btn-reset btn-sm" id="w10-tr-reset">Reset S0</button>
+                    </div>
+                    <div class="result-display" id="w10-tr-out">S0 — 🟢 HIJAU</div>
+                    <div class="steps-content" id="w10-tr-steps"></div>
+                </div>
+            </div>
+            </div><!-- /w10-traffic -->
+
+            <div class="tab-panel cheatsheet-panel" id="w10-cheatsheet">
+                <div class="cheatsheet">
+                    <h4>📋 Cheatsheet Minggu 10 — FSM</h4>
+                    <p>Alur: <code>spesifikasi → diagram → tabel state → encoding → eksitasi → K-Map → rangkaian</code>. Mealy = output(state,input); Moore = output(state). Detektor "101" overlap: akhir "10" dari pola bisa jadi awalan pola berikut.</p>
+                    <div class="no-print" style="margin-top:12px"><button class="btn btn-convert btn-sm print-btn">🖨️ Cetak Cheatsheet</button></div>
+                </div>
+            </div>
+
+            <div class="tab-panel" id="w10-quiz">
+                <div class="interactive-card">
+                    <div class="score-bar"><span class="score-label">Skor Kuis:</span><span class="score-value" id="quiz10-score">0 / 5</span><div class="progress-track"><div class="progress-fill" id="quiz10-progress" style="width:0%"></div></div></div>
+                    <div id="quiz10-questions"></div>
+                    <button class="btn btn-secondary btn-sm mt-16" id="reset-quiz10">🔄 Acak Soal Baru</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer" id="app-footer"></footer>
+
+    <script src="js/shell.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/signed.js"></script>
+    <script src="js/boolean.js"></script>
+    <script src="js/kmap.js"></script>
+    <script src="js/comb.js"></script>
+    <script src="js/seq.js"></script>
+    <script src="js/svg-kit.js"></script>
+    <script src="js/learn.js"></script>
+</body>
+</html>

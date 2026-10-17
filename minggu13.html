@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minggu 13: Proyek Mini Sistem Digital — Media Ajar Sistem Digital</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-week="13">
+    <div id="app-header"></div>
+    <div id="app-nav"></div>
+
+    <main class="main-content">
+        <section class="week-content active" id="week-13">
+            <div class="content-header">
+                <h2>Minggu 13: Proyek Terpadu — Counter 7-Segmen & Kunci Digital</h2>
+                <p class="description">Menggabungkan semua blok: counter modulo + decoder BCD→7seg + FSM kunci digital sebagai latihan proyek mini.</p>
+            </div>
+
+            <div class="content-tabs">
+                <button class="content-tab active" data-tab="w13-belajar">📖 Pembelajaran</button>
+                <button class="content-tab" data-tab="w13-count7">🔢 Counter-7Seg</button>
+                <button class="content-tab" data-tab="w13-kunci">🔐 Kunci Digital</button>
+                <button class="content-tab" data-tab="w13-cheatsheet">📋 Cheatsheet</button>
+                <button class="content-tab" data-tab="w13-quiz">📝 Latihan</button>
+            </div>
+
+            <div class="tab-panel active" id="w13-belajar">
+            <div class="theory-section">
+                <div class="theory-grid">
+                    <div class="theory-card"><h3>🎯 Brief proyek mini</h3><p>Pilih satu: (a) Counter 0–99 dengan 2 display 7-segmen + tombol up/down/reset; (b) Kunci digital 4-bit (kode rahasia, 3× salah → lockout). Nilai: fungsi benar, skematik rapi, demo video.</p></div>
+                    <div class="theory-card"><h3>🧱 Blok yang dipakai</h3><p>Clock + counter modulo-10/16 (M8) → register display (M9) → BCD→7seg (M7) → FSM controller (M10). Semua sudah dipelajari — tinggal dirangkai!</p></div>
+                    <div class="theory-card"><h3>✅ Checklist</h3><p>Tabel kebenaran lengkap → K-Map/sederhanakan (M4) → pilih IC/FPGA → simulasi → rakit → uji tepi (overflow, EN=0, salah kode).</p></div>
+                </div>
+                <div class="theory-grid">
+                    <div class="theory-card"><h3>🧭 Cara mengerjakan proyek (langkah 1–6)</h3><p><strong>1)</strong> Tulis spesifikasi 1 paragraf ("counter 0–99, tombol up/down, reset, 2 display"). <strong>2)</strong> Pecah jadi blok yang sudah dikenal: counter mod-10 satuan + puluhan (M8), register display (M9), decoder BCD→7seg (M7). <strong>3)</strong> Gambar diagram blok di kertas: clock → counter → decoder → display.</p><p><strong>4)</strong> Validasi tiap blok di simulator media ini <em>sebelum</em> merangkai. <strong>5)</strong> Rangkai & uji kasus tepi: tombol ditekan lama (debounce!), reset saat 99, carry antar digit. <strong>6)</strong> Dokumentasikan + rekam demo 2 menit. Nilai terbesar biasanya di demo yang menunjukkan kasus tepi ditangani.</p></div>
+                    <div class="theory-card"><h3>🔐 Cara berpikir FSM kunci digital</h3><p>Jangan bayangkan "membandingkan 4 bit sekaligus" — bayangkan satpam memeriksa digit <em>satu per satu</em>: digit-1 benar? lanjut. Salah? hitung 1 kesalahan. Tiga kesalahan → kunci 10 menit (state LOCKOUT, hanya reset yang bisa keluar).</p><p>State-nya: IDLE (tunggu input) → CEK (bandingkan) → BUKA (kode benar) / HITUNG-SALAH (kode salah, wrong+1) → LOCKOUT (wrong=3). Gambar 5 lingkaran ini + panahnya = diagram state proyekmu. Sederhana, tapi inilah FSM sungguhan seperti di kartu akses gedung.</p></div>
+                </div>
+            </div>
+            </div><!-- /w13-belajar -->
+
+            <div class="tab-panel" id="w13-count7">
+            <div class="converter-card">
+                <div class="card-header"><h3>🔢 Counter BCD 0–9 + Segmen (gabungan M7+M8)</h3><span class="badge">⏰ Clock manual</span></div>
+                <div style="padding:1.5rem">
+                    <div class="quiz-input-row">
+                        <button class="btn btn-convert btn-sm" id="w13-ct-clock">⏰ Clock</button>
+                        <button class="btn btn-reset btn-sm" id="w13-ct-reset">Reset 0</button>
+                    </div>
+                    <div class="grid-2">
+                        <div class="interactive-card" style="margin:0;text-align:center"><div id="w13-ct-seg"></div><div class="mono" id="w13-ct-out">0 (0000)</div></div>
+                        <div class="interactive-card" style="margin:0"><div class="steps-content" id="w13-ct-steps"><p class="placeholder-text">Klik Clock: counter modulo-10 → BCD → pola 7-segmen.</p></div></div>
+                    </div>
+                </div>
+            </div>
+            </div><!-- /w13-count7 -->
+
+            <div class="tab-panel" id="w13-kunci">
+            <div class="converter-card">
+                <div class="card-header"><h3>🔐 Kunci Digital 4-bit (FSM + lockout)</h3><span class="badge">Kode = 1011</span></div>
+                <div style="padding:1.5rem">
+                    <p>Masukkan 4 bit lalu ENTER. 3× salah beruntun → terkunci (reset untuk buka).</p>
+                    <div class="form-row">
+                        <div class="option-group"><label>Kode (4 bit):</label><input id="w13-key-in" type="text" value="1011" style="width:100%;padding:0.875rem;border:2px solid var(--border-color);border-radius:8px;font-family:'Courier New',monospace"></div>
+                        <div class="option-group"><label>&nbsp;</label><button class="btn btn-convert" id="w13-key-btn">ENTER ⏎</button></div>
+                        <div class="option-group"><label>&nbsp;</label><button class="btn btn-reset" id="w13-key-reset">Reset kunci</button></div>
+                    </div>
+                    <div class="result-display" id="w13-key-out">🔒 TERKUNCI (0/3 salah)</div>
+                    <div class="steps-content" id="w13-key-steps"></div>
+                </div>
+            </div>
+            </div><!-- /w13-kunci -->
+
+            <div class="tab-panel cheatsheet-panel" id="w13-cheatsheet">
+                <div class="cheatsheet">
+                    <h4>📋 Cheatsheet Minggu 13 — Proyek</h4>
+                    <p>Counter-7seg = <code>mod-10 → BCD → segmen (CC:1 nyala)</code> • Kunci = <code>FSM: bandingkan, counter salah, lockout di 3</code> • Dokumentasikan: spesifikasi → diagram → tabel → rangkaian → uji.</p>
+                    <div class="no-print" style="margin-top:12px"><button class="btn btn-convert btn-sm print-btn">🖨️ Cetak Cheatsheet</button></div>
+                </div>
+            </div>
+
+            <div class="tab-panel" id="w13-quiz">
+                <div class="interactive-card">
+                    <div class="score-bar"><span class="score-label">Skor Kuis:</span><span class="score-value" id="quiz13-score">0 / 5</span><div class="progress-track"><div class="progress-fill" id="quiz13-progress" style="width:0%"></div></div></div>
+                    <div id="quiz13-questions"></div>
+                    <button class="btn btn-secondary btn-sm mt-16" id="reset-quiz13">🔄 Acak Soal Baru</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer" id="app-footer"></footer>
+
+    <script src="js/shell.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/signed.js"></script>
+    <script src="js/boolean.js"></script>
+    <script src="js/kmap.js"></script>
+    <script src="js/comb.js"></script>
+    <script src="js/seq.js"></script>
+    <script src="js/svg-kit.js"></script>
+    <script src="js/learn.js"></script>
+</body>
+</html>

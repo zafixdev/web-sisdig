@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minggu 3: Aljabar Boolean & Gerbang Logika — Media Ajar Sistem Digital</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-week="3">
+    <div id="app-header"></div>
+    <div id="app-nav"></div>
+
+    <main class="main-content">
+        <section class="week-content active" id="week-3">
+            <div class="content-header">
+                <h2>Minggu 3: Aljabar Boolean & Gerbang Logika</h2>
+                <p class="description">Variabel & operator AND/OR/NOT, prioritas NOT→AND→OR, hukum Boolean, tabel kebenaran ↔ ekspresi, bentuk standar SOP (Σm) / POS (ΠM).</p>
+            </div>
+
+            <div class="objectives-box">
+                <h4>🎯 Setelah mempelajari minggu ini, Anda mampu:</h4>
+                <ul>
+                    <li>Menjelaskan perilaku gerbang AND, OR, NOT, NAND, NOR, XOR dan tabel kebenarannya.</li>
+                    <li>Menyederhanakan ekspresi Boolean memakai hukum Boolean, terutama De Morgan.</li>
+                    <li>Mengubah tabel kebenaran menjadi bentuk SOP (Σm) dan POS (ΠM).</li>
+                </ul>
+            </div>
+            <div class="prereq-box">
+                <span>📌 <strong>Prasyarat:</strong> bilangan biner (Minggu 1).</span>
+                <span>⏱️ <strong>Estimasi:</strong> 2 × 50 menit.</span>
+            </div>
+
+            <div class="content-tabs">
+                <button class="content-tab active" data-tab="w3-belajar">📖 Pembelajaran</button>
+                <button class="content-tab" data-tab="w3-gates">🔌 Gerbang</button>
+                <button class="content-tab" data-tab="w3-hukum">📜 Hukum</button>
+                <button class="content-tab" data-tab="w3-sop">➕ SOP</button>
+                <button class="content-tab" data-tab="w3-pos">✖️ POS</button>
+                <button class="content-tab" data-tab="w3-cheatsheet">📋 Cheatsheet</button>
+                <button class="content-tab" data-tab="w3-quiz">📝 Latihan</button>
+            </div>
+
+            <div class="tab-panel active" id="w3-belajar">
+            <div class="theory-section">
+                <div class="theory-grid">
+                    <div class="theory-card"><h3>🔌 Operator Dasar</h3><p><strong>AND</strong> (·), <strong>OR</strong> (+), <strong>NOT</strong> (garis atas / '). Prioritas: kurung dulu, lalu NOT, AND, OR. Contoh: <code>A + B·C' = A + (B·C')</code>.</p></div>
+                    <div class="theory-card"><h3>📜 Hukum Penting</h3><ul><li>Identitas: A+0=A, A·1=A</li><li>Komplemen: A+A'=1, A·A'=0</li><li>Idempoten, Involusi (A'')=A</li><li>De Morgan: (A·B)'=A'+B', (A+B)'=A'·B'</li><li>Absorpsi: A+A·B=A; Konsensus, Distributif</li></ul></div>
+                    <div class="theory-card"><h3>📐 SOP vs POS</h3><p><strong>SOP / Minterm:</strong> jumlah dari kali — tiap suku memuat semua variabel. Contoh <code>G = xy + x'y</code>. Tanpa komplemen dibaca 1.<br><strong>POS / Maxterm:</strong> kali dari jumlah — contoh <code>(x'+y)(x+y')</code>. Tanpa komplemen dibaca 0.</p></div>
+                </div>
+                <div class="interactive-card">
+                    <h4>⚙️ Prioritas operasi (tanpa kurung): NOT → AND → OR</h4>
+                    <p>Kurung selalu dikerjakan dulu. Contoh: <code>A + B·C' = A + (B·C')</code> — NOT C dulu, AND dengan B, terakhir OR dengan A.</p>
+                </div>
+                <div class="theory-grid">
+                    <div class="theory-card"><h3>🚪 Analogi tiga gerbang</h3><p><strong>AND (·)</strong> = pintu brankas dua kunci: terbuka hanya jika <em>kunci A <u>dan</u> kunci B</em> diputar. <strong>OR (+)</strong> = pintu darurat mal: terbuka jika <em>pintu A <u>atau</u> pintu B</em> (atau keduanya) dibuka. <strong>NOT (')</strong> = lawan kata: "tidak dingin" = panas, 0 jadi 1 dan sebaliknya.</p><p>Dari analogi ini tabel kebenaran mudah dihafal: AND hanya 1 saat <code>1·1</code>; OR hanya 0 saat <code>0+0</code>; sisanya mengikuti logika bahasa sehari-hari.</p></div>
+                    <div class="theory-card"><h3>🧮 Membaca tabel kebenaran (contoh 2 variabel)</h3><p>Tabel 2 variabel selalu punya 4 baris: <code>00, 01, 10, 11</code> (hitung biner 0–3!). Tiap baris = 1 <strong>minterm</strong> (m0–m3). Untuk fungsi "lampu menyala jika saklar beda" (XOR): baris <code>01</code> dan <code>10</code> diberi output 1.</p><p>SOP dibaca dari baris output=1: baris <code>01</code> → suku <code>x'y</code> (yang 0 dikomplemen!), baris <code>10</code> → <code>xy'</code>. Hasil: <code>F = x'y + xy'</code>. Aturan jempol: <strong>SOP = yang 0 dikasih topi (komplemen)</strong>.</p></div>
+                    <div class="theory-card"><h3>🪞 De Morgan dengan kata-kata</h3><p>"Bukan (A atau B)" artinya "bukan A <em>dan</em> bukan B" — contoh: "dilarang makan <em>atau</em> minum" = "dilarang makan <em>dan</em> dilarang minum". Itulah <code>(A+B)' = A'·B'</code>!</p><p>Sebaliknya "bukan (A dan B)" = "bukan A <em>atau</em> bukan B": "tidak (rajin dan pintar)" = "malas atau bodoh (atau keduanya)". Itulah <code>(A·B)' = A'+B'</code>. Triknya: <strong>komplemen menukar AND↔OR</strong>.</p></div>
+                </div>
+                <figure class="svg-figure">
+                    <span class="fig-title">Gambar 3.1 — Simbol 7 gerbang logika</span>
+                    <div data-svg="logic-gates"></div>
+                    <figcaption>Bulatan kecil di output menandakan inversi (NOT). Perhatikan XOR/XNOR yang memiliki busur tambahan di sisi input.</figcaption>
+                </figure>
+
+                <div class="misconception-box">
+                    <h4>⚠️ Miskonsepsi yang sering terjadi</h4>
+                    <div class="mc-item"><span class="mc-wrong">Salah:</span> “<code>A + A·B = A·B</code>.” <span class="mc-right">Benar:</span> absorpsi menyatakan <code>A + A·B = A</code> (suku <code>A·B</code> sudah tercakup oleh A).</div>
+                    <div class="mc-item"><span class="mc-wrong">Salah:</span> “OR selalu menghasilkan 1 bila salah satu input 1, jadi AND juga.” <span class="mc-right">Benar:</span> AND hanya bernilai 1 bila <em>semua</em> input 1.</div>
+                    <div class="mc-item"><span class="mc-wrong">Salah:</span> “De Morgan menghapus komplemen.” <span class="mc-right">Benar:</span> De Morgan <em>menukar</em> AND↔OR dan memindahkan komplemen ke tiap variabel.</div>
+                </div>
+            </div>
+            </div><!-- /w3-belajar -->
+
+            <div class="tab-panel" id="w3-gates">
+            <div class="converter-card">
+                <div class="card-header"><h3>🔌 Simulator Gerbang Logika</h3><span class="badge">Klik input</span></div>
+                <div style="padding:1.5rem"><div class="gate-grid" id="gate-grid"></div>
+                <p style="font-size:0.9rem;color:#666">7 gerbang: AND OR NOT NAND NOR XOR XNOR. Klik tombol A/B untuk toggle 0/1. Contoh XOR: output 1 hanya jika input beda (dipakai di SOP slide Contoh 2).</p></div>
+            </div>
+            </div><!-- /w3-gates -->
+
+            <div class="tab-panel" id="w3-hukum">
+                <div class="interactive-card">
+                    <h4>📜 Hukum-Hukum Aljabar Boolean</h4>
+                    <p>Prinsip fundamental untuk menyederhanakan ekspresi logika:</p>
+                    <div style="overflow-x:auto"><table class="truth-table">
+                        <thead><tr><th>Hukum</th><th>OR (+)</th><th>AND (•)</th></tr></thead>
+                        <tbody>
+                        <tr><td><strong>Identitas</strong></td><td>A + 0 = A</td><td>A • 1 = A</td></tr>
+                        <tr><td><strong>Dominansi</strong></td><td>A + 1 = 1</td><td>A • 0 = 0</td></tr>
+                        <tr><td><strong>Idempoten</strong></td><td>A + A = A</td><td>A • A = A</td></tr>
+                        <tr><td><strong>Komplemen</strong></td><td>A + A' = 1</td><td>A • A' = 0</td></tr>
+                        <tr><td><strong>Involusi</strong></td><td colspan="2">(A')' = A</td></tr>
+                        <tr><td><strong>Komutatif</strong></td><td>A + B = B + A</td><td>A • B = B • A</td></tr>
+                        <tr><td><strong>Asosiatif</strong></td><td>A + (B + C)</td><td>A • (B • C)</td></tr>
+                        <tr><td><strong>Distributif</strong></td><td>A + BC = (A+B)(A+C)</td><td>A(B + C) = AB + AC</td></tr>
+                        <tr><td><strong>De Morgan</strong></td><td>(A + B)' = A' • B'</td><td>(A • B)' = A' + B'</td></tr>
+                        <tr><td><strong>Absorpsi</strong></td><td>A + AB = A</td><td>A(A + B) = A</td></tr>
+                        </tbody>
+                    </table></div>
+                    <div class="info-box tip"><strong>De Morgan paling penting:</strong> komplemen dari jumlah = kali dari komplemen, dan sebaliknya.</div>
+                </div>
+            </div>
+
+            <div class="tab-panel" id="w3-sop">
+                <div class="interactive-card">
+                    <h4>➕ SOP / Minterm (Σm)</h4>
+                    <p>Tiap suku = AND semua variabel (tanpa ' dibaca 1, dengan ' dibaca 0), suku-suku di-OR. Contoh: <code>G = x'y'z + xyz + x'y'z'</code> → mintermnya m1 + m7 + m0. Dibangun dari <strong>baris output = 1</strong>.</p>
+                </div>
+            <div class="converter-card">
+                <div class="card-header"><h3>📊 Truth Table → SOP / POS</h3><span class="badge">2–3 variabel</span></div>
+                <div style="padding:1.5rem">
+                    <div class="form-row">
+                        <div class="option-group"><label>Jumlah variabel:</label><select id="bool-nvar"><option value="2">2 (x,y)</option><option value="3" selected>3 (x,y,z)</option></select></div>
+                        <div class="option-group"><label>&nbsp;</label><button class="btn btn-convert" id="bool-gen">Buat Tabel</button></div>
+                        <div class="option-group"><label>&nbsp;</label><button class="btn btn-reset" id="bool-demo">Contoh XOR</button></div>
+                    </div>
+                    <div id="bool-table-wrap"></div>
+                    <div class="triple-grid">
+                        <div class="triple-card"><h4>SOP (Σm)</h4><div class="mono" id="sop-out">-</div></div>
+                        <div class="triple-card"><h4>POS (ΠM)</h4><div class="mono" id="pos-out">-</div></div>
+                    </div>
+                    <div class="steps-content" id="bool-steps"><p class="placeholder-text">Atur output F di tabel (klik 0/1), SOP & POS dihitung otomatis. SOP dari baris F=1, POS dari baris F=0.</p></div>
+                </div>
+            </div>
+            </div><!-- /w3-sop -->
+
+            <div class="tab-panel" id="w3-pos">
+                <div class="interactive-card">
+                    <h4>✖️ POS / Maxterm (ΠM)</h4>
+                    <p>Tiap suku = OR semua variabel (tanpa ' dibaca <strong>0</strong>, dengan ' dibaca 1), suku-suku di-AND. Contoh: <code>f(x,y) = (x' + y)(x + y')</code>. Dibangun dari <strong>baris output = 0</strong>.</p>
+                    <div class="info-box tip"><strong>Praktik:</strong> buka tab SOP, atur tabel F, lalu baca hasil POS (ΠM) — maxterm = komplemen indeks minterm. Contoh f = Σm(0,2,4) → POS = ΠM(1,3,5,6,7).</div>
+                    <p style="font-size:13px">Konversi POS↔SOP: kembangkan sukunya (distributif) lalu sederhanakan dengan hukum Boolean / K-Map (Minggu 4).</p>
+                </div>
+            </div>
+
+            <div class="tab-panel cheatsheet-panel" id="w3-cheatsheet">
+                <div class="cheatsheet">
+                    <h4>📋 Cheatsheet Minggu 3 — Aljabar Boolean</h4>
+                    <h5>Prioritas</h5>
+                    <p><code>( )</code> → <code>NOT</code> → <code>AND</code> → <code>OR</code></p>
+                    <h5>Hukum kilat</h5>
+                    <table><tr><th>Hukum</th><th>Rumus</th></tr>
+                    <tr><td>Komplemen</td><td><code>A+A'=1</code>, <code>A•A'=0</code></td></tr>
+                    <tr><td>De Morgan</td><td><code>(A+B)'=A'B'</code>, <code>(AB)'=A'+B'</code></td></tr>
+                    <tr><td>Absorpsi</td><td><code>A+AB=A</code>, <code>A(A+B)=A</code></td></tr>
+                    <tr><td>Distributif</td><td><code>A+BC=(A+B)(A+C)</code></td></tr></table>
+                    <h5>SOP vs POS</h5>
+                    <table><tr><th></th><th>SOP (Σm)</th><th>POS (ΠM)</th></tr>
+                    <tr><td>Dari baris</td><td>F = 1</td><td>F = 0</td></tr>
+                    <tr><td>Variabel asli dibaca</td><td>1</td><td>0</td></tr>
+                    <tr><td>Penghubung</td><td>OR dari AND</td><td>AND dari OR</td></tr></table>
+                    <div class="no-print" style="margin-top:12px"><button class="btn btn-convert btn-sm print-btn">🖨️ Cetak Cheatsheet</button></div>
+                </div>
+            </div>
+
+            <div class="tab-panel" id="w3-quiz">
+                <div class="theory-section"><div class="theory-grid">
+                    <div class="theory-card"><h3>✏️ Latihan 2–4 (slide)</h3><p><strong>L2:</strong> Sederhanakan + buat rangkaian & truth table.<br><strong>L3:</strong> Tabel C, D, Q lalu gerbang tunggal pengganti.<br><strong>L4:</strong> C=AND, D=OR, Q=C XOR D — rangkaian, tabel, persamaan.</p></div>
+                    <div class="theory-card"><h3>💡 Tips</h3><p>De Morgan untuk NAND/NOR, Absorpsi untuk suku redundan, cek dengan truth table. K-Map (Minggu 4) lebih intuitif untuk 3–4 variabel.</p></div>
+                </div></div>
+                <div class="interactive-card">
+                    <div class="score-bar"><span class="score-label">Skor Kuis:</span><span class="score-value" id="quiz3-score">0 / 5</span><div class="progress-track"><div class="progress-fill" id="quiz3-progress" style="width:0%"></div></div></div>
+                    <div id="quiz3-questions"></div>
+                    <button class="btn btn-secondary btn-sm mt-16" id="reset-quiz3">🔄 Acak Soal Baru</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer" id="app-footer"></footer>
+
+    <script src="js/shell.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/signed.js"></script>
+    <script src="js/boolean.js"></script>
+    <script src="js/kmap.js"></script>
+    <script src="js/comb.js"></script>
+    <script src="js/seq.js"></script>
+    <script src="js/svg-kit.js"></script>
+    <script src="js/learn.js"></script>
+</body>
+</html>

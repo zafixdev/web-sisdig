@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minggu 4: Penyederhanaan Karnaugh Map — Media Ajar Sistem Digital</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-week="4">
+    <div id="app-header"></div>
+    <div id="app-nav"></div>
+
+    <main class="main-content">
+        <section class="week-content active" id="week-4">
+            <div class="content-header">
+                <h2>Minggu 4: Penyederhanaan Karnaugh Map (K-Map)</h2>
+                <p class="description">Lebih intuitif dari aljabar manual. Aturan: kelompokkan 1-2-4-8 sel bertetangga (wrap-around boleh), tiap sel beda 1 variabel (Gray code), sebesar & sesedikit mungkin, X (don't care) boleh ikut.</p>
+            </div>
+
+            <div class="objectives-box">
+                <h4>🎯 Setelah mempelajari minggu ini, Anda mampu:</h4>
+                <ul>
+                    <li>Memetakan tabel kebenaran ke Karnaugh Map dengan urutan Kode Gray.</li>
+                    <li>Mengelompokkan sel (1, 2, 4, 8) sesuai aturan emas dan menurunkan ekspresi minimal.</li>
+                    <li>Memanfaatkan don't care (X) untuk memperoleh bentuk yang lebih sederhana.</li>
+                </ul>
+            </div>
+            <div class="prereq-box">
+                <span>📌 <strong>Prasyarat:</strong> hukum Boolean dan bentuk SOP/POS (Minggu 3).</span>
+                <span>⏱️ <strong>Estimasi:</strong> 2 × 50 menit.</span>
+            </div>
+
+            <div class="content-tabs">
+                <button class="content-tab active" data-tab="w4-konsep">🗺️ Konsep</button>
+                <button class="content-tab" data-tab="w4-aturan">📏 Aturan</button>
+                <button class="content-tab" data-tab="w4-k2">2️⃣ K-Map 2</button>
+                <button class="content-tab" data-tab="w4-k3">3️⃣ K-Map 3</button>
+                <button class="content-tab" data-tab="w4-lab">🧪 Lab</button>
+                <button class="content-tab" data-tab="w4-k4">4️⃣ K-Map 4</button>
+                <button class="content-tab" data-tab="w4-dontcare">❓ Don't Care</button>
+                <button class="content-tab" data-tab="w4-kasus">🏭 Kasus</button>
+                <button class="content-tab" data-tab="w4-cheatsheet">📋 Cheatsheet</button>
+                <button class="content-tab" data-tab="w4-quiz">📝 Latihan</button>
+            </div>
+
+            <div class="tab-panel active" id="w4-konsep">
+                <div class="interactive-card">
+                    <h4>🗺️ Mengapa K-Map?</h4>
+                    <p>Tabel kebenaran disusun 2D dengan <strong>Kode Gray</strong> (<code>00 → 01 → 11 → 10</code>) — hanya 1 bit berubah antar kotak bersebelahan, sehingga variabel redundan terlihat langsung dan bisa dieliminasi.</p>
+                    <div class="grid-2">
+                        <div class="interactive-card" style="margin:0"><h5>⚡ Aljabar manual</h5><p style="font-size:13px">Butuh kejelian hukum, rentan keliru, sulit pastikan minimal.</p></div>
+                        <div class="interactive-card" style="margin:0"><h5>⭐ K-Map</h5><p style="font-size:13px">Grafis & intuitif, grup 1-2-4-8-16, hasil minimal SOP/POS.</p></div>
+                    </div>
+                    <div class="theory-grid" style="margin-top:12px">
+                        <div class="theory-card"><h3>🚗 Analogi: Gray code = odometer anti-lompat</h3><p>Odometer mobil 0999→1000 mengubah 4 digit sekaligus — sesaat terlihat angka ngawur (mis. 9999). Kode Gray menyusun kotak K-Map <code>00→01→11→10</code> sehingga kotak bertetangga <strong>selalu beda tepat 1 bit</strong>.</p><p>Akibatnya: dua kotak 1 yang bersebelahan pasti hanya beda 1 variabel — variabel itulah yang "goyah" dan boleh dibuang. Pengelompokan = mencari variabel yang <em>tidak pernah goyah</em> dalam grup.</p></div>
+                        <div class="theory-card"><h3>🧮 Contoh berpikir grup (2 variabel)</h3><p>Soal: <code>Q = AB + A'B + AB'</code> (semua minterm kecuali m0). Petakan: tiga kotak berisi 1 membentuk huruf L. Ambil pasangan vertikal (m1+m3): A berubah 0→1, B tetap 1 → sisa <code>B</code>. Ambil pasangan horizontal (m2+m3): B berubah, A tetap 1 → sisa <code>A</code>.</p><p>Hasil: <code>Q = A + B</code> — masuk akal! Fungsi ini hanya 0 saat A=0 <em>dan</em> B=0. K-Map membuat kesimpulan "oh, ini OR" terlihat langsung dari gambarnya.</p></div>
+                    </div>
+                    <figure class="svg-figure">
+                        <span class="fig-title">Gambar 4.1 — Urutan Kode Gray pada tepi K-Map</span>
+                        <div data-svg="gray-code"></div>
+                        <figcaption>Antar kotak bertetangga (termasuk membungkus tepi) hanya <strong>satu bit</strong> yang berubah — inilah kunci penyederhanaan.</figcaption>
+                    </figure>
+                </div>
+
+                <div class="misconception-box">
+                    <h4>⚠️ Miskonsepsi yang sering terjadi</h4>
+                    <div class="mc-item"><span class="mc-wrong">Salah:</span> “grup 3 kotak diperbolehkan asal membentuk huruf L.” <span class="mc-right">Benar:</span> ukuran grup wajib pangkat dua (1, 2, 4, 8, 16); bentuk L bukan grup valid.</div>
+                    <div class="mc-item"><span class="mc-wrong">Salah:</span> “sel yang tidak dipakai berarti salah.” <span class="mc-right">Benar:</span> sel <code>1</code> boleh masuk beberapa grup (overlap); yang penting semua 1 tercakup.</div>
+                    <div class="mc-item"><span class="mc-wrong">Salah:</span> “don't care (X) selalu dianggap 1.” <span class="mc-right">Benar:</span> X dianggap 1 <em>hanya jika</em> memperbesar grup; jika tidak, dibiarkan 0.</div>
+                </div>
+            </div>
+
+            <div class="tab-panel" id="w4-aturan">
+                <div class="interactive-card">
+                    <h4>📏 5 Aturan Emas Pengelompokan</h4>
+                    <div class="steps-container">
+                        <div class="step-item"><div class="step-number">1</div><div class="step-content"><h5>Ukuran = 2<sup>n</sup></h5><p>Hanya 1, 2, 4, 8, 16. Dilarang 3, 5, 6!</p></div></div>
+                        <div class="step-item"><div class="step-number">2</div><div class="step-content"><h5>Persegi / persegi panjang</h5><p>Tidak boleh diagonal atau bentuk L.</p></div></div>
+                        <div class="step-item"><div class="step-number">3</div><div class="step-content"><h5>Sebesar mungkin</h5><p>Makin besar grup → makin banyak variabel tereliminasi.</p></div></div>
+                        <div class="step-item"><div class="step-number">4</div><div class="step-content"><h5>Tepi menyambung (wrap-around)</h5><p>Kiri-kanan & atas-bawah tersambung; 4 sudut = 1 grup!</p></div></div>
+                        <div class="step-item"><div class="step-number">5</div><div class="step-content"><h5>Boleh overlap</h5><p>Satu angka 1 boleh masuk beberapa grup.</p></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-panel" id="w4-k2">
+                <div class="interactive-card">
+                    <h4>2️⃣ K-Map 2 Variabel (A, B) — baris A, kolom B</h4>
+                    <p><strong>Contoh:</strong> <code>Q = AB + A'B + AB'</code> (m1, m2, m3) → grup m1+m3 mengeliminasi A (sisa B), grup m2+m3 mengeliminasi B (sisa A) → <b>Q = A + B</b>.</p>
+                    <button class="btn btn-convert btn-sm" data-kmap-preset="2|1,2,3">▶ Buka contoh ini di Lab</button>
+                </div>
+            </div>
+
+            <div class="tab-panel" id="w4-k3">
+                <div class="interactive-card">
+                    <h4>3️⃣ K-Map 3 Variabel — baris A, kolom BC (Gray)</h4>
+                    <p><strong>Contoh:</strong> <code>Q = ABC' + AB'C' + AB'C + ABC</code> (m4–m7, seluruh baris A=1) → satu grup 4 → B dan C tereliminasi → <b>Q = A</b>.</p>
+                    <button class="btn btn-convert btn-sm" data-kmap-preset="3|4,5,6,7">▶ Buka contoh ini di Lab</button>
+                </div>
+            </div>
+
+            <div class="tab-panel" id="w4-lab">
+            <div class="converter-card">
+                <div class="card-header"><h3>🧩 K-Map Interaktif (klik: 0→1→X→0)</h3><span class="badge">2 / 3 / 4 var</span></div>
+                <div style="padding:1.5rem;text-align:center">
+                    <div class="form-row" style="justify-content:center">
+                        <div class="option-group" style="max-width:200px"><label>Variabel:</label><select id="kmap-nvar"><option value="2">2 var (A,B)</option><option value="3" selected>3 var (A,B,C)</option><option value="4">4 var (A,B,C,D)</option></select></div>
+                        <div class="option-group"><label>&nbsp;</label><button class="btn btn-convert" id="kmap-solve">Sederhanakan</button></div>
+                        <div class="option-group"><label>&nbsp;</label><button class="btn btn-reset" id="kmap-clear">Clear</button></div>
+                        <div class="option-group"><label>&nbsp;</label><button class="btn btn-example" id="kmap-demo">Contoh Alarm</button></div>
+                    </div>
+                    <div id="kmap-wrap"></div>
+                    <div class="result-display" id="kmap-result" style="margin-top:1rem">-</div>
+                    <div class="steps-content steps-list" id="kmap-steps"><p class="placeholder-text">Klik sel untuk set 1 / X, lalu Sederhanakan.</p></div>
+                </div>
+            </div>
+            </div><!-- /w4-lab -->
+
+            <div class="tab-panel" id="w4-k4">
+                <div class="interactive-card">
+                    <h4>4️⃣ K-Map 4 Variabel — baris AB, kolom CD (Gray)</h4>
+                    <p><strong>Contoh:</strong> <code>Q = A'BC'D + ABC'D + A'BCD + ABCD</code> (m5, m13, m7, m15 — kolom CD=01 &amp; 11 pada baris B=1) → grup 4 mengeliminasi A dan C → <b>Q = BD</b>.</p>
+                    <button class="btn btn-convert btn-sm" data-kmap-preset="4|5,7,13,15">▶ Buka contoh ini di Lab</button>
+                </div>
+            </div>
+
+            <div class="tab-panel" id="w4-dontcare">
+                <div class="interactive-card">
+                    <h4>👻 Don't Care (X)</h4>
+                    <p>Kondisi yang tak terjadi / tak peduli hasilnya. Di Lab, klik sel 2× untuk menjadikannya <b>X</b>.</p>
+                    <div class="info-box tip"><strong>Aturan:</strong> X boleh dianggap 1 untuk <em>memperbesar</em> grup, atau 0 (diabaikan) jika tak membantu. Jangan paksa X masuk grup kecil.</div>
+                </div>
+            </div>
+
+            <div class="tab-panel" id="w4-kasus">
+                <div class="interactive-card">
+                    <h4>🚨 Studi Kasus: Alarm Gedung (4 sensor)</h4>
+                    <p>A=pintu, B=jendela, C=gerak, D=asap. Alarm = <code>A·C + B·C + D</code> → minterm 1,3,5,6,7,9,10,11,13,14,15.</p>
+                    <button class="btn btn-convert btn-sm" data-kmap-preset="4|1,3,5,6,7,9,10,11,13,14,15">▶ Buktikan di Lab (hasil: D + AC + BC)</button>
+                </div>
+                <div class="interactive-card">
+                    <h4>🅿️ Latihan: Gerbang Parkir</h4>
+                    <p>A=kartu valid, B=kendaraan ada, C=penuh, D=darurat. Buka jika <code>A·B·C' + D</code> → minterm 1,3,5,7,9,11,12,13,15.</p>
+                    <button class="btn btn-convert btn-sm" data-kmap-preset="4|1,3,5,7,9,11,12,13,15">▶ Buka di Lab</button>
+                </div>
+            </div>
+
+            <div class="tab-panel cheatsheet-panel" id="w4-cheatsheet">
+                <div class="cheatsheet">
+                    <h4>📋 Cheatsheet Minggu 4 — K-Map</h4>
+                    <h5>Aturan kilat</h5>
+                    <p>Grup = <code>2ⁿ</code> (1,2,4,8,16) • persegi • sebesar mungkin • wrap-around • boleh overlap • Gray <code>00-01-11-10</code>.</p>
+                    <h5>Eliminasi</h5>
+                    <p>Variabel yang <em>berubah</em> dalam grup → hilang. Grup 2 = 1 var hilang, grup 4 = 2 var, grup 8 = 3 var.</p>
+                    <h5>Contoh hafalan</h5>
+                    <table><tr><th>Soal</th><th>Hasil</th></tr>
+                    <tr><td><code>AB+A'B+AB'</code></td><td><code>A+B</code></td></tr>
+                    <tr><td><code>Σm(4,5,6,7)</code> 3-var</td><td><code>A</code></td></tr>
+                    <tr><td><code>Σm(5,7,13,15)</code> 4-var</td><td><code>BD</code></td></tr>
+                    <tr><td>Alarm <code>AC+BC+D</code></td><td><code>D+AC+BC</code></td></tr></table>
+                    <div class="no-print" style="margin-top:12px"><button class="btn btn-convert btn-sm print-btn">🖨️ Cetak Cheatsheet</button></div>
+                </div>
+            </div>
+
+            <div class="tab-panel" id="w4-quiz">
+                <div class="interactive-card">
+                    <h4>✏️ Latihan slide</h4>
+                    <p>1) Minimalkan <code>Q = ABCD' + AB'C'D + A'BCD</code> di Lab.<br>2) Selesaikan kasus parkir di atas, tulis persamaan minimalnya.</p>
+                </div>
+                <div class="interactive-card">
+                    <div class="score-bar"><span class="score-label">Skor Kuis:</span><span class="score-value" id="quiz4-score">0 / 5</span><div class="progress-track"><div class="progress-fill" id="quiz4-progress" style="width:0%"></div></div></div>
+                    <div id="quiz4-questions"></div>
+                    <button class="btn btn-secondary btn-sm mt-16" id="reset-quiz4">🔄 Acak Soal Baru</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer" id="app-footer"></footer>
+
+    <script src="js/shell.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/signed.js"></script>
+    <script src="js/boolean.js"></script>
+    <script src="js/kmap.js"></script>
+    <script src="js/comb.js"></script>
+    <script src="js/seq.js"></script>
+    <script src="js/svg-kit.js"></script>
+    <script src="js/learn.js"></script>
+</body>
+</html>

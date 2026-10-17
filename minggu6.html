@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minggu 6: NAND/NOR & Multiplexer — Media Ajar Sistem Digital</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-week="6">
+    <div id="app-header"></div>
+    <div id="app-nav"></div>
+
+    <main class="main-content">
+        <section class="week-content active" id="week-6">
+            <div class="content-header">
+                <h2>Minggu 6: Multilevel NAND/NOR & Multiplexer</h2>
+                <p class="description">Gerbang universal NAND/NOR, implementasi multilevel SOP→NAND dan POS→NOR, MUX 2:1 / 4:1 / 8:1 sebagai data selector.</p>
+            </div>
+
+            <div class="objectives-box">
+                <h4>🎯 Setelah mempelajari minggu ini, Anda mampu:</h4>
+                <ul>
+                    <li>Menjelaskan mengapa NAND dan NOR disebut gerbang universal.</li>
+                    <li>Mengimplementasikan fungsi SOP dengan NAND dan POS dengan NOR (multilevel).</li>
+                    <li>Menjelaskan cara kerja multiplexer sebagai data selector dan menyusun tabel kebenarannya.</li>
+                </ul>
+            </div>
+            <div class="prereq-box">
+                <span>📌 <strong>Prasyarat:</strong> hukum Boolean & De Morgan (Minggu 3), SOP/POS (Minggu 3–4).</span>
+                <span>⏱️ <strong>Estimasi:</strong> 2 × 50 menit.</span>
+            </div>
+
+            <div class="content-tabs">
+                <button class="content-tab active" data-tab="w6-belajar">📖 Pembelajaran</button>
+                <button class="content-tab" data-tab="w6-nand">🔌 NAND</button>
+                <button class="content-tab" data-tab="w6-nor">🔌 NOR</button>
+                <button class="content-tab" data-tab="w6-mux21">🔀 MUX 2:1</button>
+                <button class="content-tab" data-tab="w6-mux41">🔀 MUX 4:1</button>
+                <button class="content-tab" data-tab="w6-mux81">🔀 MUX 8:1</button>
+                <button class="content-tab" data-tab="w6-cheatsheet">📋 Cheatsheet</button>
+                <button class="content-tab" data-tab="w6-quiz">📝 Latihan</button>
+            </div>
+
+            <div class="tab-panel active" id="w6-belajar">
+            <div class="theory-section">
+                <div class="theory-grid">
+                    <div class="theory-card"><h3>🔌 Gerbang Universal</h3><p>NAND dan NOR bisa membangun NOT, AND, OR apa pun → cukup sediakan satu jenis IC. NOT dari NAND: hubungkan semua input jadi satu. AND = NAND + NOT.</p></div>
+                    <div class="theory-card"><h3>🏗️ Multilevel</h3><p>SOP → implementasi NAND-NAND (ganti AND→NAND, OR→NAND). POS → NOR-NOR. Aturan: komplemen ganda + De Morgan, bubble-pushing pada skematik.</p></div>
+                    <div class="theory-card"><h3>🔀 MUX = Data Selector</h3><p>Memilih 1 dari 2ⁿ input data via n select line. 2:1 butuh 1 select, 4:1 butuh 2, 8:1 butuh 3. Rumus 2:1: <code>Y = S'·I0 + S·I1</code>.</p></div>
+                </div>
+                <div class="theory-grid">
+                    <div class="theory-card"><h3>📺 Analogi: remote TV & kran cabang</h3><p>MUX 4:1 seperti TV dengan 4 channel dan tombol angka: tekan <code>10</code> (S1S0) → layar menampilkan channel D2. Select line = nomor channel, input data = isi siarannya.</p><p>Untuk NAND/NOR universal: bayangkan toko LEGO yang hanya menjual <em>satu bentuk bata</em> (mis. bata NAND) — ternyata semua model (rumah, mobil, pesawat = NOT, AND, OR) bisa dirakit hanya dari bata itu. Pabrik chip pun cukup memproduksi 1 jenis gerbang → murah & seragam. Trik konversinya: gandakan komplemen lalu De Morgan (SOP→NAND-NAND, POS→NOR-NOR).</p></div>
+                    <div class="theory-card"><h3>🧮 Membaca rumus MUX 2:1</h3><p><code>Y = S'·I0 + S·I1</code> dibaca: "jika S=0 pilih I0, jika S=1 pilih I1". Cek: S=0 → suku pertama <code>1·I0 = I0</code>, suku kedua <code>0·I1 = 0</code> → Y=I0 ✔️. S=1 → sebaliknya Y=I1 ✔️.</p><p>Untuk 4:1, select 2 bit membentuk 4 kombinasi <code>00,01,10,11</code> yang masing-masing "menyalakan" tepat 1 suku dari 4 suku — prinsipnya sama dengan minterm! Inilah alasan MUX bisa mengimplementasikan <em>fungsi logika apa pun</em>: hubungkan input D ke 0/1 sesuai tabel kebenaran.</p></div>
+                </div>
+
+                <div class="misconception-box">
+                    <h4>⚠️ Miskonsepsi yang sering terjadi</h4>
+                    <div class="mc-item"><span class="mc-wrong">Salah:</span> “SOP harus diimplementasikan dengan gerbang AND lalu OR.” <span class="mc-right">Benar:</span> SOP dapat langsung diimplementasikan sebagai NAND-NAND tanpa inverter, berkat De Morgan.</div>
+                    <div class="mc-item"><span class="mc-wrong">Salah:</span> “select line MUX 4:1 hanya satu.” <span class="mc-right">Benar:</span> MUX 4:1 membutuhkan <em>dua</em> select line (S1 S0) karena 2² = 4 kombinasi.</div>
+                    <div class="mc-item"><span class="mc-wrong">Salah:</span> “NAND dan NOR sama saja.” <span class="mc-right">Benar:</span> NAND = AND lalu NOT; NOR = OR lalu NOT — keduanya berbeda dan cocok untuk bentuk SOP/POS yang berbeda.</div>
+                </div>
+            </div>
+            </div><!-- /w6-belajar -->
+
+            <div class="tab-panel" id="w6-nand">
+            <div class="converter-card">
+                <div class="card-header"><h3>🔌 SOP → NAND Multilevel</h3><span class="badge">NAND-NAND</span></div>
+                <div style="padding:1.5rem">
+                    <div class="form-row">
+                        <div class="option-group"><label>Contoh fungsi:</label><select id="w6-nand-sel"><option value="0">F = AB + CD</option><option value="1">F = AB + BC + AC</option><option value="2">F = A'B + AB'</option></select></div>
+                        <div class="option-group"><label>&nbsp;</label><button class="btn btn-convert" id="w6-nand-btn">Konversi ➔</button></div>
+                    </div>
+                    <div class="result-display" id="w6-nand-out">-</div>
+                    <div class="steps-content" id="w6-nand-steps"></div>
+                </div>
+            </div>
+            <figure class="svg-figure">
+                <span class="fig-title">Gambar 6.1 — Membangun semua gerbang dari NAND</span>
+                <div data-svg="nand-universal"></div>
+                <figcaption>Cukup satu jenis gerbang (NAND) untuk membuat NOT, AND, dan OR — itulah makna “universal”.</figcaption>
+            </figure>
+            </div><!-- /w6-nand -->
+
+            <div class="tab-panel" id="w6-nor">
+            <div class="converter-card">
+                <div class="card-header"><h3>🔌 POS → NOR Multilevel</h3><span class="badge">NOR-NOR</span></div>
+                <div style="padding:1.5rem">
+                    <div class="form-row">
+                        <div class="option-group"><label>Contoh fungsi:</label><select id="w6-nor-sel"><option value="0">F = (A+B)(C+D)</option><option value="1">F = (A+B+C)(A+B'+C')</option></select></div>
+                        <div class="option-group"><label>&nbsp;</label><button class="btn btn-convert" id="w6-nor-btn">Konversi ➔</button></div>
+                    </div>
+                    <div class="result-display" id="w6-nor-out">-</div>
+                    <div class="steps-content" id="w6-nor-steps"></div>
+                </div>
+            </div>
+            </div><!-- /w6-nor -->
+
+            <div class="tab-panel" id="w6-mux21">
+            <div class="converter-card">
+                <div class="card-header"><h3>🔀 Simulator MUX 2:1</h3><span class="badge">Y=S'I0+SI1</span></div>
+                <div style="padding:1.5rem">
+                    <div class="quiz-input-row">
+                        <button class="btn btn-convert btn-sm tgl" id="w6-m21-i0">I0=0</button>
+                        <button class="btn btn-convert btn-sm tgl" id="w6-m21-i1">I1=0</button>
+                        <button class="btn btn-convert btn-sm tgl" id="w6-m21-s">S=0</button>
+                    </div>
+                    <div class="result-display" id="w6-m21-out">Y = -</div>
+                    <div class="steps-content" id="w6-m21-steps"></div>
+                </div>
+            </div>
+            <figure class="svg-figure">
+                <span class="fig-title">Gambar 6.2 — Skematik MUX 2:1</span>
+                <div data-svg="mux21"></div>
+                <figcaption>S menentukan input mana yang diteruskan ke Y: S=0 → I0, S=1 → I1.</figcaption>
+            </figure>
+            </div><!-- /w6-mux21 -->
+
+            <div class="tab-panel" id="w6-mux41">
+            <div class="converter-card">
+                <div class="card-header"><h3>🔀 Simulator MUX 4:1</h3><span class="badge">2 select</span></div>
+                <div style="padding:1.5rem">
+                    <p>Y = S1'S0'I0 + S1'S0I1 + S1S0'I2 + S1S0I3.</p>
+                    <div class="quiz-input-row">
+                        <button class="btn btn-convert btn-sm tgl" id="w6-m41-d0">D0=0</button>
+                        <button class="btn btn-convert btn-sm tgl" id="w6-m41-d1">D1=0</button>
+                        <button class="btn btn-convert btn-sm tgl" id="w6-m41-d2">D2=0</button>
+                        <button class="btn btn-convert btn-sm tgl" id="w6-m41-d3">D3=0</button>
+                        <button class="btn btn-convert btn-sm tgl" id="w6-m41-s1">S1=0</button>
+                        <button class="btn btn-convert btn-sm tgl" id="w6-m41-s0">S0=0</button>
+                    </div>
+                    <div class="result-display" id="w6-m41-out">Y = -</div>
+                    <div class="steps-content" id="w6-m41-steps"></div>
+                </div>
+            </div>
+            <figure class="svg-figure">
+                <span class="fig-title">Gambar 6.3 — Struktur MUX 4:1</span>
+                <div data-svg="mux41"></div>
+                <figcaption>Dua select line (S1 S0) memilih satu dari empat input data — sama seperti memilih channel TV.</figcaption>
+            </figure>
+            </div><!-- /w6-mux41 -->
+
+            <div class="tab-panel" id="w6-mux81">
+            <div class="converter-card">
+                <div class="card-header"><h3>🔀 Simulator MUX 8:1</h3><span class="badge">3 select</span></div>
+                <div style="padding:1.5rem">
+                    <p>Pilih 1 dari 8 input via S2 S1 S0 (indeks = 4·S2+2·S1+S0).</p>
+                    <div class="quiz-input-row" id="w6-m81-data">
+                        <button class="btn btn-convert btn-sm tgl" id="w6-m81-d0">D0=0</button>
+                        <button class="btn btn-convert btn-sm tgl" id="w6-m81-d1">D1=0</button>
+                        <button class="btn btn-convert btn-sm tgl" id="w6-m81-d2">D2=0</button>
+                        <button class="btn btn-convert btn-sm tgl" id="w6-m81-d3">D3=0</button>
+                        <button class="btn btn-convert btn-sm tgl" id="w6-m81-d4">D4=0</button>
+                        <button class="btn btn-convert btn-sm tgl" id="w6-m81-d5">D5=0</button>
+                        <button class="btn btn-convert btn-sm tgl" id="w6-m81-d6">D6=0</button>
+                        <button class="btn btn-convert btn-sm tgl" id="w6-m81-d7">D7=0</button>
+                    </div>
+                    <div class="quiz-input-row">
+                        <button class="btn btn-convert btn-sm tgl" id="w6-m81-s2">S2=0</button>
+                        <button class="btn btn-convert btn-sm tgl" id="w6-m81-s1">S1=0</button>
+                        <button class="btn btn-convert btn-sm tgl" id="w6-m81-s0">S0=0</button>
+                    </div>
+                    <div class="result-display" id="w6-m81-out">Y = -</div>
+                    <div class="steps-content" id="w6-m81-steps"></div>
+                </div>
+            </div>
+            </div><!-- /w6-mux81 -->
+
+            <div class="tab-panel cheatsheet-panel" id="w6-cheatsheet">
+                <div class="cheatsheet">
+                    <h4>📋 Cheatsheet Minggu 6 — NAND/NOR & MUX</h4>
+                    <h5>Universal</h5>
+                    <p>NOT = <code>(A·A)'</code> • AND = NAND+NOT • OR = NOT-NOT + NAND (De Morgan). SOP→NAND-NAND, POS→NOR-NOR.</p>
+                    <h5>MUX kilat</h5>
+                    <table><tr><th>MUX</th><th>Select</th><th>Rumus</th></tr>
+                    <tr><td>2:1</td><td>1 (S)</td><td><code>Y=S'I0+SI1</code></td></tr>
+                    <tr><td>4:1</td><td>2 (S1S0)</td><td><code>Σ m·D</code> 4 suku</td></tr>
+                    <tr><td>8:1</td><td>3 (S2S1S0)</td><td><code>indeks=4S2+2S1+S0</code></td></tr></table>
+                    <div class="no-print" style="margin-top:12px"><button class="btn btn-convert btn-sm print-btn">🖨️ Cetak Cheatsheet</button></div>
+                </div>
+            </div>
+
+            <div class="tab-panel" id="w6-quiz">
+                <div class="interactive-card">
+                    <div class="score-bar"><span class="score-label">Skor Kuis:</span><span class="score-value" id="quiz6-score">0 / 5</span><div class="progress-track"><div class="progress-fill" id="quiz6-progress" style="width:0%"></div></div></div>
+                    <div id="quiz6-questions"></div>
+                    <button class="btn btn-secondary btn-sm mt-16" id="reset-quiz6">🔄 Acak Soal Baru</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer" id="app-footer"></footer>
+
+    <script src="js/shell.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/signed.js"></script>
+    <script src="js/boolean.js"></script>
+    <script src="js/kmap.js"></script>
+    <script src="js/comb.js"></script>
+    <script src="js/seq.js"></script>
+    <script src="js/svg-kit.js"></script>
+    <script src="js/learn.js"></script>
+</body>
+</html>

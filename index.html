@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Media Ajar Sistem Digital — Silabus & Peta Belajar</title>
+    <meta name="description" content="Media ajar interaktif mata kuliah Sistem Digital: materi, simulasi, latihan, dan rangkuman untuk 14 minggu.">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-week="0">
+    <div id="app-header"></div>
+    <div id="app-nav"></div>
+
+    <main class="main-content">
+        <section class="week-content active" id="beranda">
+            <div class="content-header">
+                <h2>Pengantar Mata Kuliah Sistem Digital</h2>
+                <p class="description">Modul ajar mandiri berbasis web: setiap minggu dilengkapi peta konsep, penjelasan bertahap, contoh bergambar, simulator interaktif, dan latihan berpembahasan.</p>
+            </div>
+
+            <div class="home-hero">
+                <div class="home-hero-text">
+                    <h3>Dari angka biner sampai rangkaian logika</h3>
+                    <p>Mata kuliah ini membahas bagaimana komputer merepresentasikan dan mengolah informasi digital — dari bilangan biner, aljabar Boolean, rangkaian kombinasional (adder, multiplexer, decoder), hingga rangkaian sekuensial (flip-flop, register, counter, mesin status).</p>
+                    <div class="home-hero-actions">
+                        <a class="btn btn-convert" href="minggu1.html">▶ Mulai dari Minggu 1</a>
+                        <a class="btn btn-secondary" href="#peta">Lihat Peta 14 Minggu</a>
+                    </div>
+                </div>
+                <div class="home-hero-stats">
+                    <div class="stat-card"><span class="stat-num">14</span><span class="stat-lbl">Minggu materi</span></div>
+                    <div class="stat-card"><span class="stat-num">3</span><span class="stat-lbl">SKS</span></div>
+                    <div class="stat-card"><span class="stat-num">7</span><span class="stat-lbl">Modul bergambar</span></div>
+                </div>
+            </div>
+
+            <h3 class="section-title" id="capaian">Capaian Pembelajaran</h3>
+            <div class="theory-grid">
+                <div class="theory-card"><h3>🎯 CPMK</h3><p>Mahasiswa mampu menjelaskan konsep dasar sistem digital, menganalisis dan merancang rangkaian logika kombinasional maupun sekuensial, serta menerapkannya pada blok fungsional komputer.</p></div>
+                <div class="theory-card"><h3>🧩 Sub-CPMK</h3><p>Menguasai konversi &amp; representasi bilangan, penyederhanaan fungsi Boolean (aljabar &amp; K-Map), perancangan rangkaian kombinasional, serta analisis rangkaian sekuensial.</p></div>
+                <div class="theory-card"><h3>📚 Prasyarat</h3><p>Tidak ada prasyarat khusus. Kemampuan dasar matematika dan logika sudah cukup untuk mengikuti seluruh materi.</p></div>
+            </div>
+
+            <h3 class="section-title" id="peta">Peta 14 Minggu</h3>
+            <div class="week-map" id="week-map"></div>
+
+            <h3 class="section-title">Cara Memakai Modul Ini</h3>
+            <div class="theory-grid">
+                <div class="theory-card"><h3>1️⃣ Baca peta konsep</h3><p>Setiap minggu dibuka dengan diagram besar yang menghubungkan konsep-konsep. Pahami alurnya sebelum masuk detail.</p></div>
+                <div class="theory-card"><h3>2️⃣ Ikuti contoh langkah demi langkah</h3><p>Contoh dikerjakan bertahap. Jangan lompati langkah — tiap langkah adalah kebiasaan berpikir yang ingin dibentuk.</p></div>
+                <div class="theory-card"><h3>3️⃣ Coba simulator</h3><p>Ubah input dan amati output. Simulator membuat hubungan “gerbang → perilaku” terlihat, bukan sekadar rumus.</p></div>
+                <div class="theory-card"><h3>4️⃣ Uji dengan latihan</h3><p>Kerjakan latihan berpembahasan. Jika salah, baca pembahasannya lalu ulangi hingga benar.</p></div>
+            </div>
+
+            <h3 class="section-title">Referensi</h3>
+            <div class="interactive-card">
+                <ol class="ref-list">
+                    <li>S. Brown and Z. Vranesic, <em>Fundamentals of Digital Logic with VHDL Design</em>, 3rd ed., McGraw-Hill, 2009.</li>
+                    <li>D. D. Givone, <em>Digital Principles and Design</em>, McGraw-Hill, 2002.</li>
+                    <li>J. M. Yarborough, <em>Digital Logic: Application and Design</em>, West Publishing Co., 1997.</li>
+                    <li>V. P. Nelson, H. T. Nagle, B. D. Carroll, and D. Irwin, <em>Digital Logic Circuit Analysis and Design</em>, Prentice Hall, 1995.</li>
+                </ol>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer" id="app-footer"></footer>
+
+    <script src="js/shell.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/home.js"></script>
+</body>
+</html>

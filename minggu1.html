@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minggu 1: Pendahuluan & Konversi Bilangan — Media Ajar Sistem Digital</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-week="1">
+    <div id="app-header"></div>
+    <div id="app-nav"></div>
+
+    <main class="main-content">
+        <section class="week-content active" id="week-1">
+            <div class="content-header">
+                <h2>Minggu 1: Pendahuluan Sistem Digital & Konversi Bilangan</h2>
+                <p class="description">Definisi, karakteristik, Analog vs Digital, aplikasi sehari-hari, dan dasar sistem bilangan (Biner, Oktal, Heksadesimal, Desimal). Konverter di bawah memakai metode Biner sebagai basis utama.</p>
+            </div>
+
+            <div class="objectives-box">
+                <h4>🎯 Setelah mempelajari minggu ini, Anda mampu:</h4>
+                <ul>
+                    <li>Menjelaskan perbedaan sinyal analog dan digital beserta contohnya.</li>
+                    <li>Membaca nilai bilangan biner memakai bobot posisi (MSB/LSB).</li>
+                    <li>Mengonversi bilangan antara basis biner, oktal, desimal, dan heksadesimal.</li>
+                </ul>
+            </div>
+            <div class="prereq-box">
+                <span>📌 <strong>Prasyarat:</strong> aritmetika dasar (penjumlahan, pembagian bersisa) dan konsep nilai tempat pada bilangan desimal.</span>
+                <span>⏱️ <strong>Estimasi:</strong> 2 × 50 menit.</span>
+            </div>
+
+            <div class="content-tabs">
+                <button class="content-tab active" data-tab="w1-belajar">📖 Pembelajaran</button>
+                <button class="content-tab" data-tab="w1-konverter">⚡ Konverter</button>
+                <button class="content-tab" data-tab="w1-dec2bin">🔢 Des→Bin</button>
+                <button class="content-tab" data-tab="w1-bin2hex">🔠 Bin→Hex</button>
+                <button class="content-tab" data-tab="w1-bin2oct">🎱 Bin→Okt</button>
+                <button class="content-tab" data-tab="w1-bin2dec">➕ Bin→Des</button>
+                <button class="content-tab" data-tab="w1-cheatsheet">📋 Cheatsheet</button>
+                <button class="content-tab" data-tab="w1-quiz">📝 Latihan</button>
+            </div>
+
+            <div class="tab-panel active" id="w1-belajar">
+            <div class="theory-section">
+                <div class="theory-grid">
+                    <div class="theory-card">
+                        <h3>📖 Definisi</h3>
+                        <p>Sistem digital bekerja dengan data berbasis angka biner (0 dan 1) untuk pengolahan informasi dengan akurasi tinggi. Data bersifat <strong>diskrit</strong> (terputus), bukan kontinu — sehingga mudah diproses, disimpan, dan ditransmisikan komputer.</p>
+                    </div>
+                    <div class="theory-card">
+                        <h3>🛡️ Karakteristik</h3>
+                        <ul>
+                            <li><strong>Andal:</strong> tahan noise / gangguan eksternal dibanding analog.</li>
+                            <li><strong>Diskrit:</strong> 0/1 = off/on sirkuit elektronik.</li>
+                            <li><strong>Efisien:</strong> semua data (teks, gambar, suara) direpresentasikan biner.</li>
+                        </ul>
+                    </div>
+                    <div class="theory-card">
+                        <h3>⚖️ Analog vs Digital</h3>
+                        <table class="mini-table">
+                            <tr><th>Aspek</th><th>Analog</th><th>Digital</th></tr>
+                            <tr><td>Sinyal</td><td>Kontinu (gel. suara)</td><td>Diskrit (0/1)</td></tr>
+                            <tr><td>Akurasi</td><td>Rentan distorsi</td><td>Tinggi, tanpa distorsi</td></tr>
+                            <tr><td>Contoh</td><td>Radio tradisional</td><td>Komputer, smartphone</td></tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="theory-grid">
+                    <div class="theory-card">
+                        <h3>🏠 Aplikasi Sehari-hari</h3>
+                        <ul>
+                            <li><strong>Otomasi rumah:</strong> lampu pintar, termostat, kunci digital.</li>
+                            <li><strong>Komunikasi:</strong> ponsel, WiFi, Bluetooth, konferensi video.</li>
+                            <li><strong>Konsumen & IoT:</strong> smart TV, konsol game, kulkas pintar.</li>
+                            <li><strong>Komputasi & AI:</strong> hitung cepat, big data, algoritma learning.</li>
+                        </ul>
+                    </div>
+                    <div class="theory-card">
+                        <h3>🔢 Dasar Bilangan (MSB/LSB)</h3>
+                        <p>Basis 2 (0,1). Setiap digit = <strong>bit</strong>. MSB = Most Significant Bit, LSB = Least Significant Bit.</p>
+                        <p>Kelompok bit: 4-bit = <strong>Nibble</strong>, 8-bit = <strong>Byte</strong>, 16-bit = <strong>Word</strong>.</p>
+                        <p>Biner→Desimal: jumlahkan bobot 2<sup>n</sup>. Desimal→Biner: bagi berulang dengan 2. Oktal (basis 8) & Heksa (basis 16, 0-9 A-F) memadatkan biner.</p>
+                    </div>
+                    <div class="theory-card">
+                        <h3>💡 Analogi: bit = saklar lampu</h3>
+                        <p>Bayangkan 4 saklar lampu berderet. Tiap saklar hanya punya 2 keadaan: <strong>mati (0)</strong> atau <strong>nyala (1)</strong> — itulah 1 <strong>bit</strong>. Komputer jutaan "saklar" mikroskopis (transistor) yang disusun membentuk angka, huruf, gambar, bahkan video.</p>
+                        <p>MSB vs LSB: seperti angka desimal <code>5<b>3</b>21</code> — digit <code>5</code> (ribuan) paling menentukan nilai (MSB), digit <code>1</code> (satuan) paling kecil pengaruhnya (LSB). Pada biner <code><b>1</b>011<b>0</b></code>, bit kiri (MSB, bobot 16) jauh lebih "berat" dari bit kanan (LSB, bobot 1).</p>
+                    </div>
+                </div>
+                <div class="theory-grid">
+                    <div class="theory-card">
+                        <h3>🧮 Cara membaca bobot (contoh 10110₂)</h3>
+                        <p>Tulis bobot tiap posisi dari kanan: <code>16 - 8 - 4 - 2 - 1</code>. Kalikan dengan bitnya, yang bitnya 1 ikut dijumlah:</p>
+                        <p><code>1×16 + 0×8 + 1×4 + 1×2 + 0×1 = 16 + 4 + 2 = 22₁₀</code>.</p>
+                        <p>Sebaliknya desimal→biner: bagi 2 berulang, catat <strong>sisa</strong>. Contoh 25: 25→sisa <b>1</b>, 12→<b>0</b>, 6→<b>0</b>, 3→<b>1</b>, 1→<b>1</b>. Baca sisa dari <strong>bawah ke atas</strong>: <code>11001₂</code>. Coba buktikan di tab Des→Bin!</p>
+                    </div>
+                    <div class="theory-card">
+                        <h3>🔠 Mengapa ada Oktal & Heksa?</h3>
+                        <p>Analogi: NIK 16 digit sulit dibaca sekaligus, jadi dikelompokkan <code>3174-xxxx-xxxx</code>. Biner pun begitu — <code>11010110</code> melelahkan dibaca, maka dikelompokkan: per <strong>3 bit</strong> jadi 1 digit <strong>oktal</strong> (<code>11|010|110</code> → <code>326₈</code>), per <strong>4 bit</strong> jadi 1 digit <strong>heksa</strong> (<code>1101|0110</code> → <code>D6₁₆</code>).</p>
+                        <p>Mengapa 3 dan 4? Karena 2³ = 8 dan 2⁴ = 16 — pas 1 digit! Heksa huruf A–F = nilai 10–15 (mis. <code>2F₁₆ = 2×16 + 15 = 47₁₀</code>). Programmer memakai heksa untuk alamat memori & warna (<code>#FF0000</code> = merah).</p>
+                    </div>
+                </div>
+                <figure class="svg-figure">
+                    <span class="fig-title">Gambar 1.1 — Membaca bobot posisi biner 10110₂ = 22₁₀</span>
+                    <div data-svg="bit-weights"></div>
+                    <figcaption>Setiap posisi punya bobot 2ⁿ. Bit yang bernilai 1 menyumbang bobotnya; jumlahkan bobot yang aktif.</figcaption>
+                </figure>
+
+                <div class="misconception-box">
+                    <h4>⚠️ Miskonsepsi yang sering terjadi</h4>
+                    <div class="mc-item"><span class="mc-wrong">Salah:</span> “banyak digit biner menentukan besar-kecil nilainya.” <span class="mc-right">Benar:</span> yang menentukan adalah <em>bobot</em> posisi — <code>1000₂ = 8</code> lebih besar dari <code>0111₂ = 7</code> meski digitnya lebih sedikit.</div>
+                    <div class="mc-item"><span class="mc-wrong">Salah:</span> “MSB selalu bit paling kiri saat ditulis.” <span class="mc-right">Benar:</span> MSB adalah bit dengan bobot terbesar, yaitu posisi paling kiri <em>pada lebar bit yang ditetapkan</em>.</div>
+                </div>
+            </div>
+            </div><!-- /w1-belajar -->
+
+            <div class="tab-panel" id="w1-konverter">
+            <div class="converter-section">
+                <div class="converter-card">
+                    <div class="card-header">
+                        <h3>🧮 Konverter Bilangan</h3>
+                        <span class="badge">Interaktif</span>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="number-input">Masukkan Bilangan:</label>
+                        <input type="text" id="number-input" placeholder="Contoh: 1101 atau FF atau 77 atau 255" autocomplete="off">
+                    </div>
+
+                    <div class="conversion-options">
+                        <div class="option-group">
+                            <label>Dari Basis:</label>
+                            <select id="from-base">
+                                <option value="binary">Biner (0, 1)</option>
+                                <option value="hexadecimal">Heksadesimal (0-9, A-F)</option>
+                                <option value="octal">Oktal (0-7)</option>
+                                <option value="decimal">Desimal (0-9)</option>
+                            </select>
+                        </div>
+
+                        <div class="swap-btn" id="swap-btn" title="Tukar basis">⇄</div>
+
+                        <div class="option-group">
+                            <label>Ke Basis:</label>
+                            <select id="to-base">
+                                <option value="hexadecimal">Heksadesimal (0-9, A-F)</option>
+                                <option value="binary">Biner (0, 1)</option>
+                                <option value="octal">Oktal (0-7)</option>
+                                <option value="decimal">Desimal (0-9)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="button-group">
+                        <button class="btn btn-convert" id="convert-btn">Konversi</button>
+                        <button class="btn btn-reset" id="reset-btn">Reset</button>
+                    </div>
+
+                    <div class="result-section" id="result-section">
+                        <div class="result-header">
+                            <h4>Hasil Konversi:</h4>
+                            <button class="btn-copy" id="copy-btn" title="Salin hasil">📋</button>
+                        </div>
+                        <div class="result-display" id="result-display">-</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="steps-section">
+                <div class="steps-card">
+                    <div class="card-header">
+                        <h3>📝 Langkah Konversi</h3>
+                        <span class="badge">Step-by-Step</span>
+                    </div>
+                    <div class="steps-content" id="steps-content">
+                        <p class="placeholder-text">Masukkan bilangan dan klik "Konversi" untuk melihat langkah-langkahnya.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="visualization-section">
+                <div class="vis-card">
+                    <div class="card-header">
+                        <h3>👁️ Visualisasi Pengelompokan Bit</h3>
+                        <span class="badge">Animasi</span>
+                    </div>
+                    <div class="vis-content" id="vis-content">
+                        <div class="bit-group-container" id="bit-groups">
+                            <!-- Bit groups will be rendered here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="reference-section">
+                <h3>📊 Tabel Referensi Cepat</h3>
+                <div class="reference-tables">
+                    <div class="ref-table-card">
+                        <h4>Biner → Heksadesimal (4 bit)</h4>
+                        <table class="ref-table">
+                            <thead>
+                                <tr><th>Biner</th><th>Heksa</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>0000</td><td>0</td></tr>
+                                <tr><td>0001</td><td>1</td></tr>
+                                <tr><td>0010</td><td>2</td></tr>
+                                <tr><td>0011</td><td>3</td></tr>
+                                <tr><td>0100</td><td>4</td></tr>
+                                <tr><td>0101</td><td>5</td></tr>
+                                <tr><td>0110</td><td>6</td></tr>
+                                <tr><td>0111</td><td>7</td></tr>
+                                <tr><td>1000</td><td>8</td></tr>
+                                <tr><td>1001</td><td>9</td></tr>
+                                <tr><td>1010</td><td>A</td></tr>
+                                <tr><td>1011</td><td>B</td></tr>
+                                <tr><td>1100</td><td>C</td></tr>
+                                <tr><td>1101</td><td>D</td></tr>
+                                <tr><td>1110</td><td>E</td></tr>
+                                <tr><td>1111</td><td>F</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="ref-table-card">
+                        <h4>Biner → Oktal (3 bit)</h4>
+                        <table class="ref-table">
+                            <thead>
+                                <tr><th>Biner</th><th>Oktal</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>000</td><td>0</td></tr>
+                                <tr><td>001</td><td>1</td></tr>
+                                <tr><td>010</td><td>2</td></tr>
+                                <tr><td>011</td><td>3</td></tr>
+                                <tr><td>100</td><td>4</td></tr>
+                                <tr><td>101</td><td>5</td></tr>
+                                <tr><td>110</td><td>6</td></tr>
+                                <tr><td>111</td><td>7</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="examples-section">
+                <h3>✨ Contoh Soal Interaktif</h3>
+                <div class="examples-grid">
+                    <div class="example-card" data-example="11010">
+                        <div class="example-number">1</div>
+                        <p>Konversi <strong>11010₂</strong> ke heksadesimal</p>
+                        <button class="btn btn-example">Coba Sekarang</button>
+                    </div>
+                    <div class="example-card" data-example="10110111">
+                        <div class="example-number">2</div>
+                        <p>Konversi <strong>10110111₂</strong> ke oktal</p>
+                        <button class="btn btn-example">Coba Sekarang</button>
+                    </div>
+                    <div class="example-card" data-example="11111111">
+                        <div class="example-number">3</div>
+                        <p>Konversi <strong>11111111₂</strong> ke desimal</p>
+                        <button class="btn btn-example">Coba Sekarang</button>
+                    </div>
+                    <div class="example-card" data-example="FF" data-from="hexadecimal">
+                        <div class="example-number">4</div>
+                        <p>Konversi <strong>FF₁₆</strong> ke biner</p>
+                        <button class="btn btn-example">Coba Sekarang</button>
+                    </div>
+                </div>
+            </div>
+            </div><!-- /w1-konverter -->
+
+            <div class="tab-panel" id="w1-dec2bin">
+                <div class="interactive-card">
+                    <h4>🔢 Desimal → Biner: bagi berulang dengan 2</h4>
+                    <p>Bagi bilangan dengan 2 berulang kali, catat sisa dari <strong>bawah ke atas</strong> (LSB → MSB).</p>
+                    <div class="quiz-input-row">
+                        <input type="number" class="quiz-input" id="w1-dec-in" value="25" min="0" placeholder="Desimal...">
+                        <button class="btn btn-convert btn-sm" id="w1-dec-btn">Hitung Langkah ➔</button>
+                    </div>
+                    <div id="w1-dec-steps"></div>
+                </div>
+            </div>
+
+            <div class="tab-panel" id="w1-bin2hex">
+                <div class="interactive-card">
+                    <h4>🔠 Biner → Heksadesimal: kelompok 4-bit</h4>
+                    <p>Kelompokkan per <strong>4 bit dari kanan (LSB)</strong>, tiap kelompok = 1 digit heksa (0–9, A–F).</p>
+                    <div class="quiz-input-row">
+                        <input type="text" class="quiz-input" id="w1-hex-in" value="11010110" placeholder="Biner...">
+                        <button class="btn btn-convert btn-sm" id="w1-hex-btn">Kelompokkan ➔</button>
+                    </div>
+                    <div id="w1-hex-res"></div>
+                </div>
+            </div>
+
+            <div class="tab-panel" id="w1-bin2oct">
+                <div class="interactive-card">
+                    <h4>🎱 Biner → Oktal: kelompok 3-bit</h4>
+                    <p>Kelompokkan per <strong>3 bit dari kanan (LSB)</strong>, tiap kelompok = 1 digit oktal (0–7).</p>
+                    <div class="quiz-input-row">
+                        <input type="text" class="quiz-input" id="w1-oct-in" value="11010110" placeholder="Biner...">
+                        <button class="btn btn-convert btn-sm" id="w1-oct-btn">Kelompokkan ➔</button>
+                    </div>
+                    <div id="w1-oct-res"></div>
+                </div>
+            </div>
+
+            <div class="tab-panel" id="w1-bin2dec">
+                <div class="interactive-card">
+                    <h4>➕ Biner → Desimal: jumlahkan bobot 2<sup>n</sup></h4>
+                    <p>Bit 1 dikali bobot posisinya (2<sup>n</sup> dari kanan, mulai 2<sup>0</sup>=1), lalu dijumlahkan.</p>
+                    <div class="quiz-input-row">
+                        <input type="text" class="quiz-input" id="w1-bdec-in" value="10110" placeholder="Biner...">
+                        <button class="btn btn-convert btn-sm" id="w1-bdec-btn">Hitung Bobot ➔</button>
+                    </div>
+                    <div id="w1-bdec-res"></div>
+                </div>
+            </div>
+
+            <div class="tab-panel cheatsheet-panel" id="w1-cheatsheet">
+                <div class="cheatsheet">
+                    <h4>📋 Cheatsheet Minggu 1 — Konversi Bilangan</h4>
+                    <p style="font-size:13px;color:var(--text-secondary)">Biner adalah sentral semua konversi. Klik Cetak untuk mencetak ringkasan ini.</p>
+                    <h5>Metode</h5>
+                    <table><tr><th>Konversi</th><th>Cara</th><th>Contoh</th></tr>
+                    <tr><td>Des → Bin</td><td>Bagi 2 berulang, baca sisa bawah→atas</td><td><code>25₁₀ = 11001₂</code></td></tr>
+                    <tr><td>Bin → Des</td><td>Σ bit×2<sup>n</sup></td><td><code>10110₂ = 22₁₀</code></td></tr>
+                    <tr><td>Bin → Hex</td><td>Kelompok 4-bit dari LSB (2⁴=16)</td><td><code>11010110₂ = D6₁₆</code></td></tr>
+                    <tr><td>Bin → Okt</td><td>Kelompok 3-bit dari LSB (2³=8)</td><td><code>11010110₂ = 326₈</code></td></tr>
+                    <tr><td>Hex/Okt → Bin</td><td>1 digit → 4 / 3 bit</td><td><code>2F₁₆ = 101111₂</code></td></tr></table>
+                    <h5>Satuan bit</h5>
+                    <table><tr><th>Nama</th><th>Ukuran</th></tr>
+                    <tr><td>Nibble</td><td>4 bit (= 1 digit heksa)</td></tr>
+                    <tr><td>Byte</td><td>8 bit</td></tr>
+                    <tr><td>Word</td><td>16 bit</td></tr></table>
+                    <h5>MSB / LSB</h5>
+                    <p>MSB = bit paling kiri (bobot terbesar / bit tanda), LSB = bit paling kanan (2<sup>0</sup>).</p>
+                    <div class="no-print" style="margin-top:12px"><button class="btn btn-convert btn-sm print-btn">🖨️ Cetak Cheatsheet</button></div>
+                </div>
+            </div>
+
+            <div class="tab-panel" id="w1-quiz">
+                <div class="interactive-card">
+                    <div class="score-bar"><span class="score-label">Skor Latihan:</span><span class="score-value" id="quiz1-score">0 / 5</span><div class="progress-track"><div class="progress-fill" id="quiz1-progress" style="width:0%"></div></div></div>
+                    <div id="quiz1-questions"></div>
+                    <button class="btn btn-secondary btn-sm mt-16" id="reset-quiz1">🔄 Acak Soal Baru</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer" id="app-footer"></footer>
+
+    <script src="js/shell.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/signed.js"></script>
+    <script src="js/boolean.js"></script>
+    <script src="js/kmap.js"></script>
+    <script src="js/comb.js"></script>
+    <script src="js/seq.js"></script>
+    <script src="js/svg-kit.js"></script>
+    <script src="js/learn.js"></script>
+</body>
+</html>

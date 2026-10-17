@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minggu 2: Bilangan Negatif & Operasi Biner — Media Ajar Sistem Digital</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-week="2">
+    <div id="app-header"></div>
+    <div id="app-nav"></div>
+
+    <main class="main-content">
+        <section class="week-content active" id="week-2">
+            <div class="content-header">
+                <h2>Minggu 2: Bilangan Negatif & Operasi Biner</h2>
+                <p class="description">Sign-Magnitude, 1's Complement, 2's Complement (standar CPU), negatif di Hex/Octal, pengurangan via penjumlahan, overflow, sign extension, end-around carry.</p>
+            </div>
+
+            <div class="objectives-box">
+                <h4>🎯 Setelah mempelajari minggu ini, Anda mampu:</h4>
+                <ul>
+                    <li>Merepresentasikan bilangan negatif dengan sign-magnitude, 1's, dan 2's complement.</li>
+                    <li>Melakukan pengurangan biner melalui penjumlahan 2's complement.</li>
+                    <li>Menentukan rentang nilai dan mendeteksi overflow pada aritmetika bertanda.</li>
+                </ul>
+            </div>
+            <div class="prereq-box">
+                <span>📌 <strong>Prasyarat:</strong> konversi biner–desimal dan penjumlahan biner (Minggu 1).</span>
+                <span>⏱️ <strong>Estimasi:</strong> 2 × 50 menit.</span>
+            </div>
+
+            <div class="content-tabs">
+                <button class="content-tab active" data-tab="w2-banding">⚖️ Perbandingan</button>
+                <button class="content-tab" data-tab="w2-sm">➕ Sign-Magnitude</button>
+                <button class="content-tab" data-tab="w2-c1">🔄 1's Complement</button>
+                <button class="content-tab" data-tab="w2-c2">⭐ 2's Complement</button>
+                <button class="content-tab" data-tab="w2-sub">➕ Pengurangan</button>
+                <button class="content-tab" data-tab="w2-overflow">⚠️ Overflow+</button>
+                <button class="content-tab" data-tab="w2-cheatsheet">📋 Cheatsheet</button>
+                <button class="content-tab" data-tab="w2-quiz">📝 Latihan</button>
+            </div>
+
+            <div class="tab-panel active" id="w2-banding">
+            <div class="theory-section">
+                <div class="theory-grid">
+                    <div class="theory-card"><h3>SM</h3><p>MSB = tanda (0=+, 1=−), sisa bit = magnitudo. 8-bit: −127..+127. Ada +0 (<code>00000000</code>) dan −0 (<code>10000000</code>). Contoh +13=<code>00001101</code>, −13=<code>10001101</code>.</p></div>
+                    <div class="theory-card"><h3>C1</h3><p>Negatif = <strong>NOT semua bit</strong>. 8-bit: −127..+127, masih ada ±0. Contoh −13 = <code>11110010</code>. Butuh <em>end-around carry</em>.</p></div>
+                    <div class="theory-card"><h3>C2 ⭐</h3><p>Negatif = <strong>NOT + 1</strong>. 8-bit: −128..+127, satu nol. Aritmetika paling sederhana. Contoh −13 = <code>11110011</code>, −37 = <code>11011011</code>, −1 (16-bit) = <code>FFFF</code>.</p></div>
+                </div>
+                <div class="theory-grid">
+                    <div class="theory-card"><h3>🕰️ Analogi: C2 seperti jam dinding</h3><p>Jam 12-jaman: 10 + 5 jam = 3 (bukan 15) — angka "melompat" karena melingkar. Biner 8-bit pun melingkar: setelah <code>11111111</code> (255) kembali ke <code>00000000</code> (0). Karena itu <code>11111111</code> bisa dibaca sebagai <strong>−1</strong>: −1 + 1 = 0, dan memang <code>11111111 + 00000001 = (1)00000000</code> (carry ke-9 dibuang)!</p><p>Jadi bilangan negatif = " berjalan mundur" dari nol. Inilah alasan C2: pengurangan otomatis menjadi penjumlahan maju-mundur pada lingkaran yang sama.</p></div>
+                    <div class="theory-card"><h3>🧮 Cara berpikir NOT + 1 (contoh −37)</h3><p>Langkah 1 — tulis positifnya 8-bit: +37 = <code>00100101</code>. Langkah 2 — balik semua bit (NOT): <code>11011010</code>. Langkah 3 — tambah 1: <code>11011011</code> — inilah −37!</p><p>Cek balik: 37 + (−37) = <code>00100101 + 11011011 = (1)00000000</code> → 0 (carry dibuang). Selalu begitu: suatu bilangan + negatifnya = 0. Itulah definisi negatif yang benar.</p></div>
+                    <div class="theory-card"><h3>🤔 Mengapa CPU memilih C2?</h3><p>Tiga alasan: (1) <strong>satu nol saja</strong> — SM/C1 punya +0 dan −0 sehingga perbandingan "apakah nol?" butuh 2 pengecekan; (2) <strong>pengurangan gratis</strong> — cukup adder, tak perlu unit subtractor; (3) <strong>overflow mudah dideteksi</strong> — cukup XOR dua carry terakhir. Harga yang dibayar: ada satu nilai ekstra (−128) tanpa pasangan positif — wajar, karena total 256 pola harus dibagi dua.</p></div>
+                </div>
+            </div>
+
+            <div class="converter-card">
+                <div class="card-header"><h3>🔄 Konverter Signed (SM / C1 / C2)</h3><span class="badge">Interaktif</span></div>
+                <div style="padding:1.5rem">
+                    <div class="form-row">
+                        <div class="option-group"><label>Desimal bertanda:</label><input id="signed-input" type="text" placeholder="Contoh: -13 atau 58" autocomplete="off" style="width:100%;padding:0.875rem;font-size:1.1rem;border:2px solid var(--border-color);border-radius:8px;font-family:'Courier New',monospace"></div>
+                        <div class="option-group"><label>Lebar bit:</label><select id="signed-width"><option value="4">4-bit</option><option value="8" selected>8-bit</option><option value="16">16-bit</option></select></div>
+                        <div class="option-group"><label>&nbsp;</label><button class="btn btn-convert" id="signed-btn">Konversi</button></div>
+                    </div>
+                    <div class="triple-grid">
+                        <div class="triple-card"><h4>Sign-Magnitude</h4><div class="mono" id="sm-out">-</div></div>
+                        <div class="triple-card"><h4>1's Complement</h4><div class="mono" id="c1-out">-</div></div>
+                        <div class="triple-card"><h4>2's Complement</h4><div class="mono" id="c2-out">-</div></div>
+                    </div>
+                    <div class="form-row">
+                        <div class="option-group"><label>C2 Hex:</label><div class="mono" id="signed-hex">-</div></div>
+                        <div class="option-group"><label>C2 Oktal:</label><div class="mono" id="signed-oct">-</div></div>
+                    </div>
+                    <div class="steps-content" id="signed-steps"><p class="placeholder-text">Masukkan desimal lalu klik Konversi. Contoh: −58 → C2 = 11000110 = 0xC6.</p></div>
+                </div>
+            </div>
+
+            <figure class="svg-figure">
+                <span class="fig-title">Gambar 2.1 — Lingkaran bilangan 4-bit 2's complement</span>
+                <div data-svg="signed-circle"></div>
+                <figcaption>Bilangan “melingkar”: setelah +7 melewati batas, nilai bergulir ke −8. Inilah alasan −1 = <code>1111</code> (mundur satu langkah dari 0).</figcaption>
+            </figure>
+
+            <div class="misconception-box">
+                <h4>⚠️ Miskonsepsi yang sering terjadi</h4>
+                <div class="mc-item"><span class="mc-wrong">Salah:</span> “2's complement = balik semua bit.” <span class="mc-right">Benar:</span> yang hanya membalik bit itu 1's complement; 2's complement = NOT <em>lalu tambah 1</em>.</div>
+                <div class="mc-item"><span class="mc-wrong">Salah:</span> “overflow terjadi setiap ada carry keluar.” <span class="mc-right">Benar:</span> overflow pada bilangan bertanda terjadi bila <code>carry-in MSB ⊕ carry-out MSB = 1</code> — carry keluar saja tidak cukup.</div>
+            </div>
+            </div><!-- /w2-banding -->
+
+            <div class="tab-panel" id="w2-sm">
+                <div class="interactive-card">
+                    <h4>➕ Sign-Magnitude (SM)</h4>
+                    <p>MSB = bit tanda (<code>0 = +</code>, <code>1 = −</code>), sisa bit = magnitudo (nilai mutlak).</p>
+                    <div class="info-box tip"><strong>Struktur 8-bit:</strong> 1 bit tanda + 7 bit magnitudo. Rentang −127..+127.</div>
+                    <div class="grid-2">
+                        <div class="interactive-card" style="margin:0"><strong>+13:</strong><p style="font-family:monospace;font-size:16px"><b style="color:var(--green)">0</b>000 1101</p><span style="font-size:11px">MSB=0 (+), magnitudo 13</span></div>
+                        <div class="interactive-card" style="margin:0"><strong>−13:</strong><p style="font-family:monospace;font-size:16px"><b style="color:var(--red)">1</b>000 1101</p><span style="font-size:11px">MSB=1 (−), magnitudo 13</span></div>
+                    </div>
+                    <div class="info-box warning mt-16"><strong>Double zero:</strong> +0 = <code>00000000</code>, −0 = <code>10000000</code> — memperumit logika perbandingan hardware.</div>
+                    <p style="font-size:13px">Coba sendiri di tab Perbandingan: masukkan −25 → SM = <code>10011001</code>.</p>
+                </div>
+            </div>
+
+            <div class="tab-panel" id="w2-c1">
+                <div class="interactive-card">
+                    <h4>🔄 1's Complement (C1)</h4>
+                    <p>Negatif = <strong>inversi (NOT) semua bit</strong> dari representasi positif. Rentang 8-bit −127..+127, masih ada ±0.</p>
+                    <div class="info-box tip"><strong>Contoh −13:</strong> +13 = <code>00001101</code> → NOT → <code>11110010</code>. Cek di tab Perbandingan!</div>
+                    <div class="info-box warning"><strong>End-around carry:</strong> jika penjumlahan C1 menghasilkan carry keluar MSB, carry itu <strong>ditambahkan kembali ke LSB</strong>. Contoh 5 + (−5) → −0 pada C1.</div>
+                </div>
+            </div>
+
+            <div class="tab-panel" id="w2-c2">
+                <div class="interactive-card">
+                    <h4>⭐ 2's Complement (C2) — standar CPU/MCU</h4>
+                    <p>Rumus: <code>C2 = NOT(semua bit) + 1</code>. Rentang 8-bit −128..+127, hanya satu nol.</p>
+                    <div class="steps-container">
+                        <div class="step-item"><div class="step-number">1</div><div class="step-content"><h5>Biner nilai absolut</h5><p><code>+37 = 00100101</code></p></div></div>
+                        <div class="step-item"><div class="step-number">2</div><div class="step-content"><h5>Inversi semua bit</h5><p><code>NOT = 11011010</code></p></div></div>
+                        <div class="step-item"><div class="step-number">3</div><div class="step-content"><h5>Tambah 1</h5><p><code>11011010 + 1 = 11011011₂ = 0xDB</code> → inilah −37!</p></div></div>
+                    </div>
+                    <div class="info-box success"><strong>Unggul karena:</strong> satu nol + pengurangan cukup pakai adder (tanpa subtractor). C2→Desimal: jika MSB=1, nilai = −(2ⁿ − U). Contoh <code>11100110₂</code>: U=230, 256−230=26 → <b>−26</b>.</div>
+                </div>
+            </div>
+
+            <div class="tab-panel" id="w2-sub">
+            <div class="converter-card">
+                <div class="card-header"><h3>➕ Operasi C2: A − B = A + (C2 dari B)</h3><span class="badge">Adder only</span></div>
+                <div style="padding:1.5rem">
+                    <div class="form-row">
+                        <div class="option-group"><label>A:</label><input id="op-a" type="text" value="18" style="width:100%;padding:0.875rem;border:2px solid var(--border-color);border-radius:8px;font-family:'Courier New',monospace"></div>
+                        <div class="option-group"><label>Operasi:</label><select id="op-sel"><option value="sub">A − B</option><option value="add">A + B</option></select></div>
+                        <div class="option-group"><label>B:</label><input id="op-b" type="text" value="25" style="width:100%;padding:0.875rem;border:2px solid var(--border-color);border-radius:8px;font-family:'Courier New',monospace"></div>
+                        <div class="option-group"><label>&nbsp;</label><button class="btn btn-convert" id="op-btn">Hitung (8-bit C2)</button></div>
+                    </div>
+                    <div class="result-display" id="op-result">-</div>
+                    <div class="steps-content" id="op-steps"></div>
+                    <div class="info-box warning"><strong>Aturan overflow:</strong> positif + positif = negatif → OVERFLOW; negatif + negatif = positif → OVERFLOW; beda tanda tak pernah overflow. Formula hardware: <code>carry-in(MSB) XOR carry-out(MSB)</code>. Coba 100 + 60 (seharusnya +160 &gt; +127).</div>
+                </div>
+            </div>
+            </div><!-- /w2-sub -->
+
+            <div class="tab-panel" id="w2-overflow">
+            <div class="theory-section">
+                <div class="theory-grid">
+                    <div class="theory-card"><h3>📊 Perbandingan 3 Skema (8-bit)</h3>
+                        <table class="mini-table"><tr><th>Skema</th><th>Rentang</th><th>−X dari +X</th><th>Catatan</th></tr>
+                        <tr><td>SM</td><td>−127..+127</td><td>Set MSB=1</td><td>Ada +0/−0</td></tr>
+                        <tr><td>C1</td><td>−127..+127</td><td>NOT semua bit</td><td>End-around carry</td></tr>
+                        <tr><td>C2</td><td>−128..+127</td><td>NOT + 1</td><td>Standar CPU</td></tr></table>
+                    </div>
+                    <div class="theory-card"><h3>↔️ Sign Extension & C1 Carry</h3><p>Perlebar 8→16 bit: <strong>salin MSB</strong>. Contoh −37: <code>11011011</code> → <code>11111111 11011011</code>. C1: jika ada carry keluar, tambahkan ke LSB (end-around carry). C2 menghindari ±0 → lebih praktis.</p></div>
+                    <div class="theory-card"><h3>✏️ Latihan (jawaban di slide)</h3><p>1) −58 (8-bit C2) → biner, oktal & hex.<br>2) <code>10111111</code> (C2) → desimal.<br>3) 75 − 103 via penjumlahan.<br>4) −25 dalam SM & C1 (8-bit).</p>
+                    <p style="font-size:0.85rem">Jawaban: 1) <code>11000110</code>=0xC6, 2) −65, 3) <code>11100100</code>=−28, 4) SM=<code>10011001</code>, C1=<code>11100110</code>.</p></div>
+                </div>
+            </div>
+            </div><!-- /w2-overflow -->
+
+            <div class="tab-panel cheatsheet-panel" id="w2-cheatsheet">
+                <div class="cheatsheet">
+                    <h4>📋 Cheatsheet Minggu 2 — Bilangan Negatif</h4>
+                    <h5>3 skema (8-bit)</h5>
+                    <table><tr><th>Skema</th><th>Rentang</th><th>−X dari +X</th><th>Nol ganda?</th></tr>
+                    <tr><td>SM</td><td>−127..+127</td><td>Set MSB=1</td><td>Ya (+0/−0)</td></tr>
+                    <tr><td>C1</td><td>−127..+127</td><td>NOT semua bit</td><td>Ya</td></tr>
+                    <tr><td>C2</td><td>−128..+127</td><td>NOT + 1</td><td>Tidak ⭐</td></tr></table>
+                    <h5>Rentang C2</h5>
+                    <table><tr><th>Lebar</th><th>Min</th><th>Max</th></tr>
+                    <tr><td>4-bit</td><td>−8</td><td>+7</td></tr>
+                    <tr><td>8-bit</td><td>−128</td><td>+127</td></tr>
+                    <tr><td>16-bit</td><td>−32768</td><td>+32767</td></tr></table>
+                    <h5>Rumus kunci</h5>
+                    <p>A − B = <code>A + C2(B)</code> • Overflow = <code>carry-in MSB XOR carry-out MSB</code> • Sign extension: <strong>salin MSB</strong> (cth −37: <code>11011011</code> → <code>11111111 11011011</code>) • C1 carry keluar → tambah ke LSB.</p>
+                    <div class="no-print" style="margin-top:12px"><button class="btn btn-convert btn-sm print-btn">🖨️ Cetak Cheatsheet</button></div>
+                </div>
+            </div>
+
+            <div class="tab-panel" id="w2-quiz">
+                <div class="interactive-card">
+                    <div class="score-bar"><span class="score-label">Skor Latihan:</span><span class="score-value" id="quiz2-score">0 / 5</span><div class="progress-track"><div class="progress-fill" id="quiz2-progress" style="width:0%"></div></div></div>
+                    <div id="quiz2-questions"></div>
+                    <button class="btn btn-secondary btn-sm mt-16" id="reset-quiz2">🔄 Acak Soal Baru</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer" id="app-footer"></footer>
+
+    <script src="js/shell.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/signed.js"></script>
+    <script src="js/boolean.js"></script>
+    <script src="js/kmap.js"></script>
+    <script src="js/comb.js"></script>
+    <script src="js/seq.js"></script>
+    <script src="js/svg-kit.js"></script>
+    <script src="js/learn.js"></script>
+</body>
+</html>

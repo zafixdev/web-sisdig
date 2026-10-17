@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minggu 11: Memori — Media Ajar Sistem Digital</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-week="11">
+    <div id="app-header"></div>
+    <div id="app-nav"></div>
+
+    <main class="main-content">
+        <section class="week-content active" id="week-11">
+            <div class="content-header">
+                <h2>Minggu 11: Memori — Hierarki, RAM & ROM</h2>
+                <p class="description">Hierarki memori, organisasi address×data, operasi baca/tulis RAM, jenis ROM, dan menghitung kapasitas.</p>
+            </div>
+
+            <div class="content-tabs">
+                <button class="content-tab active" data-tab="w11-belajar">📖 Pembelajaran</button>
+                <button class="content-tab" data-tab="w11-ram">💾 RAM Lab</button>
+                <button class="content-tab" data-tab="w11-rom">📀 ROM</button>
+                <button class="content-tab" data-tab="w11-hitung">🧮 Kapasitas</button>
+                <button class="content-tab" data-tab="w11-cheatsheet">📋 Cheatsheet</button>
+                <button class="content-tab" data-tab="w11-quiz">📝 Latihan</button>
+            </div>
+
+            <div class="tab-panel active" id="w11-belajar">
+            <div class="theory-section">
+                <div class="theory-grid">
+                    <div class="theory-card"><h3>🏛️ Hierarki</h3><p>Register → Cache (SRAM) → RAM (DRAM) → Flash/SSD → HDD. Makin ke bawah: makin besar, murah, lambat. Cache menjembatani cepat-lambat.</p></div>
+                    <div class="theory-card"><h3>💾 RAM vs ROM</h3><table class="mini-table"><tr><th>Aspek</th><th>RAM</th><th>ROM</th></tr><tr><td>Isi</td><td>Baca+tulis, hilang saat mati</td><td>Baca saja, non-volatil</td></tr><tr><td>Jenis</td><td>SRAM, DRAM</td><td>PROM, EPROM, EEPROM/Flash</td></tr><tr><td>Pakai</td><td>Data kerja</td><td>Firmware/boot</td></tr></table></div>
+                    <div class="theory-card"><h3>🧮 Organisasi</h3><p>Memori 2<sup>n</sup>×m: n address line, m bit data. Kapasitas bit = 2<sup>n</sup>×m. Contoh 1K×8 = 1024×8 = 8 Kbit = 1 KB.</p></div>
+                </div>
+                <div class="theory-grid">
+                    <div class="theory-card"><h3>🏨 Analogi: hotel + meja kerja</h3><p><strong>Address</strong> = nomor kamar hotel: memberi nomor 5 → resepsionis (decoder!) mengantarmu ke <em>tepat 1 kamar</em> dari 16 kamar — persis cara address decoder memilih 1 sel memori. <strong>Data</strong> = isi koper di kamar itu.</p><p><strong>Hierarki</strong> = meja kerja vs gudang: barang di meja (register/cache) diambil sedetik tapi muat sedikit; barang di gudang (HDD) muat banyak tapi butuh jalan jauh. Komputer menaruh "barang yang sedang dikerjakan" di meja dan sisanya di gudang — itulah prinsip lokalitas yang membuat cache efektif.</p></div>
+                    <div class="theory-card"><h3>🧮 Membaca tulisan 1K×8</h3><p>"1K×8" dibaca: 1024 lokasi (K = 1024, bukan 1000!), tiap lokasi 8 bit (1 byte). Total = 8192 bit = 1024 byte = 1 KB. Rumus umumnya: n address line → 2<sup>n</sup> lokasi.</p><p>Contoh ujian: chip 11 address line, data 8 bit → 2<sup>11</sup>×8 = 2048×8 bit = 2048 byte = 2 KB. RAM vs ROM: RAM seperti papan tulis (ditulisi ulang, terhapus saat listrik mati), ROM seperti buku cetak (awet, tapi mengubahnya butuh "cetak ulang" = programmer/sinar UV/sinyal elektrik).</p></div>
+                </div>
+            </div>
+            </div><!-- /w11-belajar -->
+
+            <div class="tab-panel" id="w11-ram">
+            <div class="converter-card">
+                <div class="card-header"><h3>💾 Lab RAM 16×4 (baca / tulis)</h3><span class="badge">Address 0–15</span></div>
+                <div style="padding:1.5rem">
+                    <div class="form-row">
+                        <div class="option-group"><label>Address (0–15):</label><input id="w11-ram-addr" type="text" value="5" style="width:100%;padding:0.875rem;border:2px solid var(--border-color);border-radius:8px;font-family:'Courier New',monospace"></div>
+                        <div class="option-group"><label>Data 4-bit:</label><input id="w11-ram-data" type="text" value="1011" style="width:100%;padding:0.875rem;border:2px solid var(--border-color);border-radius:8px;font-family:'Courier New',monospace"></div>
+                        <div class="option-group"><label>&nbsp;</label><button class="btn btn-convert" id="w11-ram-write">✍️ Write</button></div>
+                        <div class="option-group"><label>&nbsp;</label><button class="btn btn-convert" id="w11-ram-read">📖 Read</button></div>
+                    </div>
+                    <div class="result-display" id="w11-ram-out">-</div>
+                    <div class="steps-content" id="w11-ram-steps"></div>
+                </div>
+            </div>
+            </div><!-- /w11-ram -->
+
+            <div class="tab-panel" id="w11-rom">
+                <div class="interactive-card">
+                    <h4>📀 ROM — memori baca saja</h4>
+                    <p>Diisi sekali (pabrik/programmer): PROM (sekali tulis), EPROM (hapus UV), EEPROM/Flash (hapus elektrik). Isi tetap walau listrik mati → cocok untuk bootloader & tabel konversi (mis. BCD→7seg di Minggu 7 bisa diimplementasikan sebagai ROM 16×7).</p>
+                    <div class="info-box tip"><strong>Decoder = ROM sederhana:</strong> address decoder memilih 1 baris, tiap baris menyimpan pola output tetap.</div>
+                </div>
+            </div>
+
+            <div class="tab-panel" id="w11-hitung">
+            <div class="converter-card">
+                <div class="card-header"><h3>🧮 Kalkulator Kapasitas Memori</h3><span class="badge">2ⁿ × m</span></div>
+                <div style="padding:1.5rem">
+                    <div class="form-row">
+                        <div class="option-group"><label>Address line (n):</label><input id="w11-cap-n" type="text" value="10" style="width:100%;padding:0.875rem;border:2px solid var(--border-color);border-radius:8px;font-family:'Courier New',monospace"></div>
+                        <div class="option-group"><label>Data bit (m):</label><input id="w11-cap-m" type="text" value="8" style="width:100%;padding:0.875rem;border:2px solid var(--border-color);border-radius:8px;font-family:'Courier New',monospace"></div>
+                        <div class="option-group"><label>&nbsp;</label><button class="btn btn-convert" id="w11-cap-btn">Hitung ➔</button></div>
+                    </div>
+                    <div class="result-display" id="w11-cap-out">-</div>
+                    <div class="steps-content" id="w11-cap-steps"></div>
+                </div>
+            </div>
+            </div><!-- /w11-hitung -->
+
+            <div class="tab-panel cheatsheet-panel" id="w11-cheatsheet">
+                <div class="cheatsheet">
+                    <h4>📋 Cheatsheet Minggu 11 — Memori</h4>
+                    <p>Hierarki: <code>register &gt; cache &gt; RAM &gt; flash &gt; HDD</code>. Kapasitas = <code>2ⁿ × m bit</code> (n=address, m=data). RAM baca-tulis volatil; ROM non-volatil (PROM/EPROM/EEPROM).</p>
+                    <div class="no-print" style="margin-top:12px"><button class="btn btn-convert btn-sm print-btn">🖨️ Cetak Cheatsheet</button></div>
+                </div>
+            </div>
+
+            <div class="tab-panel" id="w11-quiz">
+                <div class="interactive-card">
+                    <div class="score-bar"><span class="score-label">Skor Kuis:</span><span class="score-value" id="quiz11-score">0 / 5</span><div class="progress-track"><div class="progress-fill" id="quiz11-progress" style="width:0%"></div></div></div>
+                    <div id="quiz11-questions"></div>
+                    <button class="btn btn-secondary btn-sm mt-16" id="reset-quiz11">🔄 Acak Soal Baru</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer" id="app-footer"></footer>
+
+    <script src="js/shell.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/signed.js"></script>
+    <script src="js/boolean.js"></script>
+    <script src="js/kmap.js"></script>
+    <script src="js/comb.js"></script>
+    <script src="js/seq.js"></script>
+    <script src="js/svg-kit.js"></script>
+    <script src="js/learn.js"></script>
+</body>
+</html>

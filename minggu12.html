@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minggu 12: ADC/DAC & PLD — Media Ajar Sistem Digital</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-week="12">
+    <div id="app-header"></div>
+    <div id="app-nav"></div>
+
+    <main class="main-content">
+        <section class="week-content active" id="week-12">
+            <div class="content-header">
+                <h2>Minggu 12: Konversi ADC/DAC & Logika Terprogram (PLD)</h2>
+                <p class="description">Menjembatani analog↔digital: resolusi & kuantisasi ADC, tangga R-2R DAC, serta PLA/PAL/CPLD/FPGA.</p>
+            </div>
+
+            <div class="content-tabs">
+                <button class="content-tab active" data-tab="w12-belajar">📖 Pembelajaran</button>
+                <button class="content-tab" data-tab="w12-adc">🎙️ ADC</button>
+                <button class="content-tab" data-tab="w12-dac">🔊 DAC</button>
+                <button class="content-tab" data-tab="w12-pld">🧩 PLD</button>
+                <button class="content-tab" data-tab="w12-cheatsheet">📋 Cheatsheet</button>
+                <button class="content-tab" data-tab="w12-quiz">📝 Latihan</button>
+            </div>
+
+            <div class="tab-panel active" id="w12-belajar">
+            <div class="theory-section">
+                <div class="theory-grid">
+                    <div class="theory-card"><h3>🎙️ ADC (Analog→Digital)</h3><p>Sampling → kuantisasi → encoding. Resolusi n bit = 2ⁿ level, step = Vref/2ⁿ. Makin banyak bit, makin halus (error kuantisasi ±½ LSB).</p></div>
+                    <div class="theory-card"><h3>🔊 DAC (Digital→Analog)</h3><p>Kebalikan ADC: kode biner → tegangan bertangga. R-2R ladder hanya butuh 2 nilai resistor. Output = Vref × kode/2ⁿ.</p></div>
+                    <div class="theory-card"><h3>🧩 PLD</h3><p>PLA (AND & OR programabel) → PAL (OR tetap) → CPLD → FPGA (blok logika + routing, bisa di-flash ulang). Satu chip menggantikan puluhan IC TTL.</p></div>
+                </div>
+                <div class="theory-grid">
+                    <div class="theory-card"><h3>📏 Analogi: gelas ukur & tangga</h3><p><strong>ADC</strong> = mengukur 2,3 liter air dengan gelas ukur 8-bit (256 garis): tiap garis = 5/256 ≈ 19,5 mL (1 step). Hasilnya garis ke-118 — ada sisa 0,3 mL yang tak terukur: itulah <strong>error kuantisasi</strong> (±½ garis). Gelas 10-bit (1024 garis) garisnya 4× lebih rapat → error 4× lebih kecil. Inilah arti resolusi!</p><p><strong>DAC</strong> = membangun menara dari balok: kode <code>10110000</code> (176) dengan Vref 5V → tinggi menara 5×176/256 ≈ 3,44 V. Tiap tambah 1 kode, menara naik 1 step — keluarannya <em>bertangga</em>, bukan miring mulus. Filter analog melembutkan tangga itu jadi sinyal audio mulus di speaker.</p></div>
+                    <div class="theory-card"><h3>🧮 Contoh hitung ADC → DAC bolak-balik</h3><p>ADC 8-bit, Vref=5V, Vin=2,3V: step = 5/256 = 0,0195V; kode = round(2,3/0,0195) = 118 (<code>01110110</code>). Umpankan kode ini ke DAC 8-bit Vref sama: Vout = 5×118/256 = 2,305V — meleset 0,005V dari aslinya (di bawah ½ step ✔️).</p><p><strong>PLD:</strong> skripsi butuh 20 gerbang acak? Dulu: solder 5 IC TTL. Kini: tulis persamaan di 1 FPGA, flash, selesai — salah desain? Flash ulang, tanpa solder ulang. PLA/PAL = versi kecilnya (SOP langsung!), CPLD/FPGA = versi raksasanya.</p></div>
+                </div>
+            </div>
+            </div><!-- /w12-belajar -->
+
+            <div class="tab-panel" id="w12-adc">
+            <div class="converter-card">
+                <div class="card-header"><h3>🎙️ Kalkulator ADC (kuantisasi)</h3><span class="badge">step = Vref/2ⁿ</span></div>
+                <div style="padding:1.5rem">
+                    <div class="form-row">
+                        <div class="option-group"><label>Vin (volt):</label><input id="w12-adc-vin" type="text" value="2.3" style="width:100%;padding:0.875rem;border:2px solid var(--border-color);border-radius:8px;font-family:'Courier New',monospace"></div>
+                        <div class="option-group"><label>Vref (volt):</label><input id="w12-adc-vref" type="text" value="5" style="width:100%;padding:0.875rem;border:2px solid var(--border-color);border-radius:8px;font-family:'Courier New',monospace"></div>
+                        <div class="option-group"><label>Resolusi (bit):</label><select id="w12-adc-n"><option value="4">4-bit</option><option value="8" selected>8-bit</option><option value="10">10-bit</option></select></div>
+                        <div class="option-group"><label>&nbsp;</label><button class="btn btn-convert" id="w12-adc-btn">Konversi ➔</button></div>
+                    </div>
+                    <div class="result-display" id="w12-adc-out">-</div>
+                    <div class="steps-content" id="w12-adc-steps"></div>
+                </div>
+            </div>
+            </div><!-- /w12-adc -->
+
+            <div class="tab-panel" id="w12-dac">
+            <div class="converter-card">
+                <div class="card-header"><h3>🔊 Kalkulator DAC (R-2R)</h3><span class="badge">Vout = Vref×kode/2ⁿ</span></div>
+                <div style="padding:1.5rem">
+                    <div class="form-row">
+                        <div class="option-group"><label>Kode biner:</label><input id="w12-dac-code" type="text" value="10110000" style="width:100%;padding:0.875rem;border:2px solid var(--border-color);border-radius:8px;font-family:'Courier New',monospace"></div>
+                        <div class="option-group"><label>Vref (volt):</label><input id="w12-dac-vref" type="text" value="5" style="width:100%;padding:0.875rem;border:2px solid var(--border-color);border-radius:8px;font-family:'Courier New',monospace"></div>
+                        <div class="option-group"><label>&nbsp;</label><button class="btn btn-convert" id="w12-dac-btn">Konversi ➔</button></div>
+                    </div>
+                    <div class="result-display" id="w12-dac-out">-</div>
+                    <div class="steps-content" id="w12-dac-steps"></div>
+                </div>
+            </div>
+            </div><!-- /w12-dac -->
+
+            <div class="tab-panel" id="w12-pld">
+                <div class="interactive-card">
+                    <h4>🧩 Memilih perangkat logika terprogram</h4>
+                    <table class="mini-table"><tr><th>Perangkat</th><th>AND</th><th>OR</th><th>Catatan</th></tr>
+                    <tr><td>PLA</td><td>Program</td><td>Program</td><td>Fleksibel, lambat</td></tr>
+                    <tr><td>PAL</td><td>Program</td><td>Tetap</td><td>Cepat, populer (16V8)</td></tr>
+                    <tr><td>CPLD</td><td colspan="2">Blok PAL + interconnect</td><td>Ratusan makro-sel</td></tr>
+                    <tr><td>FPGA</td><td colspan="2">LUT + routing + RAM/DSP</td><td>Ribuan–jutaan gerbang</td></tr></table>
+                    <div class="info-box tip"><strong>Alur FPGA:</strong> tulis HDL (Verilog/VHDL) → sintesis → place & route → bitstream → flash → uji di board.</div>
+                </div>
+            </div>
+
+            <div class="tab-panel cheatsheet-panel" id="w12-cheatsheet">
+                <div class="cheatsheet">
+                    <h4>📋 Cheatsheet Minggu 12 — ADC/DAC/PLD</h4>
+                    <p>ADC: <code>step=Vref/2ⁿ, kode=round(Vin/step)</code> • DAC: <code>Vout=Vref×kode/2ⁿ</code> • Error kuantisasi ±½ LSB • PLA/PAL→CPLD→FPGA (makin besar & fleksibel).</p>
+                    <div class="no-print" style="margin-top:12px"><button class="btn btn-convert btn-sm print-btn">🖨️ Cetak Cheatsheet</button></div>
+                </div>
+            </div>
+
+            <div class="tab-panel" id="w12-quiz">
+                <div class="interactive-card">
+                    <div class="score-bar"><span class="score-label">Skor Kuis:</span><span class="score-value" id="quiz12-score">0 / 5</span><div class="progress-track"><div class="progress-fill" id="quiz12-progress" style="width:0%"></div></div></div>
+                    <div id="quiz12-questions"></div>
+                    <button class="btn btn-secondary btn-sm mt-16" id="reset-quiz12">🔄 Acak Soal Baru</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer" id="app-footer"></footer>
+
+    <script src="js/shell.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/signed.js"></script>
+    <script src="js/boolean.js"></script>
+    <script src="js/kmap.js"></script>
+    <script src="js/comb.js"></script>
+    <script src="js/seq.js"></script>
+    <script src="js/svg-kit.js"></script>
+    <script src="js/learn.js"></script>
+</body>
+</html>

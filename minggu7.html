@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minggu 7: Decoder, Encoder & 7-Segmen — Media Ajar Sistem Digital</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-week="7">
+    <div id="app-header"></div>
+    <div id="app-nav"></div>
+
+    <main class="main-content">
+        <section class="week-content active" id="week-7">
+            <div class="content-header">
+                <h2>Minggu 7: Decoder, Encoder & Display 7-Segmen</h2>
+                <p class="description">Kombinasional vs sekuensial, decoder 2-to-4 (+Enable) & 3-to-8, aplikasi memori/periferal, encoder 4-to-2 & priority, BCD ke 7-segmen (CA/CC).</p>
+            </div>
+
+            <div class="objectives-box">
+                <h4>🎯 Setelah mempelajari minggu ini, Anda mampu:</h4>
+                <ul>
+                    <li>Membedakan rangkaian kombinasional dan sekuensial.</li>
+                    <li>Menjelaskan cara kerja decoder dan encoder beserta tabel kebenarannya.</li>
+                    <li>Menjelaskan fungsi priority encoder dan pengaruh Enable.</li>
+                    <li>Menyusun pemetaan BCD ke tampilan 7-segmen (Common Anode/Cathode).</li>
+                </ul>
+            </div>
+            <div class="prereq-box">
+                <span>📌 <strong>Prasyarat:</strong> minterm/SOP dan gerbang logika (Minggu 3), multiplexer (Minggu 6).</span>
+                <span>⏱️ <strong>Estimasi:</strong> 2 × 50 menit.</span>
+            </div>
+
+            <div class="content-tabs">
+                <button class="content-tab active" data-tab="w7-belajar">📖 Pembelajaran</button>
+                <button class="content-tab" data-tab="w7-dec24">🔽 DEC 2-4</button>
+                <button class="content-tab" data-tab="w7-dec38">🔽 DEC 3-8</button>
+                <button class="content-tab" data-tab="w7-enc">🔼 ENC 4-2</button>
+                <button class="content-tab" data-tab="w7-priority">👑 Priority</button>
+                <button class="content-tab" data-tab="w7-bcd7seg">🔢 BCD-7Seg</button>
+                <button class="content-tab" data-tab="w7-cheatsheet">📋 Cheatsheet</button>
+                <button class="content-tab" data-tab="w7-quiz">📝 Latihan</button>
+            </div>
+
+            <div class="tab-panel active" id="w7-belajar">
+            <div class="theory-section">
+                <div class="theory-grid">
+                    <div class="theory-card"><h3>🔀 Kombinasional vs Sekuensial</h3><table class="mini-table"><tr><th>Aspek</th><th>Kombinasional</th><th>Sekuensial</th></tr><tr><td>Memori</td><td>Tidak ada</td><td>Ada (flip-flop)</td></tr><tr><td>Output</td><td>Hanya input kini</td><td>Input + state lalu</td></tr><tr><td>Contoh</td><td>Adder, MUX, DEC/ENC</td><td>Register, counter</td></tr></table></div>
+                    <div class="theory-card"><h3>🔽 Decoder</h3><p>n input → 2ⁿ output, tepat satu aktif. Dengan <strong>Enable (EN)</strong>: jika EN=0 semua mati. IC: 74xx138 (3-to-8), 74xx154 (4-to-16).</p></div>
+                    <div class="theory-card"><h3>🔼 Encoder</h3><p>Kebalikan decoder: 2ⁿ input (satu aktif) → n output. <strong>Priority encoder</strong> menyelesaikan konflik 2 input aktif (prioritas ke nomor terbesar, + output Valid).</p></div>
+                </div>
+                <div class="interactive-card"><h4>💡 Aplikasi decoder</h4><p>Address decoder memori, channel selector / data routing, peripheral enable, kunci keamanan, dan driver BCD→7-segmen.</p></div>
+                <div class="theory-grid">
+                    <div class="theory-card"><h3>🏨 Analogi: resepsionis & juri lomba</h3><p><strong>Decoder</strong> = resepsionis hotel: tamu menyebut nomor kamar 2-bit (<code>10</code> = kamar 2) → resepsionis menyalakan <em>tepat 1 lampu</em> (Y2) dari 4 lampu koridor. Sinyal <strong>Enable</strong> = saklar utama listrik: EN=0 → semua lampu mati apa pun nomornya.</p><p><strong>Encoder</strong> = juri lomba menunjuk pemenang: 4 peserta (D0–D3), yang angkat tangan (tepat satu!) dikodekan jadi nomor 2-bit. <strong>Priority encoder</strong> = 2 peserta angkat tangan bersamaan → juri memilih nomor terbesar (D3 menang atas D1) + bendera Valid "keputusan sah".</p></div>
+                    <div class="theory-card"><h3>🔢 Membaca display 7-segmen</h3><p>Digit <code>2</code> menyalakan segmen a,b,g,e,d — bayangkan menggambar angka 2: garis atas (a), kanan atas (b), tengah (g), kiri bawah (e), bawah (d). Segmen c & f mati.</p><p><strong>CC vs CA:</strong> Common Cathode = kaki bersama ke GND, segmen nyala dengan logika <code>1</code> (arus masuk per segmen). Common Anode = kaki bersama ke VCC, segmen nyala dengan logika <code>0</code> (arus keluar per segmen). Tertukar? Display menampilkan <em>negatif film</em> dari angka yang diinginkan — gejala khas yang mudah dikenali saat praktikum.</p></div>
+                </div>
+
+                <figure class="svg-figure">
+                    <span class="fig-title">Gambar 7.1 — Aliran decoder → encoder vs. tampilan 7-segmen</span>
+                    <div data-svg="decoder24"></div>
+                    <figcaption>Decoder mengubah kode biner menjadi <em>tepat satu</em> saluran aktif; encoder melakukan kebalikannya.</figcaption>
+                </figure>
+
+                <div class="misconception-box">
+                    <h4>⚠️ Miskonsepsi yang sering terjadi</h4>
+                    <div class="mc-item"><span class="mc-wrong">Salah:</span> “saat EN=0, decoder tetap mengaktifkan satu output.” <span class="mc-right">Benar:</span> bila Enable tidak aktif, <em>semua</em> output decoder mati.</div>
+                    <div class="mc-item"><span class="mc-wrong">Salah:</span> “encoder biasa aman untuk semua input.” <span class="mc-right">Benar:</span> encoder biasa menganggap hanya satu input aktif; bila lebih dari satu, hasil tak tentu — gunakan priority encoder.</div>
+                    <div class="mc-item"><span class="mc-wrong">Salah:</span> “CA dan CC sama saja, tinggal dibalik kabelnya.” <span class="mc-right">Benar:</span> logikanya berlawanan (CC: 1=nyala, CA: 0=nyala); salah pilih menghasilkan pola terbalik (negatif film).</div>
+                </div>
+            </div>
+            </div><!-- /w7-belajar -->
+
+            <div class="tab-panel" id="w7-dec24">
+            <div class="converter-card">
+                <div class="card-header"><h3>🔽 Simulator Decoder 2-to-4 (+Enable)</h3><span class="badge">Yi = mi·EN</span></div>
+                <div style="padding:1.5rem">
+                    <div class="quiz-input-row">
+                        <button class="btn btn-convert btn-sm tgl" id="w7-d24-a">A=0</button>
+                        <button class="btn btn-convert btn-sm tgl" id="w7-d24-b">B=0</button>
+                        <button class="btn btn-convert btn-sm tgl on" id="w7-d24-en">EN=1</button>
+                    </div>
+                    <div class="triple-grid" id="w7-d24-out"></div>
+                    <div class="steps-content" id="w7-d24-steps"></div>
+                </div>
+            </div>
+            <figure class="svg-figure">
+                <span class="fig-title">Gambar 7.2 — Decoder 2-to-4 dengan Enable</span>
+                <div data-svg="decoder24"></div>
+                <figcaption>Input A B memilih satu dari empat output; EN menggerbangi seluruh decoder.</figcaption>
+            </figure>
+            </div><!-- /w7-dec24 -->
+
+            <div class="tab-panel" id="w7-dec38">
+            <div class="converter-card">
+                <div class="card-header"><h3>🔽 Simulator Decoder 3-to-8</h3><span class="badge">74xx138</span></div>
+                <div style="padding:1.5rem">
+                    <div class="quiz-input-row">
+                        <button class="btn btn-convert btn-sm tgl" id="w7-d38-a">A=0</button>
+                        <button class="btn btn-convert btn-sm tgl" id="w7-d38-b">B=0</button>
+                        <button class="btn btn-convert btn-sm tgl" id="w7-d38-c">C=0</button>
+                        <button class="btn btn-convert btn-sm tgl on" id="w7-d38-en">EN=1</button>
+                    </div>
+                    <div class="triple-grid" id="w7-d38-out"></div>
+                    <div class="steps-content" id="w7-d38-steps"></div>
+                    <div class="info-box tip"><strong>Memory addressing:</strong> output decoder memilih 1 chip/alamat dari 8 bank memori berdasarkan 3 bit alamat.</div>
+                </div>
+            </div>
+            </div><!-- /w7-dec38 -->
+
+            <div class="tab-panel" id="w7-enc">
+            <div class="converter-card">
+                <div class="card-header"><h3>🔼 Simulator Encoder 4-to-2</h3><span class="badge">Satu aktif</span></div>
+                <div style="padding:1.5rem">
+                    <p>A1 = D2+D3, A0 = D1+D3, V = D0+D1+D2+D3. Tepat satu input = 1.</p>
+                    <div class="quiz-input-row">
+                        <button class="btn btn-convert btn-sm tgl" id="w7-enc-d0">D0=0</button>
+                        <button class="btn btn-convert btn-sm tgl" id="w7-enc-d1">D1=0</button>
+                        <button class="btn btn-convert btn-sm tgl" id="w7-enc-d2">D2=0</button>
+                        <button class="btn btn-convert btn-sm tgl" id="w7-enc-d3">D3=0</button>
+                    </div>
+                    <div class="result-display" id="w7-enc-out">-</div>
+                    <div class="steps-content" id="w7-enc-steps"></div>
+                </div>
+            </div>
+            <figure class="svg-figure">
+                <span class="fig-title">Gambar 7.3 — Encoder 4-to-2</span>
+                <div data-svg="encoder42"></div>
+                <figcaption>Empat jalur input dikodekan menjadi 2 bit keluaran sesuai posisi input yang aktif.</figcaption>
+            </figure>
+            </div><!-- /w7-enc -->
+
+            <div class="tab-panel" id="w7-priority">
+            <div class="converter-card">
+                <div class="card-header"><h3>👑 Simulator Priority Encoder 4-to-2</h3><span class="badge">D3 tertinggi</span></div>
+                <div style="padding:1.5rem">
+                    <p>Jika beberapa input 1, yang dikodekan = nomor terbesar. Contoh keyboard scanner.</p>
+                    <div class="quiz-input-row">
+                        <button class="btn btn-convert btn-sm tgl" id="w7-pri-d0">D0=0</button>
+                        <button class="btn btn-convert btn-sm tgl" id="w7-pri-d1">D1=0</button>
+                        <button class="btn btn-convert btn-sm tgl" id="w7-pri-d2">D2=0</button>
+                        <button class="btn btn-convert btn-sm tgl" id="w7-pri-d3">D3=0</button>
+                    </div>
+                    <div class="result-display" id="w7-pri-out">-</div>
+                    <div class="steps-content" id="w7-pri-steps"></div>
+                </div>
+            </div>
+            </div><!-- /w7-priority -->
+
+            <div class="tab-panel" id="w7-bcd7seg">
+            <div class="converter-card">
+                <div class="card-header"><h3>🔢 BCD → 7-Segmen</h3><span class="badge">CA / CC</span></div>
+                <div style="padding:1.5rem">
+                    <div class="form-row">
+                        <div class="option-group"><label>Digit hex (0–F):</label><select id="w7-seg-sel"><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8" selected>8</option><option value="9">9</option><option value="10">A</option><option value="11">b</option><option value="12">C</option><option value="13">d</option><option value="14">E</option><option value="15">F</option></select></div>
+                        <div class="option-group"><label>Tipe display:</label><select id="w7-seg-type"><option value="CC">Common Cathode (1=nyala)</option><option value="CA">Common Anode (0=nyala)</option></select></div>
+                    </div>
+                    <div class="grid-2">
+                        <div class="interactive-card" style="margin:0;text-align:center"><div id="w7-seg-display"></div><p style="font-size:12px">a di atas, g tengah, d bawah</p></div>
+                        <div class="interactive-card" style="margin:0"><div class="mono" id="w7-seg-out">-</div><div class="steps-content" id="w7-seg-steps"></div></div>
+                    </div>
+                </div>
+            </div>
+            <figure class="svg-figure">
+                <span class="fig-title">Gambar 7.4 — Penamaan segmen display 7-segmen (contoh digit “2”)</span>
+                <div data-svg="seven-seg"></div>
+                <figcaption>Digit “2” menyalakan segmen a, b, g, e, d, sedangkan c dan f mati.</figcaption>
+            </figure>
+            </div><!-- /w7-bcd7seg -->
+
+            <div class="tab-panel cheatsheet-panel" id="w7-cheatsheet">
+                <div class="cheatsheet">
+                    <h4>📋 Cheatsheet Minggu 7 — DEC / ENC / 7-Seg</h4>
+                    <table><tr><th>Blok</th><th>In→Out</th><th>Rumus / Catatan</th></tr>
+                    <tr><td>DEC 2-4</td><td>2→4</td><td><code>Yi=mi·EN</code> (satu aktif)</td></tr>
+                    <tr><td>DEC 3-8</td><td>3→8</td><td><code>74xx138</code>, address memori</td></tr>
+                    <tr><td>ENC 4-2</td><td>4→2</td><td><code>A1=D2+D3, A0=D1+D3</code></td></tr>
+                    <tr><td>Priority</td><td>4→2+V</td><td><code>Menang = nomor terbesar</code></td></tr>
+                    <tr><td>BCD-7seg</td><td>4→7</td><td><code>CC:1=nyala, CA:0=nyala</code></td></tr></table>
+                    <h5>Decoder vs Encoder</h5>
+                    <p>Decoder: sedikit→banyak (pilih saluran). Encoder: banyak→sedikit (kompresi, mis. keypad scanner).</p>
+                    <div class="no-print" style="margin-top:12px"><button class="btn btn-convert btn-sm print-btn">🖨️ Cetak Cheatsheet</button></div>
+                </div>
+            </div>
+
+            <div class="tab-panel" id="w7-quiz">
+                <div class="interactive-card">
+                    <div class="score-bar"><span class="score-label">Skor Kuis:</span><span class="score-value" id="quiz7-score">0 / 5</span><div class="progress-track"><div class="progress-fill" id="quiz7-progress" style="width:0%"></div></div></div>
+                    <div id="quiz7-questions"></div>
+                    <button class="btn btn-secondary btn-sm mt-16" id="reset-quiz7">🔄 Acak Soal Baru</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer" id="app-footer"></footer>
+
+    <script src="js/shell.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/signed.js"></script>
+    <script src="js/boolean.js"></script>
+    <script src="js/kmap.js"></script>
+    <script src="js/comb.js"></script>
+    <script src="js/seq.js"></script>
+    <script src="js/svg-kit.js"></script>
+    <script src="js/learn.js"></script>
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minggu 9: Register — Media Ajar Sistem Digital</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-week="9">
+    <div id="app-header"></div>
+    <div id="app-nav"></div>
+
+    <main class="main-content">
+        <section class="week-content active" id="week-9">
+            <div class="content-header">
+                <h2>Minggu 9: Register & Shift Register</h2>
+                <p class="description">Kumpulan D flip-flop: operasi load/clear/shift, PIPO, SISO, SIPO, PISO, ring counter, bidirectional & universal shift register.</p>
+            </div>
+
+            <div class="content-tabs">
+                <button class="content-tab active" data-tab="w9-belajar">📖 Pembelajaran</button>
+                <button class="content-tab" data-tab="w9-pipo">📥 PIPO</button>
+                <button class="content-tab" data-tab="w9-shift">➡️ Shift Lab</button>
+                <button class="content-tab" data-tab="w9-ring">⭕ Ring</button>
+                <button class="content-tab" data-tab="w9-uni">🌐 Universal</button>
+                <button class="content-tab" data-tab="w9-cheatsheet">📋 Cheatsheet</button>
+                <button class="content-tab" data-tab="w9-quiz">📝 Latihan</button>
+            </div>
+
+            <div class="tab-panel active" id="w9-belajar">
+            <div class="theory-section">
+                <div class="theory-grid">
+                    <div class="theory-card"><h3>📦 Register = N × D-FF</h3><p>Menyimpan N bit dengan 1 clock bersama + sinyal <strong>preset/clear</strong>. Operasi dasar: load paralel, clear/reset, hold, dan shift (geser kiri/kanan dengan serial-in).</p></div>
+                    <div class="theory-card"><h3>↔️ 4 Mode Serial/Paralel</h3><table class="mini-table"><tr><th>Mode</th><th>In→Out</th><th>Butuh clock</th></tr><tr><td>PIPO</td><td>Par→Par</td><td>1×</td></tr><tr><td>SISO</td><td>Ser→Ser</td><td>N×</td></tr><tr><td>SIPO</td><td>Ser→Par</td><td>N×</td></tr><tr><td>PISO</td><td>Par→Ser</td><td>N×</td></tr></table></div>
+                    <div class="theory-card"><h3>🌐 Lanjut</h3><p><strong>Ring counter:</strong> SISO dengan output kembali ke input (1 berputar). <strong>Bidirectional:</strong> geser kiri/kanan via MUX. <strong>Universal (74xx194):</strong> hold/shift-kiri/shift-kanan/load via 2 bit mode.</p></div>
+                </div>
+                <div class="theory-grid">
+                    <div class="theory-card"><h3>🗄️ Analogi: loker & ban berjalan</h3><p><strong>Register PIPO</strong> = 4 loker yang pintunya dibuka <em>serentak</em> saat bel (clock) berbunyi: 4 barang masuk sekaligus, 4 barang terlihat sekaligus. <strong>Shift register</strong> = ban berjalan sushi: tiap bel, semua piring geser 1 posisi; piring baru naik di ujung (serial-in), piring ujung satunya turun (serial-out).</p><p>Dari analogi ini jelas mengapa SIPO butuh N clock (menunggu 4 piring naik satu per satu) sedangkan PIPO cukup 1 clock (semua loker dibuka bersamaan). <strong>Ring counter</strong> = ban berjalan melingkar: piring yang turun langsung naik lagi di ujung awal — 1 piring spesial berputar terus, cocok sebagai "penunjuk giliran".</p></div>
+                    <div class="theory-card"><h3>🧮 Membaca mode universal (S1S0)</h3><p>Dua bit mode = 4 perintah: <code>00</code> hold (abaikan clock, data diam — seperti pause), <code>01</code> geser kanan (data bergerak ke bit lebih rendah, cocok menerima serial), <code>10</code> geser kiri, <code>11</code> load paralel (isi ulang 4 bit sekaligus).</p><p>Contoh: Q=<code>1011</code>, mode <code>01</code>, ser=0 → clock → Q=<code>0101</code> (semua geser kanan, bit kiri diisi 0, bit kanan <code>1</code> keluar). Ulangi 4× dan seluruh isi lama sudah "dipompa" keluar lewat serial-out — itulah cara PISO mengirim data lewat 1 kabel!</p></div>
+                </div>
+            </div>
+            </div><!-- /w9-belajar -->
+
+            <div class="tab-panel" id="w9-pipo">
+            <div class="converter-card">
+                <div class="card-header"><h3>📥 Simulator Register PIPO 4-bit</h3><span class="badge">Load paralel</span></div>
+                <div style="padding:1.5rem">
+                    <div class="quiz-input-row">
+                        <button class="btn btn-convert btn-sm tgl" id="w9-pipo-b3">b3=0</button>
+                        <button class="btn btn-convert btn-sm tgl" id="w9-pipo-b2">b2=0</button>
+                        <button class="btn btn-convert btn-sm tgl" id="w9-pipo-b1">b1=0</button>
+                        <button class="btn btn-convert btn-sm tgl" id="w9-pipo-b0">b0=0</button>
+                        <button class="btn btn-convert btn-sm" id="w9-pipo-load">⏰ Load (Clock)</button>
+                        <button class="btn btn-reset btn-sm" id="w9-pipo-clear">Clear</button>
+                    </div>
+                    <div class="result-display" id="w9-pipo-out">Q = 0000</div>
+                    <div class="steps-content" id="w9-pipo-steps"></div>
+                </div>
+            </div>
+            </div><!-- /w9-pipo -->
+
+            <div class="tab-panel" id="w9-shift">
+            <div class="converter-card">
+                <div class="card-header"><h3>➡️ Lab Shift Register (SISO/SIPO/PISO)</h3><span class="badge">Tombol Clock ⏰</span></div>
+                <div style="padding:1.5rem">
+                    <div class="form-row">
+                        <div class="option-group"><label>Mode:</label><select id="w9-sh-mode"><option value="SISO">SISO (ser→ser)</option><option value="SIPO">SIPO (ser→par)</option><option value="PISO">PISO (par→ser)</option></select></div>
+                        <div class="option-group"><label>Serial-in:</label><select id="w9-sh-sin"><option value="0">0</option><option value="1">1</option></select></div>
+                        <div class="option-group"><label>Data paralel (PISO):</label><input id="w9-sh-par" type="text" value="1011" style="width:100%;padding:0.875rem;border:2px solid var(--border-color);border-radius:8px;font-family:'Courier New',monospace"></div>
+                        <div class="option-group"><label>&nbsp;</label><button class="btn btn-convert" id="w9-sh-clock">⏰ Clock</button></div>
+                        <div class="option-group"><label>&nbsp;</label><button class="btn btn-reset" id="w9-sh-reset">Reset</button></div>
+                    </div>
+                    <div class="result-display" id="w9-sh-out">Q = 0000</div>
+                    <div class="steps-content" id="w9-sh-steps"></div>
+                </div>
+            </div>
+            </div><!-- /w9-shift -->
+
+            <div class="tab-panel" id="w9-ring">
+            <div class="converter-card">
+                <div class="card-header"><h3>⭕ Ring Counter 4-bit (SISO melingkar)</h3><span class="badge">1 berputar</span></div>
+                <div style="padding:1.5rem">
+                    <div class="quiz-input-row">
+                        <button class="btn btn-convert btn-sm" id="w9-ring-clock">⏰ Clock</button>
+                        <button class="btn btn-reset btn-sm" id="w9-ring-reset">Reset (1000)</button>
+                    </div>
+                    <div class="result-display" id="w9-ring-out">Q = 1000</div>
+                    <div class="steps-content" id="w9-ring-steps"></div>
+                </div>
+            </div>
+            </div><!-- /w9-ring -->
+
+            <div class="tab-panel" id="w9-uni">
+            <div class="converter-card">
+                <div class="card-header"><h3>🌐 Universal Shift Register (ala 74xx194)</h3><span class="badge">S1 S0 mode</span></div>
+                <div style="padding:1.5rem">
+                    <p>Mode: 00=hold, 01=shift kanan, 10=shift kiri, 11=load paralel.</p>
+                    <div class="form-row">
+                        <div class="option-group"><label>S1:</label><select id="w9-uni-s1"><option value="0">0</option><option value="1">1</option></select></div>
+                        <div class="option-group"><label>S0:</label><select id="w9-uni-s0"><option value="0">0</option><option value="1">1</option></select></div>
+                        <div class="option-group"><label>Ser-kanan / Ser-kiri:</label><select id="w9-uni-ser"><option value="0">0</option><option value="1">1</option></select></div>
+                        <div class="option-group"><label>Data paralel:</label><input id="w9-uni-par" type="text" value="1011" style="width:100%;padding:0.875rem;border:2px solid var(--border-color);border-radius:8px;font-family:'Courier New',monospace"></div>
+                        <div class="option-group"><label>&nbsp;</label><button class="btn btn-convert" id="w9-uni-clock">⏰ Clock</button></div>
+                        <div class="option-group"><label>&nbsp;</label><button class="btn btn-reset" id="w9-uni-reset">Reset</button></div>
+                    </div>
+                    <div class="result-display" id="w9-uni-out">Q = 0000</div>
+                    <div class="steps-content" id="w9-uni-steps"></div>
+                </div>
+            </div>
+            </div><!-- /w9-uni -->
+
+            <div class="tab-panel cheatsheet-panel" id="w9-cheatsheet">
+                <div class="cheatsheet">
+                    <h4>📋 Cheatsheet Minggu 9 — Register</h4>
+                    <table><tr><th>Mode</th><th>Arti</th><th>Clock untuk N bit</th></tr>
+                    <tr><td>PIPO</td><td>Paralel in, paralel out</td><td>1× (tercepat)</td></tr>
+                    <tr><td>SISO</td><td>Seri in, seri out (delay N)</td><td>N×</td></tr>
+                    <tr><td>SIPO</td><td>Seri→paralel (konversi)</td><td>N×</td></tr>
+                    <tr><td>PISO</td><td>Paralel→seri (konversi)</td><td>N×</td></tr></table>
+                    <p>Ring = SISO melingkar (1 panas berputar) • Universal S1S0: <code>00 hold, 01 kanan, 10 kiri, 11 load</code>.</p>
+                    <div class="no-print" style="margin-top:12px"><button class="btn btn-convert btn-sm print-btn">🖨️ Cetak Cheatsheet</button></div>
+                </div>
+            </div>
+
+            <div class="tab-panel" id="w9-quiz">
+                <div class="interactive-card">
+                    <div class="score-bar"><span class="score-label">Skor Kuis:</span><span class="score-value" id="quiz9-score">0 / 5</span><div class="progress-track"><div class="progress-fill" id="quiz9-progress" style="width:0%"></div></div></div>
+                    <div id="quiz9-questions"></div>
+                    <button class="btn btn-secondary btn-sm mt-16" id="reset-quiz9">🔄 Acak Soal Baru</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer" id="app-footer"></footer>
+
+    <script src="js/shell.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/signed.js"></script>
+    <script src="js/boolean.js"></script>
+    <script src="js/kmap.js"></script>
+    <script src="js/comb.js"></script>
+    <script src="js/seq.js"></script>
+    <script src="js/svg-kit.js"></script>
+    <script src="js/learn.js"></script>
+</body>
+</html>
